@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>615</width>
+    <width>614</width>
     <height>993</height>
    </rect>
   </property>
@@ -169,12 +169,12 @@
       </widget>
      </item>
      <item row="5" column="3">
-      <widget class="SiriusLedAlert" name="led_ff01m2septacv">
+      <widget class="SiriusLedAlert" name="led_ff01m2cv">
        <property name="toolTip">
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>
@@ -194,7 +194,7 @@
         <bool>false</bool>
        </property>
        <property name="channel" stdset="0">
-        <string>SI-01M2:PS-FFCV:PwrState-Sts</string>
+        <string>SI-01M2:PS-FFCV:DiagStatus-Mon</string>
        </property>
       </widget>
      </item>
@@ -337,12 +337,12 @@
       </widget>
      </item>
      <item row="4" column="3">
-      <widget class="SiriusLedAlert" name="led_ff01m1septacv">
+      <widget class="SiriusLedAlert" name="led_ff01m1cv">
        <property name="toolTip">
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>
@@ -359,7 +359,7 @@
         </color>
        </property>
        <property name="channel" stdset="0">
-        <string>SI-01M1:PS-FFCV:PwrState-Sts</string>
+        <string>SI-01M1:PS-FFCV:DiagStatus-Mon</string>
        </property>
       </widget>
      </item>
@@ -462,17 +462,17 @@
         <string/>
        </property>
        <property name="text">
-        <string>SI-01M2:PS-FFCH-2</string>
+        <string>SI-01M2:PS-FFCH</string>
        </property>
       </widget>
      </item>
      <item row="3" column="3">
-      <widget class="SiriusLedAlert" name="led_ff01m2septach">
+      <widget class="SiriusLedAlert" name="led_ff01m2ch">
        <property name="toolTip">
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>
@@ -489,7 +489,7 @@
         </color>
        </property>
        <property name="channel" stdset="0">
-        <string>SI-01M2:PS-FFCH:PwrState-Sts</string>
+        <string>SI-01M2:PS-FFCH:DiagStatus-Mon</string>
        </property>
       </widget>
      </item>
@@ -941,7 +941,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>
@@ -971,7 +971,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>
@@ -1020,7 +1020,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>
@@ -1608,12 +1608,12 @@
       </widget>
      </item>
      <item row="2" column="3">
-      <widget class="SiriusLedAlert" name="led_ff01m1septach">
+      <widget class="SiriusLedAlert" name="led_ff01m1ch">
        <property name="toolTip">
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>
@@ -1633,7 +1633,7 @@
         <bool>false</bool>
        </property>
        <property name="channel" stdset="0">
-        <string>SI-01M1:PS-FFCH:PwrState-Sts</string>
+        <string>SI-01M1:PS-FFCH:DiagStatus-Mon</string>
        </property>
       </widget>
      </item>
@@ -1700,7 +1700,7 @@
         <string/>
        </property>
        <property name="text">
-        <string>SI-01M1:PS-FFCV-1</string>
+        <string>SI-01M1:PS-FFCV</string>
        </property>
       </widget>
      </item>
@@ -2144,7 +2144,7 @@
         <string/>
        </property>
        <property name="text">
-        <string>SI-01M1:PS-FFCH-1</string>
+        <string>SI-01M1:PS-FFCH</string>
        </property>
       </widget>
      </item>
@@ -2338,7 +2338,7 @@
         <string/>
        </property>
        <property name="text">
-        <string>SI-01M2:PS-FFCV-2</string>
+        <string>SI-01M2:PS-FFCV</string>
        </property>
       </widget>
      </item>
@@ -2731,7 +2731,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>
@@ -2935,7 +2935,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>
@@ -2992,7 +2992,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>
@@ -3219,7 +3219,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="onColor">
         <color>

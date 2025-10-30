@@ -85,7 +85,10 @@ def main():
                 return
             if segundos == 0:
                 texto = "06h00m00s"
-                css = "background-color: green; color: black; font-weight: bold;"
+                css = (
+                    "background-color: green; color: "
+                    "black; font-weight: bold;"
+                )
                 janela_opr.accesstime.setText(texto)
                 janela_opr.accesstime.setStyleSheet(css)
                 return
@@ -94,7 +97,10 @@ def main():
             texto = segundos_para_hhmmss(segundos)
             janela_opr.accesstime.setText(texto)
             if 0 < segundos < 21600:
-                css = "background-color: yellow; color: black; font-weight: bold;"
+                css = (
+                    "background-color: yellow; "
+                    "color: black; font-weight: bold;"
+                )
             else:
                 css = ""
             janela_opr.accesstime.setStyleSheet(css)
@@ -109,17 +115,20 @@ def main():
         valor = epics.caget("AS-Glob:MP-Summary:AlarmGammaShutter-Mon")
         if valor == 1:
             janela_opr.gammastatus.setText("Open")
-            janela_opr.gammastatus.setStyleSheet("color: green; font-weight: bold;")
+            janela_opr.gammastatus.setStyleSheet(
+                "color:green; font-weight: bold;")
         else:
             janela_opr.gammastatus.setText("Closed")
-            janela_opr.gammastatus.setStyleSheet("color: red; font-weight: bold;")
+            janela_opr.gammastatus.setStyleSheet(
+                "color: red; font-weight: bold;")
 
     timer_gamma = QTimer()
     timer_gamma.timeout.connect(atualizar_gamma_status)
     timer_gamma.start(500)
 
     if not janela_opr.findChild(QtWidgets.QLabel, "alarmlinac"):
-        logging.warning("Label 'alarmlinac' não encontrada na janela principal")
+        logging.warning(
+            "Label 'alarmlinac' não encontrada na janela principal")
 
     sinais_leds = {
         'SI-Glob:AP-OrbIntlk:Enable-Sts':          (janela_opr.ledorbitint, 1),
@@ -133,15 +142,15 @@ def main():
     }
 
     bloco_linac = BlocoLinac(janela_opr)
-    # bloco_ltb = Blocoltb(janela_opr)
-    # bloco_lts = Blocolts(janela_opr)
-    # bloco_bo = Blocobo(janela_opr)
-    # bloco_si = Blocosi(janela_opr)
-    # bloco_sitemp = Blocositemp(janela_opr)
-    # bloco_sips = Blocosips(janela_opr)
-
+    bloco_ltb = Blocoltb(janela_opr)
+    bloco_lts = Blocolts(janela_opr)
+    bloco_bo = Blocobo(janela_opr)
+    bloco_si = Blocosi(janela_opr)
+    bloco_sitemp = Blocositemp(janela_opr)
+    bloco_sips = Blocosips(janela_opr)
 
     def atualizar_tudo():
+        """."""
         nonlocal aviso_persistente
 
         try:
@@ -160,12 +169,12 @@ def main():
             for pv, (led, esperado) in sinais_leds.items():
                 utils.verificar_ledinfobeam(pv, led, esperado)
             bloco_linac.atualizar_grupo()
-            # bloco_ltb.atualizar_grupo()
-            # bloco_lts.atualizar_grupo()
-            # bloco_bo.atualizar_grupo()
-            # bloco_si.atualizar_grupo()
-            # bloco_sitemp.atualizar_grupo()
-            # bloco_sips.atualizar_grupo()
+            bloco_ltb.atualizar_grupo()
+            bloco_lts.atualizar_grupo()
+            bloco_bo.atualizar_grupo()
+            bloco_si.atualizar_grupo()
+            bloco_sitemp.atualizar_grupo()
+            bloco_sips.atualizar_grupo()
         except Exception:
             raise
             # pass
