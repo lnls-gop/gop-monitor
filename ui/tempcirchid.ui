@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>tempcirchid</class>
+ <widget class="QWidget" name="tempcirchid">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -2900,7 +2900,7 @@
          <string/>
         </property>
         <property name="text">
-         <string>BO-15U:VA-PT100-BG:Temp</string>
+         <string>BO-15U:VA-PT100-BG</string>
         </property>
        </widget>
       </item>
@@ -2998,7 +2998,7 @@
          <string/>
         </property>
         <property name="text">
-         <string>SI-18:MBTemp13-CH5</string>
+         <string>BO-25U:VA-PT100</string>
         </property>
        </widget>
       </item>
@@ -3050,12 +3050,12 @@
          <bool>false</bool>
         </property>
         <property name="channel" stdset="0">
-         <string>SI-18-MBTemp-13-CH5</string>
+         <string>BO-25U:VA-PT100-BG:Temp-Mon</string>
         </property>
        </widget>
       </item>
       <item row="4" column="2">
-       <widget class="QLed" name="ledsi18mbtemp">
+       <widget class="QLed" name="ledbo25u">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
           <horstretch>0</horstretch>

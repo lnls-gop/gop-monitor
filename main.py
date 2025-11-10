@@ -84,9 +84,9 @@ def main():
             except (ValueError, TypeError):
                 return
             if segundos == 0:
-                texto = "06h00m00s"
+                texto = "00h00m00s"
                 css = (
-                    "background-color: green; color: "
+                    "background-color: rgb(0, 168, 0); color: "
                     "black; font-weight: bold;"
                 )
                 janela_opr.accesstime.setText(texto)
@@ -109,7 +109,7 @@ def main():
 
     timer_formatador = QTimer()
     timer_formatador.timeout.connect(atualizar_accesstime_formatado)
-    timer_formatador.start(1000)
+    timer_formatador.start(500)
 
     def atualizar_gamma_status():
         valor = epics.caget("AS-Glob:MP-Summary:AlarmGammaShutter-Mon")
@@ -124,7 +124,7 @@ def main():
 
     timer_gamma = QTimer()
     timer_gamma.timeout.connect(atualizar_gamma_status)
-    timer_gamma.start(500)
+    timer_gamma.start(1000)
 
     if not janela_opr.findChild(QtWidgets.QLabel, "alarmlinac"):
         logging.warning(
@@ -167,7 +167,7 @@ def main():
                 parar_bipes()
 
             for pv, (led, esperado) in sinais_leds.items():
-                utils.verificar_ledinfobeam(pv, led, esperado)
+                utils.verificar_estado(pv, led, esperado)
             bloco_linac.atualizar_grupo()
             bloco_ltb.atualizar_grupo()
             bloco_lts.atualizar_grupo()

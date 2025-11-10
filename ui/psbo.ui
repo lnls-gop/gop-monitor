@@ -29,7 +29,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="elideMode">
     <enum>Qt::ElideNone</enum>
@@ -258,10 +258,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -397,10 +397,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -688,10 +688,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -827,10 +827,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -1130,10 +1130,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -1267,46 +1267,128 @@
          <x>9</x>
          <y>8</y>
          <width>481</width>
-         <height>149</height>
+         <height>150</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_42">
-          <property name="toolTip">
-           <string/>
+        <item row="1" column="1" colspan="3">
+         <widget class="Line" name="line_5">
+          <property name="sizeIncrement">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
           </property>
-          <property name="text">
-           <string>Current [ A ]</string>
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
           </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
+          </property>
+          <property name="lineWidth">
+           <number>1</number>
+          </property>
+          <property name="midLineWidth">
+           <number>0</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
-        <item row="0" column="2">
-         <widget class="PyDMLabel" name="PyDMLabel_43">
+        <item row="3" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_73">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="toolTip">
            <string/>
           </property>
-          <property name="text">
-           <string>Status</string>
+          <property name="accessibleDescription">
+           <string/>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
           </property>
           <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="precision" stdset="0">
+           <number>2</number>
+          </property>
+          <property name="precisionFromPV" stdset="0">
+           <bool>false</bool>
+          </property>
+          <property name="channel" stdset="0">
+           <string>BO-Fam:PS-B-2:Arm1Current-Mon</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="3">
-         <widget class="PyDMLabel" name="PyDMLabel_54">
+        <item row="2" column="2">
+         <widget class="QLed" name="led_bob1">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>51</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>51</width>
+            <height>35</height>
+           </size>
+          </property>
           <property name="toolTip">
            <string/>
           </property>
-          <property name="text">
-           <string>Chart</string>
+          <property name="state">
+           <bool>false</bool>
           </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
+          <property name="onColor">
+           <color>
+            <red>0</red>
+            <green>140</green>
+            <blue>0</blue>
+           </color>
+          </property>
+          <property name="shape">
+           <enum>QLed::Circle</enum>
           </property>
          </widget>
         </item>
@@ -1339,34 +1421,145 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1" colspan="3">
-         <widget class="Line" name="line_5">
-          <property name="sizeIncrement">
+        <item row="3" column="2">
+         <widget class="QLed" name="led_bob2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
            <size>
-            <width>0</width>
-            <height>0</height>
+            <width>51</width>
+            <height>35</height>
            </size>
           </property>
-          <property name="baseSize">
+          <property name="maximumSize">
            <size>
-            <width>0</width>
-            <height>0</height>
+            <width>51</width>
+            <height>35</height>
            </size>
           </property>
-          <property name="autoFillBackground">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="state">
            <bool>false</bool>
           </property>
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
+          <property name="onColor">
+           <color>
+            <red>0</red>
+            <green>140</green>
+            <blue>0</blue>
+           </color>
           </property>
-          <property name="lineWidth">
-           <number>1</number>
+          <property name="shape">
+           <enum>QLed::Circle</enum>
           </property>
-          <property name="midLineWidth">
-           <number>0</number>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="PyDMLabel" name="PyDMLabel_54">
+          <property name="toolTip">
+           <string/>
           </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+          <property name="text">
+           <string>Chart</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="PyDMPushButton" name="PyDMPushButton_12">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>28</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>60</width>
+            <height>28</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="PyDMLabel" name="PyDMLabel_42">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="text">
+           <string>Current [ A ]</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="PyDMLabel" name="PyDMLabel_43">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="text">
+           <string>Status</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="PyDMPushButton" name="PyDMPushButton_11">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>28</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>60</width>
+            <height>28</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="PyDMLabel" name="PyDMLabel_46">
+          <property name="minimumSize">
+           <size>
+            <width>172</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>172</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="text">
+           <string>BO-Fam:PS-B-2:Arm1</string>
           </property>
          </widget>
         </item>
@@ -1427,10 +1620,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -1446,199 +1639,6 @@
           </property>
           <property name="channel" stdset="0">
            <string>BO-Fam:PS-B-1:Arm1Current-Mon</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3">
-         <widget class="PyDMPushButton" name="PyDMPushButton_11">
-          <property name="minimumSize">
-           <size>
-            <width>60</width>
-            <height>28</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>60</width>
-            <height>28</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="PyDMLabel" name="PyDMLabel_46">
-          <property name="minimumSize">
-           <size>
-            <width>172</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>172</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>11</pointsize>
-           </font>
-          </property>
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="text">
-           <string>BO-Fam:PS-B-2:Arm1</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="PyDMLabel" name="PyDMLabel_73">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>80</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="accessibleDescription">
-           <string/>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="precision" stdset="0">
-           <number>2</number>
-          </property>
-          <property name="precisionFromPV" stdset="0">
-           <bool>false</bool>
-          </property>
-          <property name="channel" stdset="0">
-           <string>BO-Fam:PS-B-2:Arm1Current-Mon</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="QLed" name="led_bob2">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>51</width>
-            <height>35</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>51</width>
-            <height>35</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="state">
-           <bool>false</bool>
-          </property>
-          <property name="onColor">
-           <color>
-            <red>0</red>
-            <green>140</green>
-            <blue>0</blue>
-           </color>
-          </property>
-          <property name="shape">
-           <enum>QLed::Circle</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="3">
-         <widget class="PyDMPushButton" name="PyDMPushButton_12">
-          <property name="minimumSize">
-           <size>
-            <width>60</width>
-            <height>28</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>60</width>
-            <height>28</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QLed" name="led_bob1">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>51</width>
-            <height>35</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>51</width>
-            <height>35</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string/>
-          </property>
-          <property name="state">
-           <bool>false</bool>
-          </property>
-          <property name="onColor">
-           <color>
-            <red>0</red>
-            <green>140</green>
-            <blue>0</blue>
-           </color>
-          </property>
-          <property name="shape">
-           <enum>QLed::Circle</enum>
           </property>
          </widget>
         </item>
@@ -1859,10 +1859,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -1998,10 +1998,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -2134,10 +2134,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -2270,10 +2270,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -2412,10 +2412,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -2548,10 +2548,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -2684,10 +2684,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -2823,10 +2823,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -2959,10 +2959,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -3095,10 +3095,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -3234,10 +3234,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -3373,10 +3373,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -3509,10 +3509,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -3800,10 +3800,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -3939,10 +3939,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -4075,10 +4075,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -4211,10 +4211,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -4353,10 +4353,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -4489,10 +4489,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -4625,10 +4625,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -4764,10 +4764,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -4900,10 +4900,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -5036,10 +5036,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -5175,10 +5175,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -5314,10 +5314,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -5610,10 +5610,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -5749,10 +5749,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -5885,10 +5885,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -6021,10 +6021,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -6163,10 +6163,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -6299,10 +6299,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -6435,10 +6435,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -6574,10 +6574,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -6710,10 +6710,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -6846,10 +6846,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -6985,10 +6985,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -7124,10 +7124,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -7260,10 +7260,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -7551,10 +7551,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -7690,10 +7690,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -7826,10 +7826,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -7962,10 +7962,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -8104,10 +8104,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -8240,10 +8240,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -8376,10 +8376,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -8515,10 +8515,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -8651,10 +8651,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -8787,10 +8787,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -8926,10 +8926,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
@@ -9065,10 +9065,10 @@
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
-           <enum>QFrame::WinPanel</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>

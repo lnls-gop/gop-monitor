@@ -65,7 +65,7 @@
      <item row="3" column="1">
       <widget class="PyDMLabel" name="PyDMLabel_158">
        <property name="enabled">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="minimumSize">
         <size>
@@ -92,7 +92,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -114,7 +114,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -144,7 +144,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -174,7 +174,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -201,7 +201,7 @@
      <item row="4" column="1">
       <widget class="PyDMLabel" name="PyDMLabel_223">
        <property name="enabled">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="minimumSize">
         <size>
@@ -228,7 +228,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -274,7 +274,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -293,7 +293,7 @@
      <item row="2" column="1">
       <widget class="PyDMLabel" name="PyDMLabel_222">
        <property name="enabled">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="minimumSize">
         <size>
@@ -320,7 +320,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -342,7 +342,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -369,7 +369,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -423,7 +423,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -472,7 +472,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -499,7 +499,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -553,7 +553,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -620,7 +620,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -666,7 +666,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -741,7 +741,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -787,7 +787,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -833,7 +833,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -879,7 +879,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -941,7 +941,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -971,7 +971,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -1020,7 +1020,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -1125,7 +1125,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1198,7 +1198,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1244,7 +1244,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1263,7 +1263,7 @@
      <item row="5" column="1">
       <widget class="PyDMLabel" name="PyDMLabel_159">
        <property name="enabled">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="minimumSize">
         <size>
@@ -1290,7 +1290,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1363,7 +1363,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1409,7 +1409,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1455,7 +1455,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1477,7 +1477,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -1613,7 +1613,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -1667,7 +1667,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1761,7 +1761,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1807,7 +1807,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1872,7 +1872,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -1967,7 +1967,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2013,7 +2013,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2059,7 +2059,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2234,7 +2234,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2280,7 +2280,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2372,7 +2372,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2394,7 +2394,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -2448,7 +2448,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2494,7 +2494,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2540,7 +2540,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2644,7 +2644,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2709,7 +2709,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2731,7 +2731,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -2817,7 +2817,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2863,7 +2863,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -2935,7 +2935,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -2992,7 +2992,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -3049,7 +3049,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
@@ -3103,7 +3103,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -3197,7 +3197,7 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
@@ -3219,7 +3219,7 @@
         <string/>
        </property>
        <property name="state">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="onColor">
         <color>
