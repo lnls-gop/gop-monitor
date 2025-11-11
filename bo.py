@@ -586,9 +586,10 @@ class Cavity(utils.ConnWidgetPVs):
 class AllSubsys:
     """Gerencia o grupo LTB e atualiza a label alarmltb."""
 
-    def __init__(self, janela_opr):
+    def __init__(self, janela_opr=None):
         """."""
-        janela_opr.alarmbo.clicked.connect(self.aba_booster)
+        if janela_opr:
+            janela_opr.alarmbo.clicked.connect(self.aba_booster)
         self.janela_opr = janela_opr
         self.subjanelas = []
 

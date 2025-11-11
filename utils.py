@@ -5,6 +5,9 @@ import epics
 from epics import get_pv
 from PyQt5 import QtWidgets, uic
 
+from siriuspy.clientarch import PVData, Time
+
+
 logging.basicConfig(level=logging.ERROR,
                     format="%(asctime)s - %(levelname)s - %(message)s")
 
@@ -130,9 +133,17 @@ class ConnWidgetPVs:
     def _connect_pvs(self):
         self.pvs = dict()
         self.pvs_status = dict()
-        for pvname, _ in self.sinais.items():
-            self.pvs[pvname] = epics.PV(pvname, connection_timeout=None)
-            self.pvs_status[pvname] = False
+        for key, value_ in self.sinais.items():
+            if isinstance(value_, dict):
+                for pvname, _ in value_.items():
+                    self.pvs[pvname] = epics.PV(
+                        pvname, connection_timeout=None)
+                    self.pvs_status[pvname] = False
+            else:
+                pvname = key
+                self.pvs[pvname] = epics.PV(
+                    pvname, connection_timeout=None)
+                self.pvs_status[pvname] = False
 
     @property
     def estado_ok(self):
@@ -157,10 +168,19 @@ class ConnWidgetPVs:
         """Atualiza LEDs da subjanela e define estado_ok."""
         if self.check_type == 'temp':
 
-            for pvname, value in self.sinais.items():
-                led, temp_min, temp_max = value
-                status = verificar_temp(pvname, led, temp_min, temp_max)
-                self.pvs_status[pvname] = status
+            for key, value_ in self.sinais.items():
+                if isinstance(value_, dict):
+                    for pvname, value in value_.items():
+                        led, temp_min, temp_max = value
+                        status = verificar_temp(
+                            pvname, led, temp_min, temp_max)
+                        self.pvs_status[pvname] = status
+                else:
+                    pvname, value = key, value_
+                    led, temp_min, temp_max = value
+                    status = verificar_temp(
+                        pvname, led, temp_min, temp_max)
+                    self.pvs_status[pvname] = status
 
             if self.botao_menu:
                 cor = "rgb(0, 140, 0)" if self.estado_ok else "rgb(207, 0, 0)"
@@ -168,11 +188,19 @@ class ConnWidgetPVs:
 
         elif self.check_type == 'vacuo':
 
-            for pvname, value in self.sinais.items():
-                led, pressao_min = value
-                status = verificar_vacuo(
-                    pvname, led, pressao_min=pressao_min)
-                self.pvs_status[pvname] = status
+            for key, value_ in self.sinais.items():
+                if isinstance(value_, dict):
+                    for pvname, value in value_.items():
+                        led, pressao_min = value
+                        status = verificar_vacuo(
+                            pvname, led, pressao_min=pressao_min)
+                        self.pvs_status[pvname] = status
+                else:
+                    pvname, value = key, value_
+                    led, pressao_min = value
+                    status = verificar_vacuo(
+                        pvname, led, pressao_min=pressao_min)
+                    self.pvs_status[pvname] = status
 
             if self.botao_menu:
                 cor = "rgb(0, 168, 0)" if self.estado_ok else "rgb(207, 0, 0)"
@@ -184,11 +212,19 @@ class ConnWidgetPVs:
 
         elif self.check_type == 'estado':
 
-            for pvname, value in self.sinais.items():
-                led, estado_esperado = value
-                status = verificar_estado(
-                    pvname, led, estado_esperado=estado_esperado)
-                self.pvs_status[pvname] = status
+            for key, value_ in self.sinais.items():
+                if isinstance(value_, dict):
+                    for pvname, value in value_.items():
+                        led, estado_esperado = value
+                        status = verificar_estado(
+                            pvname, led, estado_esperado=estado_esperado)
+                        self.pvs_status[pvname] = status
+                else:
+                    pvname, value = key, value_
+                    led, estado_esperado = value
+                    status = verificar_estado(
+                        pvname, led, estado_esperado=estado_esperado)
+                    self.pvs_status[pvname] = status
 
             if self.botao_menu:
                 cor = "rgb(0, 168, 0)" if self.estado_ok else "rgb(207, 0, 0)"
@@ -204,3 +240,18 @@ class ConnWidgetPVs:
                 f'{self.check_type}'
             )
             raise ValueError(errmsg)
+
+    @staticmethod
+    def create_archviewer_link(pvs_dict, start=None, end=None, ref=None):
+        """."""
+        if end is None:
+            end = Time.now()
+        if start is None:
+            start = end - 60*60
+        if ref is True:
+            ref = start
+
+        pv_list = [(pvname, 0, None, False) for pvname in pvs_dict]
+
+        url = PVData.gen_archviewer_link(start, end, pv_list, ref)
+        return url

@@ -10,104 +10,98 @@ import utils
 class Temperature(utils.ConnWidgetPVs):
     """Classe do sistema de temperatura LINAC."""
 
+    def plot_graph(self, url):
+        try:
+            subprocess.Popen(["firefox", url])
+        except Exception as e:
+            logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
+
     def __init__(self, janela_opr, botao_menu):
         """."""
         super().__init__(janela_opr, botao_menu, "ui/templinac.ui", "temp")
 
-        def open_grafic():
-            try:
-                subprocess.Popen(["firefox", self.url_tempkly])
-            except Exception as e:
-                logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
-        self.url_tempkly = "http://archiver-viewer.lnls.br/?pvConfig=A4NwvA9sAuCWC2sBeBTAJgfQBwAYcAoAZAQQFoBhAOQFIBmYgCQEYBZABQGVSm7iBpAEwAVFPGBMAlBgwAnAOYAjAIb4cAGgAE6jUwFZNTAHQ4JAMlCQYCZOmx4iZKr2bsuPenyYixAqbMUq2kEGxmYWUHCIqJi4BCQUNPQunNy8gt7AvtLyyvgAbNpMuJoA7ACsISbm4BHW0XZxjomMrCnu-F6i4n45KgK02gIVGuWVZgBmMhDwYAI4Q9xMpDi0QkwALLxMebwC64a4TABaptAQs-Nli8urG7zrO-R7BzjHpjIo4xcLr6QDawItjheGUBIYSiUcEcgA"
+        url = self.create_archviewer_link(self.sinais['KlyTemp'])
+        self.uiobj.btntempkly.clicked.connect(
+            lambda _, url=url: self.plot_graph(url)
+        )
 
-        self.uiobj.btntempkly.clicked.connect(open_grafic)
+        url = self.create_archviewer_link(self.sinais['KlyArea'])
+        self.uiobj.btntempgaleria.clicked.connect(
+            lambda _, url=url: self.plot_graph(url)
+        )
 
-        def open_grafic():
-            try:
-                subprocess.Popen(["firefox", self.url_tempgaleria])
-            except Exception as e:
-                logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
+        url = self.create_archviewer_link(self.sinais['Tunnel'])
+        self.uiobj.btntemp_umid.clicked.connect(
+            lambda _, url=url: self.plot_graph(url)
+        )
 
-        self.url_tempgaleria = "http://archiver-viewer.lnls.br/?pvConfig=A4NwvA9sAuCWC2sBeBTAJgfQBwAYcAoAZAQQFoBhAOQFIBmYgCQEYBZABQGVSm7iBpJgBUU8YAFYAlBgwAnAOYAjAIb4cAGgAE6jUwBMWTUwB0OCQDJQkGAmTpseImSq9m7Lj3p9dw0ZOnzlfAA2bSZcTQB2MUMTcwAzGQh4MF0cXTFuJlIcWkEmCN4xMV4AFiCjAE4cJgAtM2gIFLSMpiycvKxedNLyqtqzGRQ4pvTsrNocPN1eJhxC3SMIiJwaoA"
+        url = self.create_archviewer_link(self.sinais['45C'])
+        self.uiobj.btntemplinac45.clicked.connect(
+            lambda _, url=url: self.plot_graph(url)
+        )
 
-        self.uiobj.btntempgaleria.clicked.connect(open_grafic)
-
-        def open_grafic():
-            try:
-                subprocess.Popen(["firefox", self.url_tempumid])
-            except Exception as e:
-                logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
-
-        self.url_tempumid = "http://archiver-viewer.lnls.br/?pvConfig=A4NwvA9sAuCWC2sBeBTAJgfQBwAYcAoAZASQDkBBAYQFIBmcgFRXmBQCcBDaAV04FoAshAB2ASgwY2AcwBGHfDgA0AAiXKAjACYsK9QDocogGShIMBMnTY8RMlTrkAqojQc0KQSPGTZ8gGxq6rgqAOwArLoGxgBmbBDwYJo4mmF8OOp8tDgM6uoOACw4DmGaeiEhOABaRtAQicmp6ZnZWg7qRfQlZRXVbCjR9SlpGVk5mm0d5F3lVUA"
-
-        self.uiobj.btntemp_umid.clicked.connect(open_grafic)
-
-        def open_grafic():
-            try:
-                subprocess.Popen(["firefox", self.url_templinac45])
-            except Exception as e:
-                logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
-
-        self.url_templinac45 = "http://archiver-viewer.lnls.br/?pvConfig=A4NwvA9sAuCWC2sBeBTAJgfQBwAYcAoAZAQQFoBhAOQFIBmYgCQEYBZABQGVSm7jimAKinjAmASgwYATgHMARgEN8OADQACVWqYAmLOqYA6HGIBkoSDATJ02PETJVezdlx71i2oSO0Tp8pQBsmky46gDsAKz6RqbmUHCIqJi4BCQUNPTOnNy8xLRewD6Ssor42rSa2lFqkdHGZuDxVkm2qQ4ZjKzZbnyewqK+JUqaI3WxjZaJNin26U5drrmC-UV+pTp6Wrr621oxDRYJ1sl2aY6ZCznuACwF4sX+yvoV6tp4YwdNUydtcxcuVz4txWg0eVWq2iqr2qhnqcUmx1as3OnQBPTyd1B6zClQiMIAnDD9gAzKQQeBgN5VbhMUg4fJvXjaa5MgIGbQBAIALRM0AglJw1KYtPpAkZ9AiLPoHPZnJ5UhQxIF1JwtIqAh0vCYOF4EW0BjCOK5QA"
-
-        self.uiobj.btntemplinac45.clicked.connect(open_grafic)
-
-        def open_grafic():
-            try:
-                subprocess.Popen(["firefox", self.url_tempsolenoid])
-            except Exception as e:
-                logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
-
-        self.url_tempsolenoid = "http://archiver-viewer.lnls.br/?pvConfig=A4NwvA9sAuCWC2sBeBTAJgfQBwAYcAoAZASQFocBGAUgGYBBABQGVSmAbAOzVIp1roAqKeMBQAnAIbQArmJSkAshA4BKDBjEBzAEYT8OADQACQ0YoAmLMYoA6HCoBkoSDATJ02PETKV+zVpzcFDT8QiLiUrLySqrqWrr4AGymFLjGAOwArNZ2js5QcIiomLgEJOTU9P7sXDzmocKikjJyispqGjp65jSm5tlGWTn2TuAFbsWeZT6VjCw13IkN4c1RbbGdCabbw3ljrkUepd4VfvOBpOnLTZGtMR3xehZWZpbWb2a5oy6F7iVe5V8VXOtXq9DCNxa0XacS6+msvWM5jwu2+40O-2mp2BAVqmWuESh6wecP6A3M-SRA1sI3yBz+UxOQLmuKCBNWdxhmye6T6mWpAE5qV86b9JsdAbNqhcACzs27QjaPfDPYw7T60-Zio4AmZnVk8WYQwlre6whIUXnWXjGGUpEVaiY6rHM6W1AXyolm7n4HopAV84Wan5OzFMqUg7hYT2mrnKlIfVUavYhjGMyX6hakELgxomzlK0mZf0l1EAMzEEHgYGR-UN5BoAmR-EyS3oFBlNnSWHSAC0HNAIDWcHWKBQG03ZuY23QO12e-25GXh3XKNmcAILPxeC3zF3eb2gA"
-
-        self.uiobj.btntempsolenoid.clicked.connect(open_grafic)
+        url = self.create_archviewer_link(self.sinais['Solenoid'])
+        self.uiobj.btntempsolenoid.clicked.connect(
+            lambda _, url=url: self.plot_graph(url)
+        )
 
     def _registrar_grupos(self):
         """Registra os grupos de PVs/LEDs e suas faixas."""
         self.sinais = {
-            'LA-CN:H1MPS-1:K1Temp5': (self._gwidget('ledk1temp5'), 18, 23),
-            'LA-CN:H1MPS-1:K2Temp5': (self._gwidget('ledk2temp5'), 18, 23),
-            'LA-CN:H1MPS-1:K1Temp1': (self._gwidget('ledk1temp1'), 18, 23),
-            'LA-CN:H1MPS-1:K1Temp2': (self._gwidget('ledk1temp2'), 18, 23),
-            'LA-CN:H1MPS-1:K2Temp1': (self._gwidget('ledk2temp1'), 18, 23),
-            'LA-CN:H1MPS-1:K2Temp2': (self._gwidget('ledk2temp2'), 18, 23),
-            'LINAC:Umidade-Mon': (self._gwidget('led_umidade'), 35, 55),
-            'LINAC:Temperatura-Mon': (self._gwidget('ledtemptunel'), 22, 24),
-            'LA-CN:H1MPS-1:A1Temp1': (self._gwidget('leda1t1'), 42, 46),
-            'LA-CN:H1MPS-1:A1Temp2': (self._gwidget('leda1t2'), 42, 46),
-            'LA-CN:H1MPS-1:A2Temp1': (self._gwidget('leda2t1'), 42, 46),
-            'LA-CN:H1MPS-1:A2Temp2': (self._gwidget('leda2t2'), 42, 46),
-            'LA-CN:H1MPS-1:A3Temp1': (self._gwidget('leda3t1'), 42, 46),
-            'LA-CN:H1MPS-1:A3Temp2': (self._gwidget('leda3t2'), 42, 46),
-            'LA-CN:H1MPS-1:A4Temp1': (self._gwidget('leda4t1'), 42, 46),
-            'LA-CN:H1MPS-1:A4Temp2': (self._gwidget('leda4t2'), 42, 46),
-            'LI-01:PS-Slnd-1:Temperature-Mon':
-            (self._gwidget('ledsol1'), 20, 27),
-            'LI-01:PS-Slnd-2:Temperature-Mon':
-            (self._gwidget('ledsol2'), 20, 27),
-            'LI-01:PS-Slnd-3:Temperature-Mon':
-            (self._gwidget('ledsol3'), 20, 27),
-            'LI-01:PS-Slnd-4:Temperature-Mon':
-            (self._gwidget('ledsol4'), 20, 27),
-            'LI-01:PS-Slnd-5:Temperature-Mon':
-            (self._gwidget('ledsol5'), 20, 27),
-            'LI-01:PS-Slnd-6:Temperature-Mon':
-            (self._gwidget('ledsol6'), 20, 27),
-            'LI-01:PS-Slnd-7:Temperature-Mon':
-            (self._gwidget('ledsol7'), 20, 27),
-            'LI-01:PS-Slnd-8:Temperature-Mon':
-            (self._gwidget('ledsol8'), 20, 27),
-            'LI-01:PS-Slnd-9:Temperature-Mon':
-            (self._gwidget('ledsol9'), 20, 27),
-            'LI-01:PS-Slnd-10:Temperature-Mon':
-            (self._gwidget('ledsol10'), 20, 27),
-            'LI-01:PS-Slnd-11:Temperature-Mon':
-            (self._gwidget('ledsol11'), 20, 27),
-            'LI-01:PS-Slnd-12:Temperature-Mon':
-            (self._gwidget('ledsol12'), 20, 27),
-            'LI-01:PS-Slnd-13:Temperature-Mon':
-            (self._gwidget('ledsol13'), 20, 27),
+            'KlyArea': {
+                'LA-CN:H1MPS-1:K1Temp5': (self._gwidget('ledk1temp5'), 18, 23),
+                'LA-CN:H1MPS-1:K2Temp5': (self._gwidget('ledk2temp5'), 18, 23),
+            },
+            'KlyTemp': {
+                'LA-CN:H1MPS-1:K1Temp1': (self._gwidget('ledk1temp1'), 18, 23),
+                'LA-CN:H1MPS-1:K1Temp2': (self._gwidget('ledk1temp2'), 18, 23),
+                'LA-CN:H1MPS-1:K2Temp1': (self._gwidget('ledk2temp1'), 18, 23),
+                'LA-CN:H1MPS-1:K2Temp2': (self._gwidget('ledk2temp2'), 18, 23),
+            },
+            'Tunnel': {
+                'LINAC:Umidade-Mon': (self._gwidget('led_umidade'), 35, 55),
+                'LINAC:Temperatura-Mon': (
+                    self._gwidget('ledtemptunel'), 22, 24
+                ),
+            },
+            '45C': {
+                'LA-CN:H1MPS-1:A1Temp1': (self._gwidget('leda1t1'), 42, 46),
+                'LA-CN:H1MPS-1:A1Temp2': (self._gwidget('leda1t2'), 42, 46),
+                'LA-CN:H1MPS-1:A2Temp1': (self._gwidget('leda2t1'), 42, 46),
+                'LA-CN:H1MPS-1:A2Temp2': (self._gwidget('leda2t2'), 42, 46),
+                'LA-CN:H1MPS-1:A3Temp1': (self._gwidget('leda3t1'), 42, 46),
+                'LA-CN:H1MPS-1:A3Temp2': (self._gwidget('leda3t2'), 42, 46),
+                'LA-CN:H1MPS-1:A4Temp1': (self._gwidget('leda4t1'), 42, 46),
+                'LA-CN:H1MPS-1:A4Temp2': (self._gwidget('leda4t2'), 42, 46),
+            },
+            'Solenoid': {
+                'LI-01:PS-Slnd-1:Temperature-Mon':
+                (self._gwidget('ledsol1'), 20, 27),
+                'LI-01:PS-Slnd-2:Temperature-Mon':
+                (self._gwidget('ledsol2'), 20, 27),
+                'LI-01:PS-Slnd-3:Temperature-Mon':
+                (self._gwidget('ledsol3'), 20, 27),
+                'LI-01:PS-Slnd-4:Temperature-Mon':
+                (self._gwidget('ledsol4'), 20, 27),
+                'LI-01:PS-Slnd-5:Temperature-Mon':
+                (self._gwidget('ledsol5'), 20, 27),
+                'LI-01:PS-Slnd-6:Temperature-Mon':
+                (self._gwidget('ledsol6'), 20, 27),
+                'LI-01:PS-Slnd-7:Temperature-Mon':
+                (self._gwidget('ledsol7'), 20, 27),
+                'LI-01:PS-Slnd-8:Temperature-Mon':
+                (self._gwidget('ledsol8'), 20, 27),
+                'LI-01:PS-Slnd-9:Temperature-Mon':
+                (self._gwidget('ledsol9'), 20, 27),
+                'LI-01:PS-Slnd-10:Temperature-Mon':
+                (self._gwidget('ledsol10'), 20, 27),
+                'LI-01:PS-Slnd-11:Temperature-Mon':
+                (self._gwidget('ledsol11'), 20, 27),
+                'LI-01:PS-Slnd-12:Temperature-Mon':
+                (self._gwidget('ledsol12'), 20, 27),
+                'LI-01:PS-Slnd-13:Temperature-Mon':
+                (self._gwidget('ledsol13'), 20, 27),
+            },
         }
 
 

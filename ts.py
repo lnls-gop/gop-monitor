@@ -63,38 +63,46 @@ class Temperature(utils.ConnWidgetPVs):
     def _registrar_grupos(self):
         """Registra os grupos de PVs/LEDs e suas faixas."""
         self.sinais = {
-            'TS-01:VA-PT100-BG1:Temp-Mon':
-            (self._gwidget('led_ltsbg1'), 22, 26.5),
-            'TS-01:VA-PT100-BG2:Temp-Mon':
-            (self._gwidget('led_ltsbg2'), 22, 26.5),
-            'TS-01:VA-PT100-BG3:Temp-Mon':
-            (self._gwidget('led_ltsbg3'), 22, 26.5),
-            'TS-01:VA-PT100-BG4:Temp-Mon':
-            (self._gwidget('led_ltsbg4'), 22, 26.5),
-            'TS-01:PU-EjeSF-BG:Temp-Mon':
-            (self._gwidget('led_ejesfbg'), 22, 26.5),
-            'TS-01:PU-EjeSG-BG:Temp-Mon':
-            (self._gwidget('led_ejesgbg'), 22, 26.5),
-            'TS-01:PU-EjeSF-ED:Temp-Mon':
-            (self._gwidget('led_ejesfed'), 22, 26.5),
-            'TS-01:PU-EjeSG-ED:Temp-Mon':
-            (self._gwidget('led_ejesged'), 22, 26.5),
-            'TS-04:VA-PT100-ED1:Temp-Mon':
-            (self._gwidget('led_ltsed1'), 22, 26.5),
-            'TS-04:VA-PT100-ED2:Temp-Mon':
-            (self._gwidget('led_ltsed2'), 22, 26.5),
-            'TS-04:VA-PT100-ED3:Temp-Mon':
-            (self._gwidget('led_ltsed3'), 22, 26.5),
-            'TS-04:VA-PT100-ED4:Temp-Mon':
-            (self._gwidget('led_ltsed4'), 22, 26.5),
-            'TS-04:VA-PT100-ED5:Temp-Mon':
-            (self._gwidget('led_ltsed5'), 22, 26.5),
-            'TS-04:VA-PT100-ED6:Temp-Mon':
-            (self._gwidget('led_ltsed6'), 22, 26.5),
-            'TS-MBTemp-03-CH1': (self._gwidget('led_ltsch1'), 22, 26.0),
-            'TS-MBTemp-03-CH2': (self._gwidget('led_ltsch2'), 22, 26.0),
-            'TS-MBTemp-03-CH3': (self._gwidget('led_ltsch3'), 22, 26.0),
-            'TS-MBTemp-03-CH4': (self._gwidget('led_ltsch4'), 22, 26.0),
+            'Group1': {
+                'TS-01:VA-PT100-BG1:Temp-Mon':
+                (self._gwidget('led_ltsbg1'), 22, 26.5),
+                'TS-01:VA-PT100-BG2:Temp-Mon':
+                (self._gwidget('led_ltsbg2'), 22, 26.5),
+                'TS-01:VA-PT100-BG3:Temp-Mon':
+                (self._gwidget('led_ltsbg3'), 22, 26.5),
+                'TS-01:VA-PT100-BG4:Temp-Mon':
+                (self._gwidget('led_ltsbg4'), 22, 26.5),
+            },
+            'Group2': {
+                'TS-01:PU-EjeSF-BG:Temp-Mon':
+                (self._gwidget('led_ejesfbg'), 22, 26.5),
+                'TS-01:PU-EjeSG-BG:Temp-Mon':
+                (self._gwidget('led_ejesgbg'), 22, 26.5),
+                'TS-01:PU-EjeSF-ED:Temp-Mon':
+                (self._gwidget('led_ejesfed'), 22, 26.5),
+                'TS-01:PU-EjeSG-ED:Temp-Mon':
+                (self._gwidget('led_ejesged'), 22, 26.5),
+            },
+            'Group3': {
+                'TS-04:VA-PT100-ED1:Temp-Mon':
+                (self._gwidget('led_ltsed1'), 22, 26.5),
+                'TS-04:VA-PT100-ED2:Temp-Mon':
+                (self._gwidget('led_ltsed2'), 22, 26.5),
+                'TS-04:VA-PT100-ED3:Temp-Mon':
+                (self._gwidget('led_ltsed3'), 22, 26.5),
+                'TS-04:VA-PT100-ED4:Temp-Mon':
+                (self._gwidget('led_ltsed4'), 22, 26.5),
+                'TS-04:VA-PT100-ED5:Temp-Mon':
+                (self._gwidget('led_ltsed5'), 22, 26.5),
+                'TS-04:VA-PT100-ED6:Temp-Mon':
+                (self._gwidget('led_ltsed6'), 22, 26.5),
+            },
+            'Group4': {
+                'TS-MBTemp-03-CH1': (self._gwidget('led_ltsch1'), 22, 26.0),
+                'TS-MBTemp-03-CH2': (self._gwidget('led_ltsch2'), 22, 26.0),
+                'TS-MBTemp-03-CH3': (self._gwidget('led_ltsch3'), 22, 26.0),
+                'TS-MBTemp-03-CH4': (self._gwidget('led_ltsch4'), 22, 26.0),
+            },
         }
 
 
