@@ -1,10 +1,12 @@
 """Logica das subjanelas do Booster."""
-from PyQt5 import QtWidgets
-import utils
 import logging
 
+from PyQt5 import QtWidgets
 
-class Bops(utils.ConnWidgetPVs):
+import utils
+
+
+class PowerSupply(utils.ConnWidgetPVs):
     """."""
 
     def __init__(self, janela_opr=None, botao_menu=None):
@@ -73,7 +75,7 @@ class Bops(utils.ConnWidgetPVs):
         }
 
 
-class Botemp(utils.ConnWidgetPVs):
+class Temperature(utils.ConnWidgetPVs):
     """Classe responsável pelo controle do sistema de temperatura Booster."""
 
     def __init__(self, janela_opr=None, botao_menu=None):
@@ -386,7 +388,7 @@ class Botemp(utils.ConnWidgetPVs):
         }
 
 
-class Bovac(utils.ConnWidgetPVs):
+class Vacuum(utils.ConnWidgetPVs):
     """Controle da subjanela de leitura de vácuo do Linac."""
 
     def __init__(self, janela_opr=None, botao_menu=None):
@@ -543,7 +545,7 @@ class Bovac(utils.ConnWidgetPVs):
         }
 
 
-class Bocavity(utils.ConnWidgetPVs):
+class Cavity(utils.ConnWidgetPVs):
     """Controle das fontes de potencia do Booster."""
 
     def __init__(self, janela_opr, botao_menu):
@@ -581,7 +583,7 @@ class Bocavity(utils.ConnWidgetPVs):
         }
 
 
-class Blocobo:
+class AllSubsys:
     """Gerencia o grupo LTB e atualiza a label alarmltb."""
 
     def __init__(self, janela_opr):
@@ -591,10 +593,10 @@ class Blocobo:
         self.subjanelas = []
 
         # Instancia as subjanelas passando o botão correto
-        self.vacbo = Bovac(janela_opr, janela_opr.btnvacbo)
-        self.tempbo = Botemp(janela_opr, janela_opr.btntempbo)
-        self.psbo = Bops(janela_opr, janela_opr.btnpsbo)
-        self.bocavity = Bocavity(janela_opr, janela_opr.btnbocavity)
+        self.vacbo = Vacuum(janela_opr, janela_opr.btnvacbo)
+        self.tempbo = Temperature(janela_opr, janela_opr.btntempbo)
+        self.psbo = PowerSupply(janela_opr, janela_opr.btnpsbo)
+        self.bocavity = Cavity(janela_opr, janela_opr.btnbocavity)
 
         # Adiciona todas as subjanelas à lista
         self.subjanelas.extend([

@@ -1,10 +1,12 @@
 """Lógica das subjanelas da Linha de Transporte LTB."""
-from PyQt5 import QtWidgets
-import utils
 import logging
 
+from PyQt5 import QtWidgets
 
-class Ltbvac(utils.ConnWidgetPVs):
+import utils
+
+
+class Vacuum(utils.ConnWidgetPVs):
     """Controle da subjanela de leitura de vácuo do Linac."""
 
     def __init__(self, janela_opr=None, botao_menu=None):
@@ -31,7 +33,7 @@ class Ltbvac(utils.ConnWidgetPVs):
         }
 
 
-class Power_supply(utils.ConnWidgetPVs):
+class PowerSupply(utils.ConnWidgetPVs):
     """."""
 
     def __init__(self, janela_opr=None, botao_menu=None):
@@ -70,7 +72,7 @@ class Power_supply(utils.ConnWidgetPVs):
         }
 
 
-class Templtb(utils.ConnWidgetPVs):
+class Temperature(utils.ConnWidgetPVs):
     """Classe responsável pelo controle do sistema de temperatura LINAC."""
 
     def __init__(self, janela_opr=None, botao_menu=None):
@@ -87,7 +89,7 @@ class Templtb(utils.ConnWidgetPVs):
         }
 
 
-class Blocoltb:
+class AllSubsys:
     """Gerencia o grupo LTB e atualiza a label alarmltb."""
 
     def __init__(self, janela_opr):
@@ -97,9 +99,9 @@ class Blocoltb:
         self.subjanelas = []
 
         # Instancia as subjanelas passando o botão correto
-        self.templtb = Templtb(janela_opr, janela_opr.btntempltb)
-        self.vacltb = Ltbvac(janela_opr, janela_opr.btnvacltb)
-        self.psltb = Power_supply(janela_opr, janela_opr.btnpsltb)
+        self.templtb = Temperature(janela_opr, janela_opr.btntempltb)
+        self.vacltb = Vacuum(janela_opr, janela_opr.btnvacltb)
+        self.psltb = PowerSupply(janela_opr, janela_opr.btnpsltb)
 
         # Adiciona todas as subjanelas à lista
         self.subjanelas.extend([

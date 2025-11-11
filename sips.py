@@ -1,7 +1,9 @@
 """Logica das fontes do Anel de Armazenamento."""
-from PyQt5 import QtWidgets
-import utils
 import logging
+
+from PyQt5 import QtWidgets
+
+import utils
 
 
 class Si_psfamily(utils.ConnWidgetPVs):

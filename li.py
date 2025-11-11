@@ -1,11 +1,13 @@
 """Lógica das subjanelas do LINAC."""
-from PyQt5 import QtWidgets
-import utils
-import subprocess
 import logging
+import subprocess
+
+from PyQt5 import QtWidgets
+
+import utils
 
 
-class Templinac(utils.ConnWidgetPVs):
+class Temperature(utils.ConnWidgetPVs):
     """Classe do sistema de temperatura LINAC."""
 
     def __init__(self, janela_opr, botao_menu):
@@ -134,7 +136,7 @@ class Lowlevel(utils.ConnWidgetPVs):
         }
 
 
-class Vacuo(utils.ConnWidgetPVs):
+class Vacuum(utils.ConnWidgetPVs):
     """Controle da subjanela de leitura de vácuo do Linac."""
 
     def __init__(self, janela_opr, botao_menu):
@@ -157,7 +159,7 @@ class Vacuo(utils.ConnWidgetPVs):
         }
 
 
-class Power_supply(utils.ConnWidgetPVs):
+class PowerSupply(utils.ConnWidgetPVs):
     """."""
 
     def __init__(self, janela_opr, botao_menu):
@@ -237,7 +239,7 @@ class Power_supply(utils.ConnWidgetPVs):
         }
 
 
-class BlocoLinac:
+class AllSubsys:
     """Gerencia o grupo LINAC e atualiza a label alarmlinac."""
 
     def __init__(self, janela_opr):
@@ -247,10 +249,10 @@ class BlocoLinac:
         self.subjanelas = []
 
         # Instancia as subjanelas passando o botão correto
-        self.templinac = Templinac(janela_opr, janela_opr.btntemplinac)
+        self.templinac = Temperature(janela_opr, janela_opr.btntemplinac)
         self.lowlevel = Lowlevel(janela_opr, janela_opr.btnlowlevelrf)
-        self.vaclinac = Vacuo(janela_opr, janela_opr.btnvaclinac)
-        self.pslinac = Power_supply(janela_opr, janela_opr.btnpslinac)
+        self.vaclinac = Vacuum(janela_opr, janela_opr.btnvaclinac)
+        self.pslinac = PowerSupply(janela_opr, janela_opr.btnpslinac)
 
         # Adiciona todas as subjanelas a lista
         self.subjanelas.extend([

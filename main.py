@@ -1,19 +1,23 @@
 #!/usr/bin/env python-sirius
 
 """."""
-import sys
 import logging
+import sys
+
 import epics
-from PyQt5 import uic, QtWidgets, QtCore
+from PyQt5 import QtCore, QtWidgets, uic
 from PyQt5.QtCore import QTimer
+
 import utils
-from linac import BlocoLinac
-from tb import Blocoltb
-from ts import Blocolts
-from bo import Blocobo
-from si import Blocosi
-from sitemp import Blocositemp
+
+from li import AllSubsys as AllSubsysLI
+from tb import AllSubsys as AllSubsysTB
+from bo import AllSubsys as AllSubsysBO
+from ts import AllSubsys as AllSubsysTS
+from si import AllSubsys as AllSubsysSI
 from sips import Blocosips
+from sitemp import Blocositemp
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -141,11 +145,11 @@ def main():
         'RA-RaSIB01:TI-EVE:Network-Mon':           (janela_opr.ledintlk2,  1),
     }
 
-    bloco_linac = BlocoLinac(janela_opr)
-    bloco_ltb = Blocoltb(janela_opr)
-    bloco_lts = Blocolts(janela_opr)
-    bloco_bo = Blocobo(janela_opr)
-    bloco_si = Blocosi(janela_opr)
+    bloco_linac = AllSubsysLI(janela_opr)
+    bloco_ltb = AllSubsysTB(janela_opr)
+    bloco_lts = AllSubsysTS(janela_opr)
+    bloco_bo = AllSubsysBO(janela_opr)
+    bloco_si = AllSubsysSI(janela_opr)
     bloco_sitemp = Blocositemp(janela_opr)
     bloco_sips = Blocosips(janela_opr)
 

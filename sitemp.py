@@ -1,7 +1,9 @@
 """Logica das Temperaturas do Anel de Armazenamento."""
-from PyQt5 import QtWidgets
-import utils
 import logging
+
+from PyQt5 import QtWidgets
+
+import utils
 
 
 class Si_circhid(utils.ConnWidgetPVs):

@@ -1,9 +1,9 @@
 """Funções utilitárias de leitura de PVs e atualização de LEDs."""
 import logging
+
 import epics
 from epics import get_pv
-from PyQt5 import uic, QtWidgets
-
+from PyQt5 import QtWidgets, uic
 
 logging.basicConfig(level=logging.ERROR,
                     format="%(asctime)s - %(levelname)s - %(message)s")
@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.ERROR,
 
 def verificar_temp(
         signal: str, led: QtWidgets.QLabel, temp_lower:
-        float, temp_upper: float, timeout: float = 0):
+        float, temp_upper: float):
     """Atualiza estado do LED baseado na faixa de temperatura."""
     try:
         # temperatura = caget(signal, timeout=timeout)
@@ -35,8 +35,7 @@ def verificar_temp(
     return status
 
 
-def verificar_estado(signal: str, led: QtWidgets.QLabel, estado_esperado,
-                     timeout: float = 0):
+def verificar_estado(signal: str, led: QtWidgets.QLabel, estado_esperado):
     """Verifica estado do PV (bool/int) e atualiza o LED."""
     try:
         # estado = caget(signal, timeout=timeout)
@@ -60,8 +59,7 @@ def verificar_estado(signal: str, led: QtWidgets.QLabel, estado_esperado,
     return status
 
 
-def verificar_vacuo(signal: str, led: QtWidgets.QLabel, pressao_min: float,
-                    timeout: float = 0):
+def verificar_vacuo(signal: str, led: QtWidgets.QLabel, pressao_min: float):
     """Verifica se a pressão está dentro do limite e atualiza o LED."""
     try:
         # pressao = caget(signal, timeout=timeout)

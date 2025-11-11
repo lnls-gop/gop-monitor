@@ -1,10 +1,12 @@
 """Logica das subjanelas do Anel de Armazenamento."""
-from PyQt5 import QtWidgets
-import utils
 import logging
 
+from PyQt5 import QtWidgets
 
-class Sivac(utils.ConnWidgetPVs):
+import utils
+
+
+class Vacuum(utils.ConnWidgetPVs):
     """Controle da subjanela de leitura de vácuo do Anel."""
 
     def __init__(self, janela_opr=None, botao_menu=None):
@@ -235,7 +237,7 @@ class Sivac(utils.ConnWidgetPVs):
         }
 
 
-class Blocosi:
+class AllSubsys:
     """Gerencia o grupo SI e atualiza a label alarmsi."""
 
     def __init__(self, janela_opr):
@@ -245,7 +247,7 @@ class Blocosi:
         self.subjanelas = []
 
         # Instancia as subjanelas passando o botão correto
-        self.vacsi = Sivac(janela_opr, janela_opr.btnvacsi)
+        self.vacsi = Vacuum(janela_opr, janela_opr.btnvacsi)
         # self.cryoplant = Sicryo(janela_opr, janela_opr.btncryo)
         # self.cavitysi = Sicavity(janela_opr, janela_opr.btncavitysi)
 

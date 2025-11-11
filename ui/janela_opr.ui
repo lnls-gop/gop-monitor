@@ -2406,7 +2406,7 @@ CAVITY</string>
               </font>
              </property>
              <property name="text">
-              <string>INTERNAL RACK 
+              <string>INTERNAL RACK
  TEMPERATURE</string>
              </property>
             </widget>
@@ -2889,7 +2889,7 @@ CIRCUITS</string>
          </property>
          <property name="text">
           <string>SI
-POWER SUPPLAY</string>
+POWER SUPPLY</string>
          </property>
          <property name="rules" stdset="0">
           <string>[]</string>
