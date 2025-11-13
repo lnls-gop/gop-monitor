@@ -237,6 +237,20 @@ class Vacuum(utils.ConnWidgetPVs):
         }
 
 
+# class Cryoplant(utils.ConnWidgetPVs):
+#     """Controle da subjanela de leitura de vácuo do Anel."""
+#
+#     def __init__(self, janela_opr=None, botao_menu=None):
+#         """."""
+#         super().__init__(janela_opr, botao_menu, "ui/vacsi.ui", "vacuo")
+#
+#     def _registrar_grupos(self):
+#         """."""
+#         self.sinais = {
+#
+#         }
+
+
 class AllSubsys:
     """Gerencia o grupo SI e atualiza a label alarmsi."""
 

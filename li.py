@@ -11,6 +11,7 @@ class Temperature(utils.ConnWidgetPVs):
     """Classe do sistema de temperatura LINAC."""
 
     def plot_graph(self, url):
+        """."""
         try:
             subprocess.Popen(["firefox", url])
         except Exception as e:
@@ -108,25 +109,51 @@ class Temperature(utils.ConnWidgetPVs):
 class Lowlevel(utils.ConnWidgetPVs):
     """Classe responsável pelo controle do sistema de temperatura LINAC."""
 
+    def plot_graph(self, url):
+        """."""
+        try:
+            subprocess.Popen(["firefox", url])
+        except Exception as e:
+            logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
+
     def __init__(self, janela_opr, botao_menu):
         """."""
         super().__init__(janela_opr, botao_menu, "ui/lowlevelrf.ui",
                          "estado")
 
+        url = self.create_archviewer_link(self.sinais['kly1'])
+        self.uiobj.btnkly1lowlevel.clicked.connect(
+            lambda _, url=url: self.plot_graph(url)
+        )
+
+        url = self.create_archviewer_link(self.sinais['kly2'])
+        self.uiobj.btnkly2lowlevel.clicked.connect(
+            lambda _, url=url: self.plot_graph(url)
+        )
+
     def _registrar_grupos(self):
         self.sinais = {
-            'LA-CN:H1MPS-1:K1TempState1': (self._gwidget('ledoiltank_k1'), 1),
-            'LA-CN:H1MPS-1:K2TempState1': (self._gwidget('ledoiltank_k2'), 1),
-            'LA-CN:H1MPS-1:K1TempState2':
-            (self._gwidget('ledfocuscoil_k1'), 1),
-            'LA-CN:H1MPS-1:K2TempState2':
-            (self._gwidget('ledfocuscoil_k2'), 1),
-            'LA-CN:H1MPS-1:K2PsState_L': (self._gwidget('ledstatus_k2'), 0),
-            'LA-CN:H1MPS-1:K1PsState_L': (self._gwidget('ledstatus_k1'), 0),
-            'LA-RF:LLRF:KLY1:GET_INTERLOCK':
-            (self._gwidget('ledreflet_k1'), 0),
-            'LA-RF:LLRF:KLY2:GET_INTERLOCK':
-            (self._gwidget('ledreflet_k2'), 0),
+            'kly1': {
+                'LA-CN:H1MPS-1:K1TempState1': (self._gwidget
+                                               ('ledoiltank_k1'), 1),
+                'LA-CN:H1MPS-1:K1TempState2': (self._gwidget
+                                               ('ledfocuscoil_k1'), 1),
+                'LA-CN:H1MPS-1:K1PsState_L': (self._gwidget
+                                              ('ledstatus_k1'), 0),
+                'LA-RF:LLRF:KLY1:GET_INTERLOCK': (self._gwidget
+                                                  ('ledreflet_k1'), 0),
+            },
+            'kly2': {
+                'LA-CN:H1MPS-1:K2TempState1': (self._gwidget
+                                               ('ledoiltank_k2'), 1),
+                'LA-CN:H1MPS-1:K2TempState2': (self._gwidget
+                                               ('ledfocuscoil_k2'), 1),
+                'LA-CN:H1MPS-1:K2PsState_L': (self._gwidget
+                                              ('ledstatus_k2'), 0),
+                'LA-RF:LLRF:KLY2:GET_INTERLOCK': (self._gwidget
+                                                  ('ledreflet_k2'), 0),
+            },
+
         }
 
 
@@ -239,6 +266,7 @@ class AllSubsys:
     def __init__(self, janela_opr):
         """."""
         janela_opr.alarmlinac.clicked.connect(self.aba_linac)
+        janela_opr.infobeam.clicked.connect(self.aba_infobeam)
         self.janela_opr = janela_opr
         self.subjanelas = []
 
@@ -281,5 +309,12 @@ class AllSubsys:
         """."""
         try:
             self.janela_opr.janela_opr.setCurrentIndex(1)
+        except Exception as e:
+            logging.error(f"Erro ao mudar para aba LINAC: {e}")
+
+    def aba_infobeam(self):
+        """."""
+        try:
+            self.janela_opr.janela_opr.setCurrentIndex(0)
         except Exception as e:
             logging.error(f"Erro ao mudar para aba LINAC: {e}")

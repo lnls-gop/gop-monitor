@@ -155,9 +155,7 @@ class ConnWidgetPVs:
 
     def configurar_sistema(self):
         """Conecta sinais da janela principal e prepara a subjanela."""
-        # Botão/ação que mostra/oculta a janela de temperatura
         self.botao_menu.clicked.connect(self.mostrar_janela)
-        # Primeira atualização inicial
         self.atualizar_status()
 
     def mostrar_janela(self):

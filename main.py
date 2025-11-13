@@ -131,8 +131,8 @@ def main():
     timer_gamma.start(1000)
 
     if not janela_opr.findChild(QtWidgets.QLabel, "alarmlinac"):
-        logging.warning(
-            "Label 'alarmlinac' não encontrada na janela principal")
+        logging.warning
+        "Label 'alarmlinac' não encontrada na janela principal"
 
     sinais_leds = {
         'SI-Glob:AP-OrbIntlk:Enable-Sts':          (janela_opr.ledorbitint, 1),
