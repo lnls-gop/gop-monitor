@@ -1,220 +1,273 @@
 """Lógica das subjanelas da Linha de Transporte LTS."""
+import logging
+import subprocess
 from PyQt5 import uic, QtWidgets
+from ranges_manager import RangesManager
 import utils
 
+ranges_manager = RangesManager()
 
-class Ltsvac(QtWidgets.QWidget):
-    """Controle do Sistema de Vácuo Linha de Transporte TS."""
+
+class Vacuum(utils.ConnWidgetPVs):
+    """Controle da subjanela de leitura de vácuo do Linac."""
+
+    def __init__(self, janela_opr=None, botao_menu=None):
+        """."""
+        super().__init__(janela_opr, botao_menu, "ui/vaclts.ui", "vacuo")
+
+    def _registrar_grupos(self):
+        """Registra Pvs de vacuo e seus leds correspondentes."""
+        self.sinais = {
+            'TS-01:VA-CCG-BG:Pressure-Mon':
+            (self._gwidget('led_lts01bg'), 1.0e-7),
+            'TS-01:VA-CCG-ED:Pressure-Mon':
+            (self._gwidget('led_lts01ed'), 1.0e-7),
+            'TS-04:VA-CCG-BG:Pressure-Mon':
+            (self._gwidget('led_lts04bg'), 1.0e-7),
+            'TS-04:VA-CCG-MD:Pressure-Mon':
+            (self._gwidget('led_lts04md'), 1.0e-7),
+            'TS-01:VA-SIP20-BG:Pressure-Mon':
+            (self._gwidget('led_lts01sip20bg'), 1.0e-7),
+            'TS-01:VA-SIP20-ED:Pressure-Mon':
+            (self._gwidget('led_lts01sip20ed'), 1.0e-7),
+            'TS-01:VA-SIP20-MD1:Pressure-Mon':
+            (self._gwidget('led_lts01sip20md1'), 1.0e-7),
+            'TS-01:VA-SIP20-MD2:Pressure-Mon':
+            (self._gwidget('led_lts01sip20md2'), 1.0e-7),
+            'TS-02:VA-SIP20-BG:Pressure-Mon':
+            (self._gwidget('led_lts02sip20bg'), 1.0E-7),
+            'TS-02:VA-SIP20-ED:Pressure-Mon':
+            (self._gwidget('led_lts02sip20ed'), 1.0E-7),
+            'TS-03:VA-SIP20-BG:Pressure-Mon':
+            (self._gwidget('led_lts03sip20bg'), 1.0E-7),
+            'TS-03:VA-SIP20-ED:Pressure-Mon':
+            (self._gwidget('led_lts03sip20ed'), 1.0E-7),
+            'TS-04:VA-SIP20-BG:Pressure-Mon':
+            (self._gwidget('led_lts04sip20bg'), 1.0E-7),
+            'TS-04:VA-SIP20-ED:Pressure-Mon':
+            (self._gwidget('led_lts04sip20ed'), 1.0E-7),
+            'TS-04:VA-SIP20-MD1:Pressure-Mon':
+            (self._gwidget('led_lts04sip20md1'), 1.0E-7),
+            'TS-04:VA-SIP20-MD2:Pressure-Mon':
+            (self._gwidget('led_lts04sip20md2'), 1.0E-7),
+            'TS-04:VA-SIP20-MD3:Pressure-Mon':
+            (self._gwidget('led_lts04sip20md3'), 1.0E-7),
+        }
+
+
+class Temperature(utils.ConnWidgetPVs):
+    """Classe responsável pelo controle do sistema de temperatura LTB."""
+
+    def plot_graph(self, url):
+        """."""
+        try:
+            subprocess.Popen(["firefox", url])
+        except Exception as e:
+            logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
 
     def __init__(self, janela_opr, botao_menu):
         """."""
-        super().__init__()
-        self.janela_opr = janela_opr
-        self.botao_menu = botao_menu
-        self.vaclts = uic.loadUi("vaclts.ui")
-        self._registrar_grupos()
+        self.ranges = ranges_manager.get_ranges("lts")
+        super().__init__(janela_opr, botao_menu, "ui/templts.ui", "temp")
 
-    def _registrar_grupos(self):
-        self.sinais_vac = {
-            'TS-01:VA-CCG-BG:Pressure-Mon': self.vaclts.led_lts01bg,
-            'TS-01:VA-CCG-ED:Pressure-Mon': self.vaclts.led_lts01ed,
-            'TS-04:VA-CCG-BG:Pressure-Mon': self.vaclts.led_lts04bg,
-            'TS-04:VA-CCG-MD:Pressure-Mon': self.vaclts.led_lts04md,
-            'TS-01:VA-SIP20-BG:Pressure-Mon': self.vaclts.led_lts01sip20bg,
-            'TS-01:VA-SIP20-ED:Pressure-Mon': self.vaclts.led_lts01sip20ed,
-            'TS-01:VA-SIP20-MD1:Pressure-Mon': self.vaclts.led_lts01sip20md1,
-            'TS-01:VA-SIP20-MD2:Pressure-Mon': self.vaclts.led_lts01sip20md2,
-            'TS-02:VA-SIP20-BG:Pressure-Mon': self.vaclts.led_lts02sip20bg,
-            'TS-02:VA-SIP20-ED:Pressure-Mon': self.vaclts.led_lts02sip20ed,
-            'TS-03:VA-SIP20-BG:Pressure-Mon': self.vaclts.led_lts03sip20bg,
-            'TS-03:VA-SIP20-ED:Pressure-Mon': self.vaclts.led_lts03sip20ed,
-            'TS-04:VA-SIP20-BG:Pressure-Mon': self.vaclts.led_lts04sip20bg,
-            'TS-04:VA-SIP20-ED:Pressure-Mon': self.vaclts.led_lts04sip20ed,
-            'TS-04:VA-SIP20-MD1:Pressure-Mon': self.vaclts.led_lts04sip20md1,
-            'TS-04:VA-SIP20-MD2:Pressure-Mon': self.vaclts.led_lts04sip20md2,
-            'TS-04:VA-SIP20-MD3:Pressure-Mon': self.vaclts.led_lts04sip20md3,
-        }
-        self.pressao_max = 1.0e-7
+        # Conectar botão de configuração de ranges
+        self.uiobj.btnltsRanges.clicked.connect(self.abrir_config_ranges)
 
-    def configurar_sistema(self):
+        # Atualiza labels da subjanela com ranges persistentes
+        self._atualizar_labels_ranges()
+
+        # Conectar botões de gráfico (como já existia)
+        url = self.create_archviewer_link(self.sinais['Septts01'])
+        self.uiobj.btnseptts01.clicked.connect(lambda _, url=url: self.
+                                               plot_graph(url))
+
+        url = self.create_archviewer_link(self.sinais['SeptEje'])
+        self.uiobj.btnsepteje.clicked.connect(lambda _, url=url: self.
+                                              plot_graph(url))
+
+        url = self.create_archviewer_link(self.sinais['Septts04'])
+        self.uiobj.btnseptts04.clicked.connect(lambda _, url=url: self.
+                                               plot_graph(url))
+
+        url = self.create_archviewer_link(self.sinais['Septts04b'])
+        self.uiobj.btnseptts04b.clicked.connect(lambda _, url=url: self.
+                                                plot_graph(url))
+
+    def _atualizar_labels_ranges(self):
+        """Atualiza todas as labels range_<grupo> com valores persistentes."""
+        for grupo, (min_val, max_val) in self.ranges.items():
+            label_name = f"range_{grupo}"
+            lbl = self.uiobj.findChild(QtWidgets.QLabel, label_name)
+            if lbl:
+                lbl.setText(f"{min_val} – {max_val} °C")
+            else:
+                logging.warning(
+                    f"Label {label_name} não encontrada em templts.ui"
+                    )
+
+    def abrir_config_ranges(self):
+        """Abre subjanela de configuração de ranges."""
+        self.config_ui = uic.loadUi("ui/configranges.ui")
+
+        # Preenche combo com todos os grupos
+        self.config_ui.comboGrupos.addItems(self.ranges.keys())
+
+        # Conecta eventos
+        self.config_ui.comboGrupos.currentTextChanged.connect(
+            self.atualizar_spinboxes
+        )
+        self.config_ui.btnSalvar.clicked.connect(self.salvar_range)
+        self.config_ui.btnFechar.clicked.connect(self.config_ui.close)
+
+        # Força seleção do primeiro grupo
+        self.config_ui.comboGrupos.setCurrentIndex(0)
+        grupo_inicial = self.config_ui.comboGrupos.itemText(0)
+        self.atualizar_spinboxes(grupo_inicial)
+
+        self.config_ui.show()
+
+    def atualizar_spinboxes(self, grupo):
+        """Atualiza spinboxes com valores atuais do grupo selecionado."""
+        min_val, max_val = self.ranges[grupo]
+        self.config_ui.spinMin.setValue(min_val)
+        self.config_ui.spinMax.setValue(max_val)
+        self.config_ui.lblRangeAtual.setText(
+            f"Range atual: {min_val:.2f} -{max_val:.2f} °C")
+
+    def salvar_range(self):
         """."""
-        self.botao_menu.clicked.connect(self.mostrar_janela_vaclts)
+        grupo = self.config_ui.comboGrupos.currentText()
+        min_val = round(float(self.config_ui.spinMin.value()), 2)
+        max_val = round(float(self.config_ui.spinMax.value()), 2)
+
+        # atualiza local
+        self.ranges[grupo] = (min_val, max_val)
+
+        # atualiza global
+        ranges_manager.update_range("lts", grupo, min_val, max_val)
+
+        self.config_ui.lblRangeAtual.setText(
+            f"Current Range: {min_val:.2f} – {max_val:.2f} °C"
+            )
+
+        # Atualiza label da subjanela templinac.ui
+        label_name = f"range_{grupo}"
+        lbl_principal = self.uiobj.findChild(QtWidgets.QLabel, label_name)
+        if lbl_principal:
+            lbl_principal.setText(f"{min_val:.2f} – {max_val:.2f} °C")
+
+        self._registrar_grupos()
         self.atualizar_status()
 
-    def mostrar_janela_vaclts(self):
-        """."""
-        self.vaclts.setVisible(not self.vaclts.isVisible())
-
-    def atualizar_status(self):
-        """."""
-        todos_ok = True
-        for signal, led in self.sinais_vac.items():
-            utils.verificar_vaclts(signal, led, self.pressao_max)
-            if not getattr(led, "state", False):
-                todos_ok = False
-        self.estado_ok = todos_ok
-
-        if self.botao_menu:
-            cor = "rgb(0, 180, 0)" if todos_ok else "rgb(207, 0, 0)"
-            self.botao_menu.setStyleSheet(f"background-color: {cor};")
-
-        alarme_widget = self.janela_opr.findChild(QtWidgets.QLabel,
-                                                  "alarmlts")
-        if alarme_widget:
-            cor = "rgb(0, 168, 0)" if todos_ok else "rgb(207, 0, 0)"
-            alarme_widget.setStyleSheet(f"background-color: {cor};")
-            alarme_widget.repaint()
-            QtWidgets.QApplication.processEvents()
-            alarme_widget.update()
-
-
-class Templts(QtWidgets.QWidget):
-    """Controle de Temperatura da Linha de Transporte TS ."""
-
-    def __init__(self, janela_opr, botao_menu):
-        """."""
-        super().__init__()
-        self.janela_opr = janela_opr
-        self.botao_menu = botao_menu
-        self.templts = uic.loadUi("templts.ui")
-        self._registrar_grupos()
-
     def _registrar_grupos(self):
-        self.sinais_ltbtemp = {
-            "t1": (
-                {
-                    'TS-01:VA-PT100-BG1:Temp-Mon': self.templts.led_ltsbg1,
-                    'TS-01:VA-PT100-BG2:Temp-Mon': self.templts.led_ltsbg2,
-                    'TS-01:VA-PT100-BG3:Temp-Mon': self.templts.led_ltsbg3,
-                    'TS-01:VA-PT100-BG4:Temp-Mon': self.templts.led_ltsbg4,
-                    'TS-01:PU-EjeSF-BG:Temp-Mon': self.templts.led_ejesfbg,
-                    'TS-01:PU-EjeSG-BG:Temp-Mon': self.templts.led_ejesgbg,
-                    'TS-01:PU-EjeSF-ED:Temp-Mon': self.templts.led_ejesfed,
-                    'TS-01:PU-EjeSG-ED:Temp-Mon': self.templts.led_ejesged,
-                    'TS-04:VA-PT100-ED1:Temp-Mon': self.templts.led_ltsed1,
-                    'TS-04:VA-PT100-ED2:Temp-Mon': self.templts.led_ltsed2,
-                    'TS-04:VA-PT100-ED3:Temp-Mon': self.templts.led_ltsed3,
-                    'TS-04:VA-PT100-ED4:Temp-Mon': self.templts.led_ltsed4,
-                    'TS-04:VA-PT100-ED5:Temp-Mon': self.templts.led_ltsed5,
-                    'TS-04:VA-PT100-ED6:Temp-Mon': self.templts.led_ltsed6,
-                    'TS-MBTemp-03-CH1': self.templts.led_ltsch1,
-                    'TS-MBTemp-03-CH2': self.templts.led_ltsch2,
-                    'TS-MBTemp-03-CH3': self.templts.led_ltsch3,
-                    'TS-MBTemp-03-CH4': self.templts.led_ltsch4,
-                },
-                22, 26
-            ),
+        """Registra os grupos de PVs/LEDs e suas faixas."""
+        self.sinais = {
+            'Septts01': {
+                'TS-01:VA-PT100-BG1:Temp-Mon':
+                (self._gwidget('led_ltsbg1'), *self.ranges['Septts01']),
+                'TS-01:VA-PT100-BG2:Temp-Mon':
+                (self._gwidget('led_ltsbg2'), *self.ranges['Septts01']),
+                'TS-01:VA-PT100-BG3:Temp-Mon':
+                (self._gwidget('led_ltsbg3'), *self.ranges['Septts01']),
+                'TS-01:VA-PT100-BG4:Temp-Mon':
+                (self._gwidget('led_ltsbg4'), *self.ranges['Septts01']),
+            },
+            'SeptEje': {
+                'TS-01:PU-EjeSF-BG:Temp-Mon':
+                (self._gwidget('led_ejesfbg'), *self.ranges['SeptEje']),
+                'TS-01:PU-EjeSG-BG:Temp-Mon':
+                (self._gwidget('led_ejesgbg'), *self.ranges['SeptEje']),
+                'TS-01:PU-EjeSF-ED:Temp-Mon':
+                (self._gwidget('led_ejesfed'), *self.ranges['SeptEje']),
+                'TS-01:PU-EjeSG-ED:Temp-Mon':
+                (self._gwidget('led_ejesged'), *self.ranges['SeptEje']),
+            },
+            'Septts04': {
+                'TS-04:VA-PT100-ED1:Temp-Mon':
+                (self._gwidget('led_ltsed1'), *self.ranges['Septts04']),
+                'TS-04:VA-PT100-ED2:Temp-Mon':
+                (self._gwidget('led_ltsed2'), *self.ranges['Septts04']),
+                'TS-04:VA-PT100-ED3:Temp-Mon':
+                (self._gwidget('led_ltsed3'), *self.ranges['Septts04']),
+                'TS-04:VA-PT100-ED4:Temp-Mon':
+                (self._gwidget('led_ltsed4'), *self.ranges['Septts04']),
+                'TS-04:VA-PT100-ED5:Temp-Mon':
+                (self._gwidget('led_ltsed5'), *self.ranges['Septts04']),
+                'TS-04:VA-PT100-ED6:Temp-Mon':
+                (self._gwidget('led_ltsed6'), *self.ranges['Septts04']),
+            },
+            'Septts04b': {
+                'TS-MBTemp-03-CH1':
+                (self._gwidget('led_ltsch1'), *self.ranges['Septts04b']),
+                'TS-MBTemp-03-CH2':
+                (self._gwidget('led_ltsch2'), *self.ranges['Septts04b']),
+                'TS-MBTemp-03-CH3':
+                (self._gwidget('led_ltsch3'), *self.ranges['Septts04b']),
+                'TS-MBTemp-03-CH4':
+                (self._gwidget('led_ltsch4'), *self.ranges['Septts04b']),
+            },
         }
 
-    def configurar_sistema(self):
+
+class PowerSupply(utils.ConnWidgetPVs):
+    """."""
+
+    def __init__(self, janela_opr=None, botao_menu=None):
         """."""
-        self.botao_menu.clicked.connect(self.mostrar_janela_temperatura)
-        self.atualizar_status()
-
-    def mostrar_janela_temperatura(self):
-        """."""
-        self.templts.setVisible(not self.templts.isVisible())
-
-    def atualizar_status(self):
-        """."""
-        todos_verdes = True
-        for _, (sinais, temp_min, temp_max) in self.sinais_ltbtemp.items():
-            for signal, led in sinais.items():
-                utils.verificar_templts(signal, led, temp_min, temp_max)
-                if not getattr(led, "state", False):
-                    todos_verdes = False
-
-        self.estado_ok = todos_verdes
-
-        if self.botao_menu:
-            cor = "rgb(0, 168, 0)" if todos_verdes else "rgb(207, 0, 0)"
-            self.botao_menu.setStyleSheet(f"background-color: {cor};")
-
-
-class Ltsps(QtWidgets.QWidget):
-    """Controle das fontes de potencia LTS."""
-
-    def __init__(self, janela_opr, botao_menu):
-        """."""
-        super().__init__()
-        self.janela_opr = janela_opr
-        self.botao_menu = botao_menu
-        self.pslts = uic.loadUi("pslts.ui")
-        self._registrar_grupos()
+        super().__init__(janela_opr, botao_menu, "ui/pslts.ui", "estado")
 
     def _registrar_grupos(self):
-        self.sinais_estado_0 = {
-            'TS-Fam:PS-B:DiagStatus-Mon': self.pslts.led_ltsb,
-            'TS-01:PS-QF1A:DiagStatus-Mon': self.pslts.led_tsqf1a,
-            'TS-01:PS-QF1B:DiagStatus-Mon': self.pslts.led_tsqf1b,
-            'TS-02:PS-QD2:DiagStatus-Mon': self.pslts.led_tsqd2,
-            'TS-02:PS-QF2:DiagStatus-Mon': self.pslts.led_tsqf2,
-            'TS-03:PS-QF3:DiagStatus-Mon': self.pslts.led_tsqf3,
-            'TS-04:PS-QD4A:DiagStatus-Mon': self.pslts.led_tsqd4a,
-            'TS-04:PS-QD4B:DiagStatus-Mon': self.pslts.led_tsqd4b,
-            'TS-04:PS-QF4:DiagStatus-Mon': self.pslts.led_tsqf4,
-            'TS-01:PS-CH:DiagStatus-Mon': self.pslts.led_lts01ch,
-            'TS-02:PS-CH:DiagStatus-Mon': self.pslts.led_lts02ch,
-            'TS-03:PS-CH:DiagStatus-Mon': self.pslts.led_lts03ch,
-            'TS-04:PS-CH:DiagStatus-Mon': self.pslts.led_lts04ch,
-            'TS-01:PS-CV-1:DiagStatus-Mon': self.pslts.led_lts01cv1,
-            'TS-01:PS-CV-1E2:DiagStatus-Mon': self.pslts.led_lts01cv1e2,
-            'TS-01:PS-CV-2:DiagStatus-Mon': self.pslts.led_lts01cv2,
-            'TS-02:PS-CV:DiagStatus-Mon': self.pslts.led_lts02cv,
-            'TS-02:PS-CV-0:DiagStatus-Mon': self.pslts.led_lts02cv0,
-            'TS-03:PS-CV:DiagStatus-Mon': self.pslts.led_lts03cv,
-            'TS-04:PS-CV-0:DiagStatus-Mon': self.pslts.led_lts04cv0,
-            'TS-04:PS-CV-1:DiagStatus-Mon': self.pslts.led_lts04cv1,
-            'TS-04:PS-CV-1E2:DiagStatus-Mon': self.pslts.led_lts04cv2,
-            'TS-04:PS-CV-2:DiagStatus-Mon': self.pslts.led_lts04cv1e2,
-            'SI-01M1:PS-FFCV:DiagStatus-Mon': self.pslts.led_lts01ffcv,
-            'SI-01M2:PS-FFCH:DiagStatus-Mon': self.pslts.led_lts01ffch,
-            'SI-01M2:PS-FFCV:DiagStatus-Mon': self.pslts.led_lts02ffcv,
-            'SI-01M1:PS-FFCH:DiagStatus-Mon': self.pslts.led_lts02ffch,
+        self.sinais = {
+            'TS-Fam:PS-B:DiagStatus-Mon': (self._gwidget('led_ltsb'), 0),
+            'TS-01:PS-QF1A:DiagStatus-Mon': (self._gwidget('led_tsqf1a'), 0),
+            'TS-01:PS-QF1B:DiagStatus-Mon': (self._gwidget('led_tsqf1b'), 0),
+            'TS-02:PS-QD2:DiagStatus-Mon': (self._gwidget('led_tsqd2'), 0),
+            'TS-02:PS-QF2:DiagStatus-Mon': (self._gwidget('led_tsqf2'), 0),
+            'TS-03:PS-QF3:DiagStatus-Mon': (self._gwidget('led_tsqf3'), 0),
+            'TS-04:PS-QD4A:DiagStatus-Mon': (self._gwidget('led_tsqd4a'), 0),
+            'TS-04:PS-QD4B:DiagStatus-Mon': (self._gwidget('led_tsqd4b'), 0),
+            'TS-04:PS-QF4:DiagStatus-Mon': (self._gwidget('led_tsqf4'), 0),
+            'TS-01:PS-CH:DiagStatus-Mon': (self._gwidget('led_lts01ch'), 0),
+            'TS-02:PS-CH:DiagStatus-Mon': (self._gwidget('led_lts02ch'), 0),
+            'TS-03:PS-CH:DiagStatus-Mon': (self._gwidget('led_lts03ch'), 0),
+            'TS-04:PS-CH:DiagStatus-Mon': (self._gwidget('led_lts04ch'), 0),
+            'TS-01:PS-CV-1:DiagStatus-Mon': (self._gwidget('led_lts01cv1'), 0),
+            'TS-01:PS-CV-1E2:DiagStatus-Mon':
+            (self._gwidget('led_lts01cv1e2'), 0),
+            'TS-01:PS-CV-2:DiagStatus-Mon': (self._gwidget('led_lts01cv2'), 0),
+            'TS-02:PS-CV:DiagStatus-Mon': (self._gwidget('led_lts02cv'), 0),
+            'TS-02:PS-CV-0:DiagStatus-Mon': (self._gwidget('led_lts02cv0'), 0),
+            'TS-03:PS-CV:DiagStatus-Mon': (self._gwidget('led_lts03cv'), 0),
+            'TS-04:PS-CV-0:DiagStatus-Mon': (self._gwidget('led_lts04cv0'), 0),
+            'TS-04:PS-CV-1:DiagStatus-Mon': (self._gwidget('led_lts04cv1'), 0),
+            'TS-04:PS-CV-1E2:DiagStatus-Mon':
+            (self._gwidget('led_lts04cv2'), 0),
+            'TS-04:PS-CV-2:DiagStatus-Mon':
+            (self._gwidget('led_lts04cv1e2'), 0),
+            'SI-01M1:PS-FFCV:DiagStatus-Mon':
+            (self._gwidget('led_lts01ffcv'), 0),
+            'SI-01M2:PS-FFCH:DiagStatus-Mon':
+            (self._gwidget('led_lts01ffch'), 0),
+            'SI-01M2:PS-FFCV:DiagStatus-Mon':
+            (self._gwidget('led_lts02ffcv'), 0),
+            'SI-01M1:PS-FFCH:DiagStatus-Mon':
+            (self._gwidget('led_lts02ffch'), 0),
         }
 
-    def configurar_sistema(self):
-        """."""
-        self.botao_menu.clicked.connect(self.mostrar_janela_pslts)
-        self.atualizar_status()
 
-    def mostrar_janela_pslts(self):
-        """."""
-        self.pslts.setVisible(not self.pslts.isVisible())
-
-    def atualizar_status(self):
-        """."""
-        todos_ok = True
-        for signal, led in self.sinais_estado_0.items():
-            utils.verificar_pslts(signal, led, estado_esperado=0)
-            if not getattr(led, "state", False):
-                todos_ok = False
-        self.estado_ok = todos_ok
-
-        if self.botao_menu:
-            cor = "rgb(0, 168, 0)" if todos_ok else "rgb(207, 0, 0)"
-            self.botao_menu.setStyleSheet(f"background-color: {cor}")
-
-        alarme_widget = self.janela_opr.findChild(QtWidgets.QLabel, "alarmlts")
-        if alarme_widget:
-            alarme_widget.setStyleSheet(f"background-color: {cor};")
-            alarme_widget.repaint()
-            QtWidgets.QApplication.processEvents()
-            alarme_widget.update()
-
-
-class Blocolts:
+class AllSubsys:
     """Gerencia o grupo LTB e atualiza a label alarmltb."""
 
     def __init__(self, janela_opr):
         """."""
+        janela_opr.alarmlts.clicked.connect(self.aba_lts)
         self.janela_opr = janela_opr
         self.subjanelas = []
 
         # Instancia as subjanelas passando o botão correto
-        self.vaclts = Ltsvac(janela_opr, janela_opr.btnvaclts)
-        self.templts = Templts(janela_opr, janela_opr.btntemplts)
-        self.pslts = Ltsps(janela_opr, janela_opr.btnpslts)
+        self.vaclts = Vacuum(janela_opr, janela_opr.btnvaclts)
+        self.templts = Temperature(janela_opr, janela_opr.btntemplts)
+        self.pslts = PowerSupply(janela_opr, janela_opr.btnpslts)
 
         # Adiciona todas as subjanelas à lista
         self.subjanelas.extend([
@@ -230,17 +283,23 @@ class Blocolts:
     def atualizar_grupo(self):
         """Atualiza todas as subjanelas e a label alarmlts."""
         falha_detectada = False
-
         for sub in self.subjanelas:
             sub.atualizar_status()
-            if not getattr(sub, "estado_ok", True):
-                falha_detectada = True
+            falha_detectada |= not sub.estado_ok
 
         # Atualiza a label principal do bloco LTS
-        alarme_widget = self.janela_opr.findChild(QtWidgets.QLabel, "alarmlts")
+        alarme_widget = self.janela_opr.findChild(QtWidgets.QPushButton,
+                                                  "alarmlts")
         if alarme_widget:
             cor = "rgb(0, 168, 0)" if not falha_detectada else "rgb(207, 0, 0)"
             alarme_widget.setStyleSheet(f"background-color: {cor};")
             alarme_widget.repaint()
             QtWidgets.QApplication.processEvents()
             alarme_widget.update()
+
+    def aba_lts(self):
+        """."""
+        try:
+            self.janela_opr.janela_opr.setCurrentIndex(4)
+        except Exception as e:
+            logging.error(f"Erro ao mudar para aba LTS: {e}")

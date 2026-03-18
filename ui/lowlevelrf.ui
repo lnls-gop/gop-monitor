@@ -7,11 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>1337</width>
-    <height>824</height>
+    <height>865</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 223, 225);</string>
   </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="enabled">
@@ -36,6 +39,9 @@
      <width>16777215</width>
      <height>670</height>
     </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="currentIndex">
     <number>2</number>
@@ -9885,13 +9891,54 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
+       <x>8</x>
+       <y>8</y>
        <width>641</width>
-       <height>109</height>
+       <height>111</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="3">
+       <widget class="QLed" name="ledfocuscoil_k1">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>95</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>51</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="state">
+         <bool>true</bool>
+        </property>
+        <property name="onColor">
+         <color>
+          <red>0</red>
+          <green>140</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1">
        <widget class="PyDMLabel" name="PyDMLabel_46">
         <property name="minimumSize">
@@ -9905,44 +9952,6 @@
         </property>
         <property name="text">
          <string>Status</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="PyDMLabel" name="PyDMLabel_47">
-        <property name="minimumSize">
-         <size>
-          <width>104</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>Oil Tank</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="PyDMLabel" name="PyDMLabel_55">
-        <property name="minimumSize">
-         <size>
-          <width>103</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>Focus Coil</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -9997,72 +10006,11 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1" colspan="4">
-       <widget class="Line" name="line_5">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>43</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+      <item row="2" column="4">
+       <widget class="QLed" name="ledreflet_k1">
+        <property name="enabled">
+         <bool>true</bool>
         </property>
-        <property name="sizeIncrement">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-        <property name="lineWidth">
-         <number>1</number>
-        </property>
-        <property name="midLineWidth">
-         <number>0</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="PyDMLabel" name="PyDMLabel_85">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>200</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>Klystron 1</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLed" name="ledstatus_k1">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
           <horstretch>0</horstretch>
@@ -10137,11 +10085,113 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="3">
-       <widget class="QLed" name="ledfocuscoil_k1">
-        <property name="enabled">
-         <bool>true</bool>
+      <item row="1" column="1" colspan="4">
+       <widget class="Line" name="line_5">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>43</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
+        <property name="sizeIncrement">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="lineWidth">
+         <number>1</number>
+        </property>
+        <property name="midLineWidth">
+         <number>0</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="PyDMPushButton" name="btnkly1lowlevel">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>120</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Gráfico</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="PyDMLabel" name="PyDMLabel_55">
+        <property name="minimumSize">
+         <size>
+          <width>103</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Focus Coil</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_85">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Klystron 1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLed" name="ledstatus_k1">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
           <horstretch>0</horstretch>
@@ -10178,44 +10228,22 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="4">
-       <widget class="QLed" name="ledreflet_k1">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
+      <item row="0" column="2">
+       <widget class="PyDMLabel" name="PyDMLabel_47">
         <property name="minimumSize">
          <size>
-          <width>95</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>51</width>
-          <height>35</height>
+          <width>104</width>
+          <height>0</height>
          </size>
         </property>
         <property name="toolTip">
          <string/>
         </property>
-        <property name="state">
-         <bool>true</bool>
+        <property name="text">
+         <string>Oil Tank</string>
         </property>
-        <property name="onColor">
-         <color>
-          <red>0</red>
-          <green>140</green>
-          <blue>0</blue>
-         </color>
-        </property>
-        <property name="shape">
-         <enum>QLed::Circle</enum>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -10268,10 +10296,10 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
+       <x>8</x>
+       <y>9</y>
        <width>641</width>
-       <height>108</height>
+       <height>110</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
@@ -10599,6 +10627,28 @@
         </property>
         <property name="shape">
          <enum>QLed::Circle</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="PyDMPushButton" name="btnkly2lowlevel">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>120</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Gráfico</string>
         </property>
        </widget>
       </item>

@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(86, 174, 255)</string>
+  </property>
   <widget class="QScrollArea" name="scrollArea">
    <property name="geometry">
     <rect>
@@ -11109,46 +11112,6 @@
      </property>
      <property name="channel" stdset="0">
       <string>SI-14C3:DI-BPM-2:ClksLocked-Mon</string>
-     </property>
-    </widget>
-    <widget class="PyDMLabel" name="PyDMLabel_30">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>429</y>
-       <width>91</width>
-       <height>135</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>135</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>135</height>
-      </size>
-     </property>
-     <property name="toolTip">
-      <string/>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <property name="lineWidth">
-      <number>5</number>
-     </property>
-     <property name="text">
-      <string>BO BPM</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="SiriusLedAlert" name="bpm48urffe">

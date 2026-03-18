@@ -1,281 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>vacltb</class>
- <widget class="QWidget" name="vacltb">
+ <class>temphall</class>
+ <widget class="QWidget" name="temphall">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>514</width>
-    <height>394</height>
+    <width>412</width>
+    <height>541</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Vaccum</string>
+   <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: rgb(252, 170, 199);</string>
-  </property>
-  <widget class="QScrollArea" name="scrollArea_2">
+  <widget class="PyDMLabel" name="PyDMLabel">
    <property name="geometry">
     <rect>
-     <x>7</x>
-     <y>10</y>
-     <width>500</width>
-     <height>378</height>
+     <x>5</x>
+     <y>3</y>
+     <width>391</width>
+     <height>31</height>
     </rect>
    </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
    </property>
-   <property name="minimumSize">
-    <size>
-     <width>500</width>
-     <height>378</height>
-    </size>
+   <property name="toolTip">
+    <string/>
    </property>
-   <property name="maximumSize">
-    <size>
-     <width>500</width>
-     <height>378</height>
-    </size>
+   <property name="text">
+    <string>Hall Temperature</string>
    </property>
-   <property name="mouseTracking">
-    <bool>true</bool>
+   <property name="textFormat">
+    <enum>Qt::PlainText</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>6</x>
+     <y>40</y>
+     <width>401</width>
+     <height>491</height>
+    </rect>
    </property>
    <property name="widgetResizable">
     <bool>true</bool>
    </property>
-   <widget class="QWidget" name="scrollAreaWidgetContents_2">
+   <widget class="QWidget" name="scrollAreaWidgetContents">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>498</width>
-      <height>376</height>
+      <width>399</width>
+      <height>489</height>
      </rect>
     </property>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>7</y>
-       <width>481</width>
-       <height>365</height>
+       <x>9</x>
+       <y>10</y>
+       <width>381</width>
+       <height>477</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="5" column="3">
-       <widget class="QLed" name="ledvacltb04">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="onColor">
-         <color>
-          <red>0</red>
-          <green>140</green>
-          <blue>0</blue>
-         </color>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2">
-       <widget class="PyDMLabel" name="PyDMLabel_90">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
+      <item row="0" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_39">
         <property name="minimumSize">
          <size>
           <width>80</width>
-          <height>30</height>
+          <height>24</height>
          </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="accessibleDescription">
-         <string/>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="channel" stdset="0">
-         <string>TB-01:VA-SIP20-ED:Pressure-Mon</string>
-        </property>
-        <property name="displayFormat" stdset="0">
-         <enum>PyDMLabel::Exponential</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="PyDMLabel" name="pv02raps02">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>135</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
         </property>
         <property name="toolTip">
          <string/>
         </property>
         <property name="text">
-         <string>TB-02:VA-SIP20-ED</string>
+         <string>Temp. [ºC]</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="2">
-       <widget class="PyDMLabel" name="PyDMLabel_92">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
+      <item row="0" column="2">
+       <widget class="PyDMLabel" name="PyDMLabel_35">
         <property name="minimumSize">
          <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
+          <width>60</width>
+          <height>24</height>
          </size>
         </property>
         <property name="toolTip">
          <string/>
         </property>
-        <property name="accessibleDescription">
-         <string/>
-        </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::RightToLeft</enum>
         </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
+        <property name="text">
+         <string>Status</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="channel" stdset="0">
-         <string>TB-03:VA-SIP20-ED:Pressure-Mon</string>
-        </property>
-        <property name="displayFormat" stdset="0">
-         <enum>PyDMLabel::Exponential</enum>
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
-      <item row="8" column="2">
-       <widget class="PyDMLabel" name="PyDMLabel_93">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
+      <item row="1" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_57">
         <property name="minimumSize">
          <size>
-          <width>80</width>
-          <height>30</height>
+          <width>120</width>
+          <height>35</height>
          </size>
         </property>
-        <property name="maximumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="toolTip">
          <string/>
         </property>
-        <property name="accessibleDescription">
-         <string/>
+        <property name="inputMethodHints">
+         <set>Qt::ImhFormattedNumbersOnly</set>
         </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
+        <property name="text">
+         <string>Fancoils</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="channel" stdset="0">
-         <string>TB-04:VA-SIP20-ED:Pressure-Mon</string>
-        </property>
-        <property name="displayFormat" stdset="0">
-         <enum>PyDMLabel::Exponential</enum>
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" colspan="3">
-       <widget class="Line" name="line_3">
+      <item row="1" column="1" colspan="2">
+       <widget class="Line" name="line_4">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>10</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>10</height>
+         </size>
+        </property>
         <property name="sizeIncrement">
          <size>
           <width>0</width>
@@ -287,6 +161,9 @@
           <width>0</width>
           <height>0</height>
          </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
         </property>
         <property name="autoFillBackground">
          <bool>false</bool>
@@ -305,101 +182,29 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="3">
-       <widget class="QLed" name="ledvacltb03">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="onColor">
-         <color>
-          <red>0</red>
-          <green>140</green>
-          <blue>0</blue>
-         </color>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="PyDMLabel" name="PyDMLabel_64">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
+      <item row="2" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_52">
         <property name="minimumSize">
          <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="accessibleDescription">
-         <string/>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="channel" stdset="0">
-         <string>TB-02:VA-SIP20-BG:Voltage-Mon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="PyDMLabel" name="pv03raps01">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>135</width>
-          <height>16777215</height>
+          <width>120</width>
+          <height>35</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <pointsize>11</pointsize>
+          <pointsize>13</pointsize>
          </font>
         </property>
         <property name="toolTip">
          <string/>
         </property>
         <property name="text">
-         <string>TB-02:VA-SIP20-MD</string>
+         <string>FC 614 - 01_04</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
-       <widget class="PyDMLabel" name="PyDMLabel_68">
+      <item row="2" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_40">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -437,106 +242,36 @@
          <enum>QFrame::Sunken</enum>
         </property>
         <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
+         <set>Qt::AlignCenter</set>
         </property>
         <property name="channel" stdset="0">
-         <string>TB-02:VA-SIP20-MD:Voltage-Mon</string>
+         <string>UA-52Hall58:AC-PT100-FC61401:MeanTemperature-Mon</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="0">
-       <widget class="PyDMLabel" name="pv04raps01">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>135</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>TB-04:VA-SIP20-ED</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="2">
-       <widget class="PyDMLabel" name="PyDMLabel_66">
+      <item row="2" column="2">
+       <widget class="QLed" name="led_hall0104">
         <property name="enabled">
          <bool>true</bool>
         </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
-          <width>80</width>
-          <height>30</height>
+          <width>51</width>
+          <height>35</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>80</width>
-          <height>30</height>
+          <width>66</width>
+          <height>35</height>
          </size>
         </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="accessibleDescription">
-         <string/>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="showUnits" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="channel" stdset="0">
-         <string>TB-02:VA-SIP20-ED:Pressure-Mon</string>
-        </property>
-        <property name="displayFormat" stdset="0">
-         <enum>PyDMLabel::Exponential</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3">
-       <widget class="QLed" name="ledvacltb01">
         <property name="toolTip">
          <string/>
         </property>
@@ -550,356 +285,34 @@
           <blue>0</blue>
          </color>
         </property>
-       </widget>
-      </item>
-      <item row="6" column="2">
-       <widget class="PyDMLabel" name="PyDMLabel_91">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="accessibleDescription">
-         <string/>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="channel" stdset="0">
-         <string>TB-02:VA-SIP20-MD:Pressure-Mon</string>
-        </property>
-        <property name="displayFormat" stdset="0">
-         <enum>PyDMLabel::Exponential</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="PyDMLabel" name="PyDMLabel_36">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>Voltage [ KV ]</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="PyDMLabel" name="PyDMLabel_62">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>200</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>TB-01:VA-SIP20-BG</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="PyDMLabel" name="PyDMLabel_63">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="accessibleDescription">
-         <string/>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="channel" stdset="0">
-         <string>TB-01:VA-SIP20-ED:Voltage-Mon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="PyDMLabel" name="pv02raps01">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>135</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>TB-02:VA-SIP20-BG</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="PyDMLabel" name="PyDMLabel_37">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="accessibleDescription">
-         <string/>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="channel" stdset="0">
-         <string>TB-01:VA-SIP20-BG:Voltage-Mon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
-       <widget class="PyDMLabel" name="PyDMLabel_70">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="accessibleDescription">
-         <string/>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="channel" stdset="0">
-         <string>TB-04:VA-SIP20-ED:Voltage-Mon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="PyDMLabel" name="pv03raps01_2">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>135</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>TB-03:VA-SIP20-ED</string>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
         </property>
        </widget>
       </item>
       <item row="3" column="0">
-       <widget class="PyDMLabel" name="PyDMLabel_32">
+       <widget class="PyDMLabel" name="PyDMLabel_53">
         <property name="minimumSize">
          <size>
-          <width>200</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>200</width>
-          <height>16777215</height>
+          <width>120</width>
+          <height>35</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <pointsize>11</pointsize>
+          <pointsize>13</pointsize>
          </font>
         </property>
         <property name="toolTip">
          <string/>
         </property>
         <property name="text">
-         <string>TB-01:VA-SIP20-ED</string>
+         <string>FC 614 - 06_09</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="3">
-       <widget class="QLed" name="ledvacltb06">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="onColor">
-         <color>
-          <red>0</red>
-          <green>140</green>
-          <blue>0</blue>
-         </color>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="PyDMLabel" name="PyDMLabel_38">
+      <item row="3" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_41">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -937,146 +350,77 @@
          <enum>QFrame::Sunken</enum>
         </property>
         <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
+         <set>Qt::AlignCenter</set>
         </property>
         <property name="channel" stdset="0">
-         <string>TB-01:VA-SIP20-BG:Pressure-Mon</string>
-        </property>
-        <property name="displayFormat" stdset="0">
-         <enum>PyDMLabel::Exponential</enum>
+         <string>UA-55Hall02:AC-PT100-FC61406:MeanTemperature-Mon</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="1">
-       <widget class="PyDMLabel" name="PyDMLabel_69">
+      <item row="3" column="2">
+       <widget class="QLed" name="led_hall0609">
         <property name="enabled">
          <bool>true</bool>
         </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>80</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="accessibleDescription">
-         <string/>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="channel" stdset="0">
-         <string>TB-03:VA-SIP20-ED:Voltage-Mon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="3">
-       <widget class="QLed" name="ledvacltb02">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="onColor">
-         <color>
-          <red>0</red>
-          <green>140</green>
-          <blue>0</blue>
-         </color>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="PyDMLabel" name="PyDMLabel_57">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
+          <width>51</width>
           <height>35</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>160</width>
-          <height>16777215</height>
+          <width>66</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="state">
+         <bool>false</bool>
+        </property>
+        <property name="onColor">
+         <color>
+          <red>0</red>
+          <green>140</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_54">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>35</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <pointsize>12</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <pointsize>13</pointsize>
          </font>
         </property>
         <property name="toolTip">
          <string/>
         </property>
         <property name="text">
-         <string>Source Detail</string>
+         <string>FC 614 - 11_14</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="3">
-       <widget class="QLed" name="ledvacltb05">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="onColor">
-         <color>
-          <red>0</red>
-          <green>140</green>
-          <blue>0</blue>
-         </color>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="PyDMLabel" name="PyDMLabel_53">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>Status</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="PyDMLabel" name="PyDMLabel_65">
+      <item row="4" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_42">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -1114,49 +458,77 @@
          <enum>QFrame::Sunken</enum>
         </property>
         <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="showUnits" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
+         <set>Qt::AlignCenter</set>
         </property>
         <property name="channel" stdset="0">
-         <string>TB-02:VA-SIP20-ED:Voltage-Mon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="PyDMPushButton" name="PyDMPushButton_5">
-        <property name="minimumSize">
-         <size>
-          <width>120</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>120</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(238, 238, 236);</string>
-        </property>
-        <property name="text">
-         <string>Gráfico</string>
+         <string>UA-04Hall10:AC-PT100-FC61411:MeanTemperature-Mon</string>
         </property>
        </widget>
       </item>
       <item row="4" column="2">
-       <widget class="PyDMLabel" name="PyDMLabel_67">
+       <widget class="QLed" name="led_hall1114">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>66</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="state">
+         <bool>false</bool>
+        </property>
+        <property name="onColor">
+         <color>
+          <red>0</red>
+          <green>140</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_55">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>FC 614 - 16_19</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_43">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -1194,26 +566,41 @@
          <enum>QFrame::Sunken</enum>
         </property>
         <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="precision" stdset="0">
-         <number>2</number>
-        </property>
-        <property name="precisionFromPV" stdset="0">
-         <bool>false</bool>
+         <set>Qt::AlignCenter</set>
         </property>
         <property name="channel" stdset="0">
-         <string>TB-02:VA-SIP20-BG:Pressure-Mon</string>
-        </property>
-        <property name="displayFormat" stdset="0">
-         <enum>PyDMLabel::Exponential</enum>
+         <string>UA-10Hall16:AC-PT100-FC61416:MeanTemperature-Mon</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="3">
-       <widget class="QLed" name="ledvacltb07">
+      <item row="5" column="2">
+       <widget class="QLed" name="led_hall1619">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>66</width>
+          <height>35</height>
+         </size>
+        </property>
         <property name="toolTip">
          <string/>
+        </property>
+        <property name="state">
+         <bool>false</bool>
         </property>
         <property name="onColor">
          <color>
@@ -1222,18 +609,678 @@
           <blue>0</blue>
          </color>
         </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
        </widget>
       </item>
-      <item row="0" column="2">
-       <widget class="PyDMLabel" name="PyDMLabel_34">
+      <item row="6" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_56">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
         <property name="toolTip">
          <string/>
         </property>
         <property name="text">
-         <string>Presure [mBar]</string>
+         <string>FC 614 - 21_24</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_45">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="accessibleDescription">
+         <string/>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="channel" stdset="0">
+         <string>UA-16Hall22:AC-PT100-FC61421:MeanTemperature-Mon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QLed" name="led_hall2124">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>66</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="state">
+         <bool>false</bool>
+        </property>
+        <property name="onColor">
+         <color>
+          <red>0</red>
+          <green>140</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_58">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>FC 614 - 26_29</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_47">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="accessibleDescription">
+         <string/>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="channel" stdset="0">
+         <string>UA-22Hall28:AC-PT100-FC61426:MeanTemperature-Mon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="2">
+       <widget class="QLed" name="led_hall2629">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>66</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="state">
+         <bool>false</bool>
+        </property>
+        <property name="onColor">
+         <color>
+          <red>0</red>
+          <green>140</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_59">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>FC 614 - 32_35</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_44">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="accessibleDescription">
+         <string/>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="channel" stdset="0">
+         <string>UA-28Hall34:AC-PT100-FC61432:MeanTemperature-Mon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="2">
+       <widget class="QLed" name="led_hall3235">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>66</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="state">
+         <bool>false</bool>
+        </property>
+        <property name="onColor">
+         <color>
+          <red>0</red>
+          <green>140</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_60">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>FC 614 - 37_40</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_46">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="accessibleDescription">
+         <string/>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="channel" stdset="0">
+         <string>UA-34Hall40:AC-PT100-FC61437:MeanTemperature-Mon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="2">
+       <widget class="QLed" name="led_hall3740">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>66</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="state">
+         <bool>false</bool>
+        </property>
+        <property name="onColor">
+         <color>
+          <red>0</red>
+          <green>140</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_61">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>FC 614 - 42_45</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_48">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="accessibleDescription">
+         <string/>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="channel" stdset="0">
+         <string>UA-40Hall46:AC-PT101-FC61442:MeanTemperature-Mon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="2">
+       <widget class="QLed" name="led_hall4245">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>66</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="state">
+         <bool>false</bool>
+        </property>
+        <property name="onColor">
+         <color>
+          <red>0</red>
+          <green>140</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="0">
+       <widget class="PyDMLabel" name="PyDMLabel_62">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>FC 614 - 47_50</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="PyDMLabel" name="PyDMLabel_49">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="accessibleDescription">
+         <string/>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="channel" stdset="0">
+         <string>UA-46Hall52:AC-PT100-FC61447:MeanTemperature-Mon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="2">
+       <widget class="QLed" name="led_hall4750">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>51</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>66</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="state">
+         <bool>false</bool>
+        </property>
+        <property name="onColor">
+         <color>
+          <red>0</red>
+          <green>140</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="PyDMPushButton" name="btntemphall">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>120</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Chart</string>
         </property>
        </widget>
       </item>

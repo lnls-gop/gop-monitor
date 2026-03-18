@@ -2,507 +2,88 @@
 import logging
 
 import epics
-from epics import caget
-from PyQt5 import QtWidgets
+from epics import get_pv
+from PyQt5 import QtWidgets, uic
 
-logging.basicConfig(level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s")
+from siriuspy.clientarch import ClientArchiver, Time
 
 
-def verificar_ledinfobeam(signal: str, led: QtWidgets.QLabel, estado_esperado,
-                          timeout: float = 0):
+logging.basicConfig(level=logging.ERROR,
+                    format="%(asctime)s - %(levelname)s - %(message)s")
+
+
+def verificar_temp(
+        signal: str, led: QtWidgets.QLabel, temp_lower:
+        float, temp_upper: float):
+    """Atualiza estado do LED baseado na faixa de temperatura."""
+    try:
+        # temperatura = caget(signal, timeout=timeout)
+        pv = get_pv(signal)
+        if not pv.connected:
+            logging.warning(f"{signal} desconectado.")
+            if led:
+                led.state = False
+            return False
+
+        temperatura = pv.value
+        status = (temp_lower <= temperatura <= temp_upper)
+        if led:
+            led.state = status
+
+    except Exception as e:
+        logging.error(f"Erro lendo {signal}: {e}")
+        if led:
+            led.state = False
+
+    return status
+
+
+def verificar_estado(signal: str, led: QtWidgets.QLabel, estado_esperado):
     """Verifica estado do PV (bool/int) e atualiza o LED."""
     try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (estado == estado_esperado)
+        # estado = caget(signal, timeout=timeout)
+        pv = get_pv(signal)
+        if not pv.connected:
+            logging.warning(f"{signal} desconectado.")
+            if led:
+                led.state = False
+            return False
+
+        estado = pv.value
+        status = (estado == estado_esperado)
+        if led:
+            led.state = status
+
     except Exception as e:
         logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_linactemp(signal: str, led: QtWidgets.QLabel, temp_lower:
-                        float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    pv = epics.get_pv(signal)
-    if pv.connected:
-        temperatura = pv.value
-        led.state = (temp_lower <= temperatura <= temp_upper)
-    else:
-        logging.warning(f"Timeout lendo {signal}.")
-        led.state = False
-    # try:
-    #     temperatura = caget(signal, timeout=timeout)
-    #     if temperatura is None:
-    #         logging.warning(f"Timeout lendo {signal}.")
-    #         led.state = False
-    #     else:
-    #         led.state = (temp_lower <= temperatura <= temp_upper)
-    # except Exception as e:
-    #     logging.error(f"Erro lendo {signal}: {e}")
-    #     led.state = False
-
-
-def verificar_ledlowlevel(signal: str, led: QtWidgets.QLabel,
-                          estado_esperado: int = 1, timeout: float = 0):
-    """."""
-    try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout lendo {signal}.")
+        if led:
             led.state = False
-        else:
-            led.state = (estado == estado_esperado)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
+
+    return status
 
 
-def verificar_vacuo(signal: str, led: QtWidgets.QLabel, pressao_min: float,
-                    timeout: float = 0):
+def verificar_vacuo(signal: str, led: QtWidgets.QLabel, pressao_min: float):
     """Verifica se a pressão está dentro do limite e atualiza o LED."""
     try:
-        pressao = caget(signal, timeout=timeout)
-        if pressao is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            try:
-                pressao_float = float(pressao)
-                led.state = (pressao_float <= pressao_min)
-            except ValueError:
-                logging.error(f"Valor inválido para pressão em {signal}: {pressao}")
+        # pressao = caget(signal, timeout=timeout)
+        pv = get_pv(signal)
+        if not pv.connected:
+            logging.warning(f"{signal} desconectado.")
+            if led:
                 led.state = False
+            return False
+
+        pressao = float(pv.value)
+        status = (pressao <= pressao_min)
+        if led:
+            led.state = status
+
     except Exception as e:
         logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_ledpslinac(signal: str, led: QtWidgets.QLabel, estado_esperado:
-                         int, timeout: float = 0):
-    """."""
-    try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout ou falha de conexão com {signal}")
+        if led:
             led.state = False
-        else:
-            led.state = (estado == estado_esperado)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
 
-
-def verificar_ltbvac(signal: str, led: QtWidgets.QLabel, pressao_max: float,
-                     timeout: float = 0):
-    """Verifica se a pressão está dentro do limite e atualiza o LED."""
-    try:
-        pressao = caget(signal, timeout=timeout)
-        if pressao is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            try:
-                pressao_float = float(pressao)
-                led.state = (pressao_float <= pressao_max)
-            except ValueError:
-                logging.error(f"Valor inválido para pressão em {signal}: {pressao}")
-                led.state = False
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_psltb(signal: str, led: QtWidgets.QLabel, estado_esperado:
-                    int, timeout: float = 0):
-    """."""
-    try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout ou falha de conexão com {signal}")
-            led.state = False
-        else:
-            led.state = (estado == estado_esperado)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_templtb(signal: str, led: QtWidgets.QLabel, temp_lower:
-                      float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_vaclts(signal: str, led: QtWidgets.QLabel, pressao_max: float,
-                     timeout: float = 0):
-    """Verifica se a pressão está dentro do limite e atualiza o LED."""
-    try:
-        pressao = caget(signal, timeout=timeout)
-        if pressao is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            try:
-                pressao_float = float(pressao)
-                led.state = (pressao_float <= pressao_max)
-            except ValueError:
-                logging.error(f"Valor inválido para pressão em {signal}: {pressao}")
-                led.state = False
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_templts(signal: str, led: QtWidgets.QLabel, temp_lower:
-                      float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_pslts(signal: str, led: QtWidgets.QLabel, estado_esperado:
-                    int, timeout: float = 0):
-    """."""
-    try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout ou falha de conexão com {signal}")
-            led.state = False
-        else:
-            led.state = (estado == estado_esperado)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_psbo(signal: str, led: QtWidgets.QLabel, estado_esperado:
-                   int, timeout: float = 0):
-    """."""
-    try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout ou falha de conexão com {signal}")
-            led.state = False
-        else:
-            led.state = (estado == estado_esperado)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_tempbo(signal: str, led: QtWidgets.QLabel, temp_lower:
-                     float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_vacbo(signal: str, led: QtWidgets.QLabel, pressao_max: float,
-                    timeout: float = 0):
-    """Verifica se a pressão está dentro do limite e atualiza o LED."""
-    try:
-        pressao = caget(signal, timeout=timeout)
-        if pressao is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            try:
-                pressao_float = float(pressao)
-                led.state = (pressao_float <= pressao_max)
-            except ValueError:
-                logging.error(f"Valor inválido para pressão em {signal}:{pressao}")
-                led.state = False
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_bocavity(signal: str, led: QtWidgets.QLabel, temp_lower:
-                       float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_vacsi(signal: str, led: QtWidgets.QLabel, pressao_max: float,
-                    timeout: float = 0):
-    """Verifica se a pressão está dentro do limite e atualiza o LED."""
-    try:
-        pressao = caget(signal, timeout=timeout)
-        if pressao is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            try:
-                pressao_float = float(pressao)
-                led.state = (pressao_float <= pressao_max)
-            except ValueError:
-                logging.error(f"Valor inválido para pressão em {signal}:{pressao}")
-                led.state = False
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_temprackpu(signal: str, led: QtWidgets.QLabel, temp_lower:
-                         float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_temprackps(signal: str, led: QtWidgets.QLabel, temp_lower:
-                         float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_temprackint(signal: str, led: QtWidgets.QLabel, temp_lower:
-                          float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_tempcamvac(signal: str, led: QtWidgets.QLabel, temp_lower:
-                         float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_tempcirchid(signal: str, led: QtWidgets.QLabel, temp_lower:
-                          float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_tempconecserv(signal: str, led: QtWidgets.QLabel, temp_lower:
-                            float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_tempmagnets(signal: str, led: QtWidgets.QLabel, temp_lower:
-                          float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_temphls(signal: str, led: QtWidgets.QLabel, temp_lower:
-                      float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_tempdclinks(signal: str, led: QtWidgets.QLabel, temp_lower:
-                          float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_psfamilysi(signal: str, led: QtWidgets.QLabel, estado_esperado:
-                         int, timeout: float = 0):
-    """."""
-    try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout ou falha de conexão com {signal}")
-            led.state = False
-        else:
-            led.state = (estado == estado_esperado)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_skewquad(signal: str, led: QtWidgets.QLabel, estado_esperado:
-                       int, timeout: float = 0):
-    """."""
-    try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout ou falha de conexão com {signal}")
-            led.state = False
-        else:
-            led.state = (estado == estado_esperado)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_trims(signal: str, led: QtWidgets.QLabel, estado_esperado:
-                    int, timeout: float = 0):
-    """."""
-    try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout ou falha de conexão com {signal}")
-            led.state = False
-        else:
-            led.state = (estado == estado_esperado)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_ffwcorr(signal: str, led: QtWidgets.QLabel, estado_esperado:
-                      int, timeout: float = 0):
-    """."""
-    try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout ou falha de conexão com {signal}")
-            led.state = False
-        else:
-            led.state = (estado == estado_esperado)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_corrsi(signal: str, led: QtWidgets.QLabel, estado_esperado:
-                     int, timeout: float = 0):
-    """."""
-    try:
-        estado = caget(signal, timeout=timeout)
-        if estado is None:
-            logging.warning(f"Timeout ou falha de conexão com {signal}")
-            led.state = False
-        else:
-            led.state = (estado == estado_esperado)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
-
-
-def verificar_pwmsi(signal: str, led: QtWidgets.QLabel, temp_lower:
-                    float, temp_upper: float, timeout: float = 0):
-    """Atualiza estado do LED baseado na faixa de temperatura."""
-    try:
-        temperatura = caget(signal, timeout=timeout)
-        if temperatura is None:
-            logging.warning(f"Timeout lendo {signal}.")
-            led.state = False
-        else:
-            led.state = (temp_lower <= temperatura <= temp_upper)
-    except Exception as e:
-        logging.error(f"Erro lendo {signal}: {e}")
-        led.state = False
+    return status
 
 
 def atualizar_led_visual(led: QtWidgets.QLabel):
@@ -512,7 +93,7 @@ def atualizar_led_visual(led: QtWidgets.QLabel):
 
     if not estilo_original:
         # Estilo base para LEDs sem estilo definido no Qt Designer
-        estilo_base = f"border-radius: 7px; border: 1px solid black; background-color: {cor};"
+        estilo_base = f"border-radius: 7px; border: 1px solid black;    background-color: {cor};"
         led.setStyleSheet(estilo_base)
     else:
         # Preserva estilo original, substituindo apenas a cor
@@ -520,3 +101,177 @@ def atualizar_led_visual(led: QtWidgets.QLabel):
                   parte and "background-color" not in parte]
         partes.append(f"background-color: {cor}")
         led.setStyleSheet('; '.join(partes))
+
+
+class ConnWidgetPVs:
+    """."""
+
+    def __init__(self, janela_opr, botao_menu, ui_fname, check_type):
+        """."""
+        super().__init__()
+        self.pvs = None
+        self.check_type = check_type
+        self.janela_opr = janela_opr
+        self.botao_menu = botao_menu
+        self.uiobj = uic.loadUi(ui_fname) if janela_opr else None
+        self.sinais = None
+        self._registrar_grupos()
+        self._map_pvname_2_checkparams()
+        self._connect_pvs()
+
+    def disconnected_pvnames(self):
+        """."""
+        dpvns = list()
+        for pvname, pv in self.pvs.items():
+            if not pv.connected:
+                dpvns.append(pvname)
+        return dpvns
+
+    def _registrar_grupos(self):
+        """Registra os grupos de PVs/LEDs e suas faixas."""
+        raise NotImplemented
+
+    def _map_pvname_2_checkparams(self):
+        self.pvname2check = dict()
+        for key, value_ in self.sinais.items():
+            if isinstance(value_, dict):
+                for pvname, value in value_.items():
+                    self.pvname2check[pvname] = value
+                    # led, temp_min, temp_max = value
+            else:
+                pvname = key
+                value = value_
+                self.pvname2check[pvname] = value
+
+    def _connect_pvs(self):
+        self.pvs = dict()
+        self.pvs_status = dict()
+        for key, value_ in self.sinais.items():
+            if isinstance(value_, dict):
+                for pvname, _ in value_.items():
+                    self.pvs[pvname] = epics.PV(
+                        pvname, connection_timeout=None)
+                    self.pvs_status[pvname] = False
+            else:
+                pvname = key
+                self.pvs[pvname] = epics.PV(
+                    pvname, connection_timeout=None)
+                self.pvs_status[pvname] = False
+
+    @property
+    def estado_ok(self):
+        """."""
+        return all(self.pvs_status.values())
+
+    def _gwidget(self,  widget):
+        return getattr(self.uiobj, widget) if self.uiobj else None
+
+    def configurar_sistema(self):
+        """Conecta sinais da janela principal e prepara a subjanela."""
+        self.botao_menu.clicked.connect(self.mostrar_janela)
+        self.atualizar_status()
+
+    def mostrar_janela(self):
+        """Exibe/oculta a interface gráfica."""
+        self.uiobj.setVisible(not self.uiobj.isVisible())
+
+    def callback_pvname(pvname, **kwargs):
+        """."""
+
+    def atualizar_status(self):
+        """Atualiza LEDs da subjanela e define estado_ok."""
+        if self.check_type == 'temp':
+
+            for key, value_ in self.sinais.items():
+                if isinstance(value_, dict):
+                    for pvname, value in value_.items():
+                        led, temp_min, temp_max = value
+                        status = verificar_temp(
+                            pvname, led, temp_min, temp_max)
+                        self.pvs_status[pvname] = status
+                else:
+                    pvname, value = key, value_
+                    led, temp_min, temp_max = value
+                    status = verificar_temp(
+                        pvname, led, temp_min, temp_max)
+                    self.pvs_status[pvname] = status
+
+            if self.botao_menu:
+                cor = "rgb(0, 168, 0)" if self.estado_ok else "rgb(207, 0, 0)"
+                self.botao_menu.setStyleSheet(f"background-color: {cor};")
+
+        elif self.check_type == 'vacuo':
+
+            for key, value_ in self.sinais.items():
+                if isinstance(value_, dict):
+                    for pvname, value in value_.items():
+                        led, pressao_min = value
+                        status = verificar_vacuo(
+                            pvname, led, pressao_min=pressao_min)
+                        self.pvs_status[pvname] = status
+                else:
+                    pvname, value = key, value_
+                    led, pressao_min = value
+                    status = verificar_vacuo(
+                        pvname, led, pressao_min=pressao_min)
+                    self.pvs_status[pvname] = status
+
+            if self.botao_menu:
+                cor = "rgb(0, 168, 0)" if self.estado_ok else "rgb(207, 0, 0)"
+                self.botao_menu.setStyleSheet(f"background-color: {cor};")
+
+        elif self.check_type == 'estado':
+
+            for key, value_ in self.sinais.items():
+                if isinstance(value_, dict):
+                    for pvname, value in value_.items():
+                        led, estado_esperado = value
+                        status = verificar_estado(
+                            pvname, led, estado_esperado=estado_esperado)
+                        self.pvs_status[pvname] = status
+                else:
+                    pvname, value = key, value_
+                    led, estado_esperado = value
+                    status = verificar_estado(
+                        pvname, led, estado_esperado=estado_esperado)
+                    self.pvs_status[pvname] = status
+
+            if self.botao_menu:
+                cor = "rgb(0, 168, 0)" if self.estado_ok else "rgb(207, 0, 0)"
+                self.botao_menu.setStyleSheet(f"background-color: {cor};")
+
+        else:
+            errmsg = (
+                'Atualizar status não está implementado para '
+                f'{self.check_type}'
+            )
+            raise ValueError(errmsg)
+
+    @staticmethod
+    def create_archviewer_link(pvs_dict, start=None, end=None, ref=None):
+        """."""
+        if end is None:
+            end = Time.now()
+        if start is None:
+            start = end - 60*60
+        if ref is True:
+            ref = start
+
+        pvnames = [pvname for pvname in pvs_dict]
+        time_start = start
+        time_stop = end
+        time_ref = None
+        pvoptnrpts = None
+        pvcolors = None
+        pvusediff = False
+
+        url = ClientArchiver.gen_archviewer_url_link(
+            pvnames,
+            time_start,
+            time_stop,
+            time_ref,
+            pvoptnrpts,
+            pvcolors,
+            pvusediff,
+        )
+        return url
