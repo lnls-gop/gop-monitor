@@ -1,9 +1,11 @@
 """Lógica das subjanelas da Linha de Transporte LTS."""
 import logging
-
-from PyQt5 import QtWidgets
-
+import subprocess
+from PyQt5 import uic, QtWidgets
+from ranges_manager import RangesManager
 import utils
+
+ranges_manager = RangesManager()
 
 
 class Vacuum(utils.ConnWidgetPVs):
@@ -54,54 +56,155 @@ class Vacuum(utils.ConnWidgetPVs):
 
 
 class Temperature(utils.ConnWidgetPVs):
-    """Classe responsável pelo controle do sistema de temperatura LINAC."""
+    """Classe responsável pelo controle do sistema de temperatura LTB."""
 
-    def __init__(self, janela_opr=None, botao_menu=None):
+    def plot_graph(self, url):
         """."""
+        try:
+            subprocess.Popen(["firefox", url])
+        except Exception as e:
+            logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
+
+    def __init__(self, janela_opr, botao_menu):
+        """."""
+        self.ranges = ranges_manager.get_ranges("lts")
         super().__init__(janela_opr, botao_menu, "ui/templts.ui", "temp")
+
+        # Conectar botão de configuração de ranges
+        self.uiobj.btnltsRanges.clicked.connect(self.abrir_config_ranges)
+
+        # Atualiza labels da subjanela com ranges persistentes
+        self._atualizar_labels_ranges()
+
+        # Conectar botões de gráfico (como já existia)
+        url = self.create_archviewer_link(self.sinais['Septts01'])
+        self.uiobj.btnseptts01.clicked.connect(lambda _, url=url: self.
+                                               plot_graph(url))
+
+        url = self.create_archviewer_link(self.sinais['SeptEje'])
+        self.uiobj.btnsepteje.clicked.connect(lambda _, url=url: self.
+                                              plot_graph(url))
+
+        url = self.create_archviewer_link(self.sinais['Septts04'])
+        self.uiobj.btnseptts04.clicked.connect(lambda _, url=url: self.
+                                               plot_graph(url))
+
+        url = self.create_archviewer_link(self.sinais['Septts04b'])
+        self.uiobj.btnseptts04b.clicked.connect(lambda _, url=url: self.
+                                                plot_graph(url))
+
+    def _atualizar_labels_ranges(self):
+        """Atualiza todas as labels range_<grupo> com valores persistentes."""
+        for grupo, (min_val, max_val) in self.ranges.items():
+            label_name = f"range_{grupo}"
+            lbl = self.uiobj.findChild(QtWidgets.QLabel, label_name)
+            if lbl:
+                lbl.setText(f"{min_val} – {max_val} °C")
+            else:
+                logging.warning(
+                    f"Label {label_name} não encontrada em templts.ui"
+                    )
+
+    def abrir_config_ranges(self):
+        """Abre subjanela de configuração de ranges."""
+        self.config_ui = uic.loadUi("ui/configranges.ui")
+
+        # Preenche combo com todos os grupos
+        self.config_ui.comboGrupos.addItems(self.ranges.keys())
+
+        # Conecta eventos
+        self.config_ui.comboGrupos.currentTextChanged.connect(
+            self.atualizar_spinboxes
+        )
+        self.config_ui.btnSalvar.clicked.connect(self.salvar_range)
+        self.config_ui.btnFechar.clicked.connect(self.config_ui.close)
+
+        # Força seleção do primeiro grupo
+        self.config_ui.comboGrupos.setCurrentIndex(0)
+        grupo_inicial = self.config_ui.comboGrupos.itemText(0)
+        self.atualizar_spinboxes(grupo_inicial)
+
+        self.config_ui.show()
+
+    def atualizar_spinboxes(self, grupo):
+        """Atualiza spinboxes com valores atuais do grupo selecionado."""
+        min_val, max_val = self.ranges[grupo]
+        self.config_ui.spinMin.setValue(min_val)
+        self.config_ui.spinMax.setValue(max_val)
+        self.config_ui.lblRangeAtual.setText(
+            f"Range atual: {min_val:.2f} -{max_val:.2f} °C")
+
+    def salvar_range(self):
+        """."""
+        grupo = self.config_ui.comboGrupos.currentText()
+        min_val = round(float(self.config_ui.spinMin.value()), 2)
+        max_val = round(float(self.config_ui.spinMax.value()), 2)
+
+        # atualiza local
+        self.ranges[grupo] = (min_val, max_val)
+
+        # atualiza global
+        ranges_manager.update_range("lts", grupo, min_val, max_val)
+
+        self.config_ui.lblRangeAtual.setText(
+            f"Current Range: {min_val:.2f} – {max_val:.2f} °C"
+            )
+
+        # Atualiza label da subjanela templinac.ui
+        label_name = f"range_{grupo}"
+        lbl_principal = self.uiobj.findChild(QtWidgets.QLabel, label_name)
+        if lbl_principal:
+            lbl_principal.setText(f"{min_val:.2f} – {max_val:.2f} °C")
+
+        self._registrar_grupos()
+        self.atualizar_status()
 
     def _registrar_grupos(self):
         """Registra os grupos de PVs/LEDs e suas faixas."""
         self.sinais = {
-            'Group1': {
+            'Septts01': {
                 'TS-01:VA-PT100-BG1:Temp-Mon':
-                (self._gwidget('led_ltsbg1'), 22, 26.5),
+                (self._gwidget('led_ltsbg1'), *self.ranges['Septts01']),
                 'TS-01:VA-PT100-BG2:Temp-Mon':
-                (self._gwidget('led_ltsbg2'), 22, 26.5),
+                (self._gwidget('led_ltsbg2'), *self.ranges['Septts01']),
                 'TS-01:VA-PT100-BG3:Temp-Mon':
-                (self._gwidget('led_ltsbg3'), 22, 26.5),
+                (self._gwidget('led_ltsbg3'), *self.ranges['Septts01']),
                 'TS-01:VA-PT100-BG4:Temp-Mon':
-                (self._gwidget('led_ltsbg4'), 22, 26.5),
+                (self._gwidget('led_ltsbg4'), *self.ranges['Septts01']),
             },
-            'Group2': {
+            'SeptEje': {
                 'TS-01:PU-EjeSF-BG:Temp-Mon':
-                (self._gwidget('led_ejesfbg'), 22, 26.5),
+                (self._gwidget('led_ejesfbg'), *self.ranges['SeptEje']),
                 'TS-01:PU-EjeSG-BG:Temp-Mon':
-                (self._gwidget('led_ejesgbg'), 22, 26.5),
+                (self._gwidget('led_ejesgbg'), *self.ranges['SeptEje']),
                 'TS-01:PU-EjeSF-ED:Temp-Mon':
-                (self._gwidget('led_ejesfed'), 22, 26.5),
+                (self._gwidget('led_ejesfed'), *self.ranges['SeptEje']),
                 'TS-01:PU-EjeSG-ED:Temp-Mon':
-                (self._gwidget('led_ejesged'), 22, 26.5),
+                (self._gwidget('led_ejesged'), *self.ranges['SeptEje']),
             },
-            'Group3': {
+            'Septts04': {
                 'TS-04:VA-PT100-ED1:Temp-Mon':
-                (self._gwidget('led_ltsed1'), 22, 26.5),
+                (self._gwidget('led_ltsed1'), *self.ranges['Septts04']),
                 'TS-04:VA-PT100-ED2:Temp-Mon':
-                (self._gwidget('led_ltsed2'), 22, 26.5),
+                (self._gwidget('led_ltsed2'), *self.ranges['Septts04']),
                 'TS-04:VA-PT100-ED3:Temp-Mon':
-                (self._gwidget('led_ltsed3'), 22, 26.5),
+                (self._gwidget('led_ltsed3'), *self.ranges['Septts04']),
                 'TS-04:VA-PT100-ED4:Temp-Mon':
-                (self._gwidget('led_ltsed4'), 22, 26.5),
+                (self._gwidget('led_ltsed4'), *self.ranges['Septts04']),
                 'TS-04:VA-PT100-ED5:Temp-Mon':
-                (self._gwidget('led_ltsed5'), 22, 26.5),
+                (self._gwidget('led_ltsed5'), *self.ranges['Septts04']),
                 'TS-04:VA-PT100-ED6:Temp-Mon':
-                (self._gwidget('led_ltsed6'), 22, 26.5),
+                (self._gwidget('led_ltsed6'), *self.ranges['Septts04']),
             },
-            'Group4': {
-                'TS-MBTemp-03-CH1': (self._gwidget('led_ltsch1'), 22, 26.0),
-                'TS-MBTemp-03-CH2': (self._gwidget('led_ltsch2'), 22, 26.0),
-                'TS-MBTemp-03-CH3': (self._gwidget('led_ltsch3'), 22, 26.0),
-                'TS-MBTemp-03-CH4': (self._gwidget('led_ltsch4'), 22, 26.0),
+            'Septts04b': {
+                'TS-MBTemp-03-CH1':
+                (self._gwidget('led_ltsch1'), *self.ranges['Septts04b']),
+                'TS-MBTemp-03-CH2':
+                (self._gwidget('led_ltsch2'), *self.ranges['Septts04b']),
+                'TS-MBTemp-03-CH3':
+                (self._gwidget('led_ltsch3'), *self.ranges['Septts04b']),
+                'TS-MBTemp-03-CH4':
+                (self._gwidget('led_ltsch4'), *self.ranges['Septts04b']),
             },
         }
 

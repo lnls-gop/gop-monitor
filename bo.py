@@ -1,9 +1,11 @@
 """Logica das subjanelas do Booster."""
 import logging
-
-from PyQt5 import QtWidgets
-
+import subprocess
+from PyQt5 import uic, QtWidgets
+from ranges_manager import RangesManager
 import utils
+
+ranges_manager = RangesManager()
 
 
 class PowerSupply(utils.ConnWidgetPVs):
@@ -16,7 +18,7 @@ class PowerSupply(utils.ConnWidgetPVs):
     def _registrar_grupos(self):
         self.sinais = {
             'BO-Fam:PS-B-1:DiagStatus-Mon': (self._gwidget('led_bob1'), 0),
-            'BO-Fam:PS-SD:DiagStatus-Mon': (self._gwidget('led_bosd'), 0),
+            # 'BO-Fam:PS-SD:DiagStatus-Mon': (self._gwidget('led_bosd'), 0),
             'BO-Fam:PS-B-2:DiagStatus-Mon': (self._gwidget('led_bob2'), 0),
             'BO-Fam:PS-QF:DiagStatus-Mon': (self._gwidget('led_boqf'), 0),
             'BO-Fam:PS-QD:DiagStatus-Mon': (self._gwidget('led_boqd'), 0),
@@ -78,313 +80,463 @@ class PowerSupply(utils.ConnWidgetPVs):
 class Temperature(utils.ConnWidgetPVs):
     """Classe responsável pelo controle do sistema de temperatura Booster."""
 
-    def __init__(self, janela_opr=None, botao_menu=None):
+    def plot_graph(self, url):
         """."""
+        try:
+            subprocess.Popen(["firefox", url])
+        except Exception as e:
+            logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
+
+    def __init__(self, janela_opr, botao_menu):
+        """."""
+        self.ranges = ranges_manager.get_ranges("bo")
         super().__init__(janela_opr, botao_menu, "ui/tempbo.ui", "temp")
+
+        # Conectar botão de configuração de ranges
+        self.uiobj.btnboRanges.clicked.connect(self.abrir_config_ranges)
+
+        # Atualiza labels da subjanela com ranges persistentes
+        self._atualizar_labels_ranges()
+
+    def _atualizar_labels_ranges(self):
+        """Atualiza todas as labels range_<grupo> com valores persistentes."""
+        for grupo, (min_val, max_val) in self.ranges.items():
+            label_name = f"range_{grupo}"
+            lbl = self.uiobj.findChild(QtWidgets.QLabel, label_name)
+            if lbl:
+                lbl.setText(f"{min_val} – {max_val} °C")
+            else:
+                logging.warning(
+                    f"Label {label_name} não encontrada em tempbo.ui"
+                    )
+
+    def abrir_config_ranges(self):
+        """Abre subjanela de configuração de ranges."""
+        self.config_ui = uic.loadUi("ui/configranges.ui")
+
+        # Preenche combo com todos os grupos
+        self.config_ui.comboGrupos.addItems(self.ranges.keys())
+
+        # Conecta eventos
+        self.config_ui.comboGrupos.currentTextChanged.connect(
+            self.atualizar_spinboxes
+        )
+        self.config_ui.btnSalvar.clicked.connect(self.salvar_range)
+        self.config_ui.btnFechar.clicked.connect(self.config_ui.close)
+
+        # Força seleção do primeiro grupo
+        self.config_ui.comboGrupos.setCurrentIndex(0)
+        grupo_inicial = self.config_ui.comboGrupos.itemText(0)
+        self.atualizar_spinboxes(grupo_inicial)
+
+        self.config_ui.show()
+
+    def atualizar_spinboxes(self, grupo):
+        """Atualiza spinboxes com valores atuais do grupo selecionado."""
+        min_val, max_val = self.ranges[grupo]
+        self.config_ui.spinMin.setValue(min_val)
+        self.config_ui.spinMax.setValue(max_val)
+        self.config_ui.lblRangeAtual.setText(
+            f"Range atual: {min_val:.2f} -{max_val:.2f} °C")
+
+    def salvar_range(self):
+        """."""
+        grupo = self.config_ui.comboGrupos.currentText()
+        min_val = round(float(self.config_ui.spinMin.value()), 2)
+        max_val = round(float(self.config_ui.spinMax.value()), 2)
+
+        # atualiza local
+        self.ranges[grupo] = (min_val, max_val)
+
+        # atualiza global
+        ranges_manager.update_range("bo", grupo, min_val, max_val)
+
+        self.config_ui.lblRangeAtual.setText(
+            f"Current Range: {min_val:.2f} – {max_val:.2f} °C"
+            )
+
+        # Atualiza label da subjanela templinac.ui
+        label_name = f"range_{grupo}"
+        lbl_principal = self.uiobj.findChild(QtWidgets.QLabel, label_name)
+        if lbl_principal:
+            lbl_principal.setText(f"{min_val:.2f} – {max_val:.2f} °C")
+
+        self._registrar_grupos()
+        self.atualizar_status()
 
     def _registrar_grupos(self):
         """Registra os grupos de PVs/LEDs e suas faixas."""
         self.sinais = {
-            'BO-01U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam1'), 18,
-                                            26),
-            'BO-01U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam2'), 18,
-                                            26),
-            'BO-01U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam3'), 18,
-                                            26),
-            'BO-02U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam4'), 18,
-                                            26),
-            'BO-02U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam5'), 18,
-                                            26),
-            'BO-02U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam6'), 18,
-                                            26),
-            'BO-03U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam7'), 18,
-                                            26),
-            'BO-03U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam8'), 18,
-                                            26),
-            'BO-03U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam9'), 18,
-                                            26),
-            'BO-04U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam10'),
-                                            18, 26),
-            'BO-04U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam11'),
-                                            18, 26),
-            'BO-04U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam12'),
-                                            18, 26),
-            'BO-05U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam13'),
-                                            18, 26),
-            'BO-05U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam14'),
-                                            18, 26),
-            'BO-05U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam15'),
-                                            18, 26),
-            'BO-06U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam16'),
-                                            18, 26),
-            'BO-06U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam17'),
-                                            18, 26),
-            'BO-06U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam18'),
-                                            18, 26),
-            'BO-07U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam19'),
-                                            18, 26),
-            'BO-07U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam20'),
-                                            18, 26),
-            'BO-07U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam21'),
-                                            18, 26),
-            'BO-08U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam22'),
-                                            18, 26),
-            'BO-08U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam23'),
-                                            18, 26),
-            'BO-08U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam24'),
-                                            18, 26),
-            'BO-09U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam25'),
-                                            18, 26),
-            'BO-09U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam26'),
-                                            18, 26),
-            'BO-09U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam27'),
-                                            18, 26),
-            'BO-10U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam28'),
-                                            18, 26),
-            'BO-10U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam29'),
-                                            18, 26),
-            'BO-10U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam30'),
-                                            18, 26),
-            'BO-11U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam31'),
-                                            18, 26),
-            'BO-11U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam32'),
-                                            18, 26),
-            'BO-11U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam33'),
-                                            18, 26),
-            'BO-12U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam34'),
-                                            18, 26),
-            'BO-12U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam35'),
-                                            18, 26),
-            'BO-12U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam36'),
-                                            18, 26),
-            'BO-13U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam37'),
-                                            18, 26),
-            'BO-13U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam38'),
-                                            18, 26),
-            'BO-13U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam39'),
-                                            18, 26),
-            'BO-14U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam40'),
-                                            18, 26),
-            'BO-14U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam41'),
-                                            18, 26),
-            'BO-14U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam42'),
-                                            18, 26),
-            'BO-15U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam43'),
-                                            18, 26),
-            'BO-15U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam44'),
-                                            18, 26),
-            'BO-15U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam45'),
-                                            18, 26),
-            'BO-16U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam46'),
-                                            18, 26),
-            'BO-16U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam47'),
-                                            18, 26),
-            'BO-16U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam48'),
-                                            18, 26),
-            'BO-17U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam49'),
-                                            18, 26),
-            'BO-17U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam50'),
-                                            18, 26),
-            'BO-17U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam51'),
-                                            18, 26),
-            'BO-18U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam52'),
-                                            18, 26),
-            'BO-18U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam53'),
-                                            18, 26),
-            'BO-18U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam54'),
-                                            18, 26),
-            'BO-19U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam55'),
-                                            18, 26),
-            'BO-19U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam56'),
-                                            18, 26),
-            'BO-19U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam57'),
-                                            18, 26),
-            'BO-20U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam58'),
-                                            18, 26),
-            'BO-20U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam59'),
-                                            18, 26),
-            'BO-20U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam60'),
-                                            18, 26),
-            'BO-21U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam61'),
-                                            18, 26),
-            'BO-21U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam62'),
-                                            18, 26),
-            'BO-21U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam63'),
-                                            18, 26),
-            'BO-22U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam64'),
-                                            18, 26),
-            'BO-22U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam65'),
-                                            18, 26),
-            'BO-22U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam66'),
-                                            18, 26),
-            'BO-23U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam67'),
-                                            18, 26),
-            'BO-23U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam68'),
-                                            18, 26),
-            'BO-23U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam69'),
-                                            18, 26),
-            'BO-24U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam70'),
-                                            18, 26),
-            'BO-24U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam71'),
-                                            18, 26),
-            'BO-24U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam72'),
-                                            18, 26),
-            'BO-25U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam73'),
-                                            18, 26),
-            'BO-25U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam74'),
-                                            18, 26),
-            'BO-25U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam75'),
-                                            18, 26),
-            'BO-26U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam76'),
-                                            18, 26),
-            'BO-26U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam77'),
-                                            18, 26),
-            'BO-26U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam78'),
-                                            18, 26),
-            'BO-27U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam79'),
-                                            18, 26),
-            'BO-27U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam80'),
-                                            18, 26),
-            'BO-27U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam81'),
-                                            18, 26),
-            'BO-28U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam82'),
-                                            18, 26),
-            'BO-28U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam83'),
-                                            18, 26),
-            'BO-28U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam84'),
-                                            18, 26),
-            'BO-29U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam85'),
-                                            18, 26),
-            'BO-29U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam86'),
-                                            18, 26),
-            'BO-29U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam87'),
-                                            18, 26),
-            'BO-30U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam88'),
-                                            18, 26),
-            'BO-30U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam89'),
-                                            18, 26),
-            'BO-30U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam90'),
-                                            18, 26),
-            'BO-31U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam91'),
-                                            18, 26),
-            'BO-31U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam92'),
-                                            18, 26),
-            'BO-31U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam93'),
-                                            18, 26),
-            'BO-32U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam94'),
-                                            18, 26),
-            'BO-32U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam95'),
-                                            18, 26),
-            'BO-32U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam96'),
-                                            18, 26),
-            'BO-33U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam97'),
-                                            18, 26),
-            'BO-33U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam98'),
-                                            18, 26),
-            'BO-33U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam99'),
-                                            18, 26),
-            'BO-34U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam100'),
-                                            18, 26),
-            'BO-34U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam101'),
-                                            18, 26),
-            'BO-34U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam102'),
-                                            18, 26),
-            'BO-35U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam103'),
-                                            18, 26),
-            'BO-35U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam104'),
-                                            18, 26),
-            'BO-35U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam105'),
-                                            18, 26),
-            'BO-36U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam106'),
-                                            18, 26),
-            'BO-36U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam107'),
-                                            18, 26),
-            'BO-36U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam108'),
-                                            18, 26),
-            'BO-37U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam109'),
-                                            18, 26),
-            'BO-37U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam110'),
-                                            18, 26),
-            'BO-37U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam111'),
-                                            18, 26),
-            'BO-38U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam112'),
-                                            18, 26),
-            'BO-38U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam113'),
-                                            18, 26),
-            'BO-38U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam114'),
-                                            18, 26),
-            'BO-39U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam115'),
-                                            18, 26),
-            'BO-39U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam116'),
-                                            18, 26),
-            'BO-39U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam117'),
-                                            18, 26),
-            'BO-40U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam118'),
-                                            18, 26),
-            'BO-40U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam119'),
-                                            18, 26),
-            'BO-40U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam120'),
-                                            18, 26),
-            'BO-41U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam121'),
-                                            18, 26),
-            'BO-41U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam122'),
-                                            18, 26),
-            'BO-41U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam123'),
-                                            18, 26),
-            'BO-42U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam124'),
-                                            18, 26),
-            'BO-42U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam125'),
-                                            18, 26),
-            'BO-42U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam126'),
-                                            18, 26),
-            'BO-43U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam127'),
-                                            18, 26),
-            'BO-43U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam128'),
-                                            18, 26),
-            'BO-43U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam129'),
-                                            18, 26),
-            'BO-44U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam130'),
-                                            18, 26),
-            'BO-44U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam131'),
-                                            18, 26),
-            'BO-44U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam132'),
-                                            18, 26),
-            'BO-45U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam133'),
-                                            18, 26),
-            'BO-45U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam134'),
-                                            18, 26),
-            'BO-45U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam135'),
-                                            18, 26),
-            'BO-46U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam136'),
-                                            18, 26),
-            'BO-46U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam137'),
-                                            18, 26),
-            'BO-46U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam138'),
-                                            18, 26),
-            'BO-47U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam139'),
-                                            18, 26),
-            'BO-47U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam140'),
-                                            18, 26),
-            'BO-47U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam141'),
-                                            18, 26),
-            'BO-48U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam142'),
-                                            18, 26),
-            'BO-48U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam143'),
-                                            18, 26),
-            'BO-48U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam144'),
-                                            18, 26),
-            'BO-49U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam145'),
-                                            18, 26),
-            'BO-49U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam146'),
-                                            18, 26),
-            'BO-49U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam147'),
-                                            18, 26),
-            'BO-50U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam148'),
-                                            18, 26),
-            'BO-50U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam149'),
-                                            18, 26),
-            'BO-50U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam150'),
-                                            18, 26),
+            'Group01_05': {
+                'BO-01U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam1'),
+                                                *self.ranges['Group01_05']),
+                'BO-01U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam2'),
+                                                *self.ranges['Group01_05']),
+                'BO-01U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam3'),
+                                                *self.ranges['Group01_05']),
+                'BO-02U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam4'),
+                                                *self.ranges['Group01_05']),
+                'BO-02U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam5'),
+                                                *self.ranges['Group01_05']),
+                'BO-02U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam6'),
+                                                *self.ranges['Group01_05']),
+                # 'BO-03U:VA-PT100-BG:Temp-Mon': self._gwidget('led_tempcam7'),
+                # *self.ranges['Group01_05']),
+                # 'BO-03U:VA-PT100-ED:Temp-Mon': self._gwidget('led_tempcam8'),
+                # *self.ranges['Group01_05']), 18, 27),
+                # 'BO-03U:VA-PT100-MD:Temp-Mon': self._gwidget('led_tempcam9'),
+                # *self.ranges['Group01_05']), 18, 27),
+                'BO-04U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam10'),
+                                                *self.ranges['Group01_05']),
+                'BO-04U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam11'),
+                                                *self.ranges['Group01_05']),
+                'BO-04U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam12'),
+                                                *self.ranges['Group01_05']),
+                'BO-05U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam13'),
+                                                *self.ranges['Group01_05']),
+                'BO-05U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam14'),
+                                                *self.ranges['Group01_05']),
+                'BO-05U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam15'),
+                                                *self.ranges['Group01_05']),
+            },
+            'Group06_10': {
+                'BO-06U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam16'),
+                                                *self.ranges['Group06_10']),
+                'BO-06U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam17'),
+                                                *self.ranges['Group06_10']),
+                'BO-06U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam18'),
+                                                *self.ranges['Group06_10']),
+                'BO-07U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam19'),
+                                                *self.ranges['Group06_10']),
+                'BO-07U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam20'),
+                                                *self.ranges['Group06_10']),
+                'BO-07U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam21'),
+                                                *self.ranges['Group06_10']),
+                'BO-08U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam22'),
+                                                *self.ranges['Group06_10']),
+                'BO-08U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam23'),
+                                                *self.ranges['Group06_10']),
+                'BO-08U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam24'),
+                                                *self.ranges['Group06_10']),
+                'BO-09U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam25'),
+                                                *self.ranges['Group06_10']),
+                'BO-09U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam26'),
+                                                *self.ranges['Group06_10']),
+                'BO-09U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam27'),
+                                                *self.ranges['Group06_10']),
+                'BO-10U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam28'),
+                                                *self.ranges['Group06_10']),
+                'BO-10U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam29'),
+                                                *self.ranges['Group06_10']),
+                'BO-10U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam30'),
+                                                *self.ranges['Group06_10']),
+            },
+            'Group11_15': {
+                'BO-11U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam31'),
+                                                *self.ranges['Group11_15']),
+                'BO-11U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam32'),
+                                                *self.ranges['Group11_15']),
+                'BO-11U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam33'),
+                                                *self.ranges['Group11_15']),
+                'BO-12U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam34'),
+                                                *self.ranges['Group11_15']),
+                'BO-12U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam35'),
+                                                *self.ranges['Group11_15']),
+                'BO-12U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam36'),
+                                                *self.ranges['Group11_15']),
+                'BO-13U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam37'),
+                                                *self.ranges['Group11_15']),
+                'BO-13U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam38'),
+                                                *self.ranges['Group11_15']),
+                'BO-13U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam39'),
+                                                *self.ranges['Group11_15']),
+                'BO-14U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam40'),
+                                                *self.ranges['Group11_15']),
+                'BO-14U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam41'),
+                                                *self.ranges['Group11_15']),
+                'BO-14U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam42'),
+                                                *self.ranges['Group11_15']),
+                'BO-15U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam43'),
+                                                *self.ranges['Group11_15']),
+                'BO-15U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam44'),
+                                                *self.ranges['Group11_15']),
+                'BO-15U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam45'),
+                                                *self.ranges['Group11_15']),
+            },
+            'Group16_20': {
+                'BO-16U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam46'),
+                                                *self.ranges['Group16_20']),
+                'BO-16U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam47'),
+                                                *self.ranges['Group16_20']),
+                'BO-16U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam48'),
+                                                *self.ranges['Group16_20']),
+                'BO-17U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam49'),
+                                                *self.ranges['Group16_20']),
+                'BO-17U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam50'),
+                                                *self.ranges['Group16_20']),
+                'BO-17U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam51'),
+                                                *self.ranges['Group16_20']),
+                'BO-18U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam52'),
+                                                *self.ranges['Group16_20']),
+                'BO-18U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam53'),
+                                                *self.ranges['Group16_20']),
+                'BO-18U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam54'),
+                                                *self.ranges['Group16_20']),
+                'BO-19U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam55'),
+                                                *self.ranges['Group16_20']),
+                'BO-19U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam56'),
+                                                *self.ranges['Group16_20']),
+                'BO-19U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam57'),
+                                                *self.ranges['Group16_20']),
+                'BO-20U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam58'),
+                                                *self.ranges['Group16_20']),
+                'BO-20U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam59'),
+                                                *self.ranges['Group16_20']),
+                'BO-20U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam60'),
+                                                *self.ranges['Group16_20']),
+            },
+            'Group21_25': {
+                'BO-21U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam61'),
+                                                *self.ranges['Group21_25']),
+                'BO-21U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam62'),
+                                                *self.ranges['Group21_25']),
+                'BO-21U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam63'),
+                                                *self.ranges['Group21_25']),
+                'BO-22U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam64'),
+                                                *self.ranges['Group21_25']),
+                'BO-22U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam65'),
+                                                *self.ranges['Group21_25']),
+                'BO-22U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam66'),
+                                                *self.ranges['Group21_25']),
+                'BO-23U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam67'),
+                                                *self.ranges['Group21_25']),
+                'BO-23U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam68'),
+                                                *self.ranges['Group21_25']),
+                'BO-23U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam69'),
+                                                *self.ranges['Group21_25']),
+                'BO-24U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam70'),
+                                                *self.ranges['Group21_25']),
+                'BO-24U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam71'),
+                                                *self.ranges['Group21_25']),
+                'BO-24U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam72'),
+                                                *self.ranges['Group21_25']),
+                'BO-25U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam73'),
+                                                *self.ranges['Group21_25']),
+                'BO-25U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam74'),
+                                                *self.ranges['Group21_25']),
+                'BO-25U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam75'),
+                                                *self.ranges['Group21_25']),
+            },
+            'Group26_30': {
+                'BO-26U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam76'),
+                                                *self.ranges['Group26_30']),
+                'BO-26U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam77'),
+                                                *self.ranges['Group26_30']),
+                'BO-26U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam78'),
+                                                *self.ranges['Group26_30']),
+                'BO-27U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam79'),
+                                                *self.ranges['Group26_30']),
+                'BO-27U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam80'),
+                                                *self.ranges['Group26_30']),
+                'BO-27U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam81'),
+                                                *self.ranges['Group26_30']),
+                'BO-28U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam82'),
+                                                *self.ranges['Group26_30']),
+                'BO-28U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam83'),
+                                                *self.ranges['Group26_30']),
+                'BO-28U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam84'),
+                                                *self.ranges['Group26_30']),
+                'BO-29U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam85'),
+                                                *self.ranges['Group26_30']),
+                'BO-29U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam86'),
+                                                *self.ranges['Group26_30']),
+                'BO-29U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam87'),
+                                                *self.ranges['Group26_30']),
+                'BO-30U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam88'),
+                                                *self.ranges['Group26_30']),
+                'BO-30U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam89'),
+                                                *self.ranges['Group26_30']),
+                'BO-30U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam90'),
+                                                *self.ranges['Group26_30']),
+            },
+            'Group31_35': {
+                'BO-31U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam91'),
+                                                *self.ranges['Group31_35']),
+                'BO-31U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam92'),
+                                                *self.ranges['Group31_35']),
+                'BO-31U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam93'),
+                                                *self.ranges['Group31_35']),
+                'BO-32U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam94'),
+                                                *self.ranges['Group31_35']),
+                'BO-32U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam95'),
+                                                *self.ranges['Group31_35']),
+                'BO-32U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam96'),
+                                                *self.ranges['Group31_35']),
+                'BO-33U:VA-PT100-BG:Temp-Mon': (self._gwidget('led_tempcam97'),
+                                                *self.ranges['Group31_35']),
+                'BO-33U:VA-PT100-ED:Temp-Mon': (self._gwidget('led_tempcam98'),
+                                                *self.ranges['Group31_35']),
+                'BO-33U:VA-PT100-MD:Temp-Mon': (self._gwidget('led_tempcam99'),
+                                                *self.ranges['Group31_35']),
+                'BO-34U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam100'), *self.ranges['Group31_35']
+                    ),
+                'BO-34U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam101'), *self.ranges['Group31_35']
+                    ),
+                'BO-34U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam102'), *self.ranges['Group31_35']
+                    ),
+                'BO-35U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam103'), *self.ranges['Group31_35']
+                    ),
+                'BO-35U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam104'), *self.ranges['Group31_35']
+                    ),
+                'BO-35U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam105'), *self.ranges['Group31_35']
+                    ),
+            },
+            'Group36_40': {
+                'BO-36U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam106'), *self.ranges['Group36_40']
+                    ),
+                'BO-36U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam107'), *self.ranges['Group36_40']
+                    ),
+                'BO-36U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam108'), *self.ranges['Group36_40']
+                    ),
+                'BO-37U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam109'), *self.ranges['Group36_40']
+                    ),
+                'BO-37U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam110'), *self.ranges['Group36_40']
+                    ),
+                'BO-37U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam111'), *self.ranges['Group36_40']
+                    ),
+                'BO-38U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam112'), *self.ranges['Group36_40']
+                    ),
+                'BO-38U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam113'), *self.ranges['Group36_40']
+                    ),
+                'BO-38U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam114'), *self.ranges['Group36_40']
+                    ),
+                'BO-39U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam115'), *self.ranges['Group36_40']
+                    ),
+                'BO-39U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam116'), *self.ranges['Group36_40']
+                    ),
+                'BO-39U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam117'), *self.ranges['Group36_40']
+                    ),
+                'BO-40U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam118'), *self.ranges['Group36_40']
+                    ),
+                'BO-40U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam119'), *self.ranges['Group36_40']
+                    ),
+                'BO-40U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam120'), *self.ranges['Group36_40']
+                    ),
+            },
+            'Group41_45': {
+                'BO-41U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam121'), *self.ranges['Group41_45']
+                    ),
+                'BO-41U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam122'), *self.ranges['Group41_45']
+                    ),
+                'BO-41U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam123'), *self.ranges['Group41_45']
+                    ),
+                'BO-42U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam124'), *self.ranges['Group41_45']
+                    ),
+                'BO-42U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam125'), *self.ranges['Group41_45']
+                    ),
+                'BO-42U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam126'), *self.ranges['Group41_45']
+                    ),
+                'BO-43U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam127'), *self.ranges['Group41_45']
+                    ),
+                'BO-43U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam128'), *self.ranges['Group41_45']
+                    ),
+                'BO-43U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam129'), *self.ranges['Group41_45']
+                    ),
+                'BO-44U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam130'), *self.ranges['Group41_45']
+                    ),
+                'BO-44U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam131'), *self.ranges['Group41_45']
+                    ),
+                'BO-44U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam132'), *self.ranges['Group41_45']
+                    ),
+                'BO-45U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam133'), *self.ranges['Group41_45']
+                    ),
+                'BO-45U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam134'), *self.ranges['Group41_45']
+                    ),
+                'BO-45U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam135'), *self.ranges['Group41_45']
+                    ),
+            },
+            'Group46_50': {
+                'BO-46U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam136'), *self.ranges['Group46_50']
+                    ),
+                'BO-46U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam137'), *self.ranges['Group46_50']
+                    ),
+                'BO-46U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam138'), *self.ranges['Group46_50']
+                    ),
+                'BO-47U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam139'), *self.ranges['Group46_50']
+                    ),
+                'BO-47U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam140'), *self.ranges['Group46_50']
+                    ),
+                'BO-47U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam141'), *self.ranges['Group46_50']
+                    ),
+                'BO-48U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam142'), *self.ranges['Group46_50']
+                    ),
+                'BO-48U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam143'), *self.ranges['Group46_50']
+                    ),
+                'BO-48U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam144'), *self.ranges['Group46_50']
+                    ),
+                'BO-49U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam145'), *self.ranges['Group46_50']
+                    ),
+                # 'BO-49U:VA-PT100-ED:Temp-Mon': (
+                # self._gwidget('led_tempcam146'), *self.ranges['Group46_50']),
+                'BO-49U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam147'), *self.ranges['Group46_50']
+                    ),
+                'BO-50U:VA-PT100-BG:Temp-Mon': (
+                    self._gwidget('led_tempcam148'), *self.ranges['Group46_50']
+                    ),
+                'BO-50U:VA-PT100-ED:Temp-Mon': (
+                    self._gwidget('led_tempcam149'), *self.ranges['Group46_50']
+                    ),
+                'BO-50U:VA-PT100-MD:Temp-Mon': (
+                    self._gwidget('led_tempcam150'), *self.ranges['Group46_50']
+                    ),
+            }
         }
 
 
@@ -564,8 +716,8 @@ class Cavity(utils.ConnWidgetPVs):
                                             29),
             'BO-05D:RF-P5Cav:Cylin5T-Mon': (self._gwidget('led_cylin5'), 27,
                                             29),
-            'RA-TLBO:RF-Circulator:TinUp-Mon': (self._gwidget
-                                                ('led_circulator1'), 19, 22),
+            # 'RA-TLBO:RF-Circulator:TinUp-Mon': (self._gwidget
+            # ('led_circulator1'), 19, 22),
             'RA-TLBO:RF-Circulator:Tin-Mon': (self._gwidget
                                               ('led_circulator2'), 19, 22),
             'RA-TLBO:RF-Circulator:Tout-Mon': (self._gwidget

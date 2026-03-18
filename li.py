@@ -1,14 +1,16 @@
 """Lógica das subjanelas do LINAC."""
 import logging
 import subprocess
-
-from PyQt5 import QtWidgets
+from PyQt5 import uic, QtWidgets
+from ranges_manager import RangesManager
 
 import utils
 
+ranges_manager = RangesManager()
+
 
 class Temperature(utils.ConnWidgetPVs):
-    """Classe do sistema de temperatura LINAC."""
+    """Classe do sistema de temperatura LINAC com ajuste de ranges."""
 
     def plot_graph(self, url):
         """."""
@@ -19,89 +21,177 @@ class Temperature(utils.ConnWidgetPVs):
 
     def __init__(self, janela_opr, botao_menu):
         """."""
+        self.ranges = ranges_manager.get_ranges("linac")
         super().__init__(janela_opr, botao_menu, "ui/templinac.ui", "temp")
 
+        # Conectar botão de configuração de ranges
+        self.uiobj.btnliRanges.clicked.connect(self.abrir_config_ranges)
+
+        # Atualiza labels da subjanela com ranges persistentes
+        self._atualizar_labels_ranges()
+
+        # Conectar botões de gráfico
         url = self.create_archviewer_link(self.sinais['KlyTemp'])
-        self.uiobj.btntempkly.clicked.connect(
-            lambda _, url=url: self.plot_graph(url)
-        )
+        self.uiobj.btntempkly.clicked.connect(lambda _, url=url: self.
+                                              plot_graph(url))
 
         url = self.create_archviewer_link(self.sinais['KlyArea'])
-        self.uiobj.btntempgaleria.clicked.connect(
-            lambda _, url=url: self.plot_graph(url)
-        )
+        self.uiobj.btntempgaleria.clicked.connect(lambda _, url=url: self.
+                                                  plot_graph(url))
 
         url = self.create_archviewer_link(self.sinais['Tunnel'])
-        self.uiobj.btntemp_umid.clicked.connect(
-            lambda _, url=url: self.plot_graph(url)
-        )
+        self.uiobj.btntemp_tunnel.clicked.connect(lambda _, url=url: self.
+                                                  plot_graph(url))
 
         url = self.create_archviewer_link(self.sinais['45C'])
-        self.uiobj.btntemplinac45.clicked.connect(
-            lambda _, url=url: self.plot_graph(url)
-        )
+        self.uiobj.btntemplinac45.clicked.connect(lambda _, url=url: self.
+                                                  plot_graph(url))
 
         url = self.create_archviewer_link(self.sinais['Solenoid'])
-        self.uiobj.btntempsolenoid.clicked.connect(
-            lambda _, url=url: self.plot_graph(url)
+        self.uiobj.btntempsolenoid.clicked.connect(lambda _, url=url: self.
+                                                   plot_graph(url))
+
+    def _atualizar_labels_ranges(self):
+        """Atualiza todas as labels range_<grupo> com valores persistentes."""
+        for grupo, (min_val, max_val) in self.ranges.items():
+            label_name = f"range_{grupo}"
+            lbl = self.uiobj.findChild(QtWidgets.QLabel, label_name)
+            if lbl:
+                lbl.setText(f"{min_val} – {max_val} °C")
+            else:
+                logging.warning(
+                    f"Label {label_name} não encontrada em templinac.ui"
+                    )
+
+    def abrir_config_ranges(self):
+        """Abre subjanela de configuração de ranges."""
+        self.config_ui = uic.loadUi("ui/configranges.ui")
+
+        # Preenche combo com todos os grupos
+        self.config_ui.comboGrupos.addItems(self.ranges.keys())
+
+        # Conecta eventos
+        self.config_ui.comboGrupos.currentTextChanged.connect(
+            self.atualizar_spinboxes
+        )
+        self.config_ui.btnSalvar.clicked.connect(self.salvar_range)
+        self.config_ui.btnFechar.clicked.connect(self.config_ui.close)
+
+        # Força seleção do primeiro grupo
+        self.config_ui.comboGrupos.setCurrentIndex(0)
+        grupo_inicial = self.config_ui.comboGrupos.itemText(0)
+        self.atualizar_spinboxes(grupo_inicial)
+
+        self.config_ui.show()
+
+    def atualizar_spinboxes(self, grupo):
+        """Atualiza spinboxes com valores atuais do grupo selecionado."""
+        min_val, max_val = self.ranges[grupo]
+        self.config_ui.spinMin.setValue(min_val)
+        self.config_ui.spinMax.setValue(max_val)
+        self.config_ui.lblRangeAtual.setText(
+            f"Current Range: {min_val:.2f} - {max_val:.2f} °C"
+            )
+
+    def salvar_range(self):
+        """Salva novo range e atualiza labels."""
+        grupo = self.config_ui.comboGrupos.currentText()
+        min_val = round(float(self.config_ui.spinMin.value()), 2)
+        max_val = round(float(self.config_ui.spinMax.value()), 2)
+
+        # Atualiza local
+        self.ranges[grupo] = (min_val, max_val)
+
+        # Atualiza global (com persistência)
+        ranges_manager.update_range("linac", grupo, min_val, max_val)
+
+        # Atualiza label da janela de configuração
+        self.config_ui.lblRangeAtual.setText(
+            f"Current Range: {min_val:.2f} – {max_val:.2f} °C"
         )
 
+        # Atualiza label da subjanela templinac.ui
+        label_name = f"range_{grupo}"
+        lbl_principal = self.uiobj.findChild(QtWidgets.QLabel, label_name)
+        if lbl_principal:
+            lbl_principal.setText(f"{min_val:.2f} – {max_val:.2f} °C")
+
+        # Atualiza status dos LEDs
+        self._registrar_grupos()
+        self.atualizar_status()
+
     def _registrar_grupos(self):
-        """Registra os grupos de PVs/LEDs e suas faixas."""
+        """Registra os grupos de PVs/LEDs usando ranges atuais."""
         self.sinais = {
             'KlyArea': {
-                'LA-CN:H1MPS-1:K1Temp5': (self._gwidget('ledk1temp5'), 18, 23),
-                'LA-CN:H1MPS-1:K2Temp5': (self._gwidget('ledk2temp5'), 18, 23),
+                'LA-CN:H1MPS-1:K1Temp5': (self._gwidget('ledk1temp5'), *self.
+                                          ranges['KlyArea']),
+                'LA-CN:H1MPS-1:K2Temp5': (self._gwidget('ledk2temp5'), *self.
+                                          ranges['KlyArea']),
             },
             'KlyTemp': {
-                'LA-CN:H1MPS-1:K1Temp1': (self._gwidget('ledk1temp1'), 18, 23),
-                'LA-CN:H1MPS-1:K1Temp2': (self._gwidget('ledk1temp2'), 18, 23),
-                'LA-CN:H1MPS-1:K2Temp1': (self._gwidget('ledk2temp1'), 18, 23),
-                'LA-CN:H1MPS-1:K2Temp2': (self._gwidget('ledk2temp2'), 18, 23),
+                'LA-CN:H1MPS-1:K1Temp1': (self._gwidget('ledk1temp1'), *self.
+                                          ranges['KlyTemp']),
+                'LA-CN:H1MPS-1:K1Temp2': (self._gwidget('ledk1temp2'), *self.
+                                          ranges['KlyTemp']),
+                'LA-CN:H1MPS-1:K2Temp1': (self._gwidget('ledk2temp1'), *self.
+                                          ranges['KlyTemp']),
+                'LA-CN:H1MPS-1:K2Temp2': (self._gwidget('ledk2temp2'), *self.
+                                          ranges['KlyTemp']),
             },
             'Tunnel': {
-                'LINAC:Umidade-Mon': (self._gwidget('led_umidade'), 35, 55),
-                'LINAC:Temperatura-Mon': (
-                    self._gwidget('ledtemptunel'), 22, 24
-                ),
+                'LINAC:Temperatura-Mon': (self._gwidget('ledtemptunel'), *self.
+                                          ranges['Tunnel']),
+            },
+            'Umid': {
+                'LINAC:Umidade-Mon': (self._gwidget('led_umidade'), *self.
+                                      ranges['Umid']),
             },
             '45C': {
-                'LA-CN:H1MPS-1:A1Temp1': (self._gwidget('leda1t1'), 42, 46),
-                'LA-CN:H1MPS-1:A1Temp2': (self._gwidget('leda1t2'), 42, 46),
-                'LA-CN:H1MPS-1:A2Temp1': (self._gwidget('leda2t1'), 42, 46),
-                'LA-CN:H1MPS-1:A2Temp2': (self._gwidget('leda2t2'), 42, 46),
-                'LA-CN:H1MPS-1:A3Temp1': (self._gwidget('leda3t1'), 42, 46),
-                'LA-CN:H1MPS-1:A3Temp2': (self._gwidget('leda3t2'), 42, 46),
-                'LA-CN:H1MPS-1:A4Temp1': (self._gwidget('leda4t1'), 42, 46),
-                'LA-CN:H1MPS-1:A4Temp2': (self._gwidget('leda4t2'), 42, 46),
+                'LA-CN:H1MPS-1:A1Temp1': (self._gwidget('leda1t1'), *self.
+                                          ranges['45C']),
+                'LA-CN:H1MPS-1:A1Temp2': (self._gwidget('leda1t2'), *self.
+                                          ranges['45C']),
+                'LA-CN:H1MPS-1:A2Temp1': (self._gwidget('leda2t1'), *self.
+                                          ranges['45C']),
+                'LA-CN:H1MPS-1:A2Temp2': (self._gwidget('leda2t2'), *self.
+                                          ranges['45C']),
+                'LA-CN:H1MPS-1:A3Temp1': (self._gwidget('leda3t1'), *self.
+                                          ranges['45C']),
+                'LA-CN:H1MPS-1:A3Temp2': (self._gwidget('leda3t2'), *self.
+                                          ranges['45C']),
+                'LA-CN:H1MPS-1:A4Temp1': (self._gwidget('leda4t1'), *self.
+                                          ranges['45C']),
+                'LA-CN:H1MPS-1:A4Temp2': (self._gwidget('leda4t2'), *self.
+                                          ranges['45C']),
             },
             'Solenoid': {
-                'LI-01:PS-Slnd-1:Temperature-Mon':
-                (self._gwidget('ledsol1'), 20, 27),
-                'LI-01:PS-Slnd-2:Temperature-Mon':
-                (self._gwidget('ledsol2'), 20, 27),
-                'LI-01:PS-Slnd-3:Temperature-Mon':
-                (self._gwidget('ledsol3'), 20, 27),
-                'LI-01:PS-Slnd-4:Temperature-Mon':
-                (self._gwidget('ledsol4'), 20, 27),
-                'LI-01:PS-Slnd-5:Temperature-Mon':
-                (self._gwidget('ledsol5'), 20, 27),
-                'LI-01:PS-Slnd-6:Temperature-Mon':
-                (self._gwidget('ledsol6'), 20, 27),
-                'LI-01:PS-Slnd-7:Temperature-Mon':
-                (self._gwidget('ledsol7'), 20, 27),
-                'LI-01:PS-Slnd-8:Temperature-Mon':
-                (self._gwidget('ledsol8'), 20, 27),
-                'LI-01:PS-Slnd-9:Temperature-Mon':
-                (self._gwidget('ledsol9'), 20, 27),
-                'LI-01:PS-Slnd-10:Temperature-Mon':
-                (self._gwidget('ledsol10'), 20, 27),
-                'LI-01:PS-Slnd-11:Temperature-Mon':
-                (self._gwidget('ledsol11'), 20, 27),
-                'LI-01:PS-Slnd-12:Temperature-Mon':
-                (self._gwidget('ledsol12'), 20, 27),
-                'LI-01:PS-Slnd-13:Temperature-Mon':
-                (self._gwidget('ledsol13'), 20, 27),
+                'LI-01:PS-Slnd-1:Temperature-Mon': (self._gwidget('ledsol1'),
+                                                    *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-2:Temperature-Mon': (self._gwidget('ledsol2'),
+                                                    *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-3:Temperature-Mon': (self._gwidget('ledsol3'),
+                                                    *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-4:Temperature-Mon': (self._gwidget('ledsol4'),
+                                                    *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-5:Temperature-Mon': (self._gwidget('ledsol5'),
+                                                    *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-6:Temperature-Mon': (self._gwidget('ledsol6'),
+                                                    *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-7:Temperature-Mon': (self._gwidget('ledsol7'),
+                                                    *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-8:Temperature-Mon': (self._gwidget('ledsol8'),
+                                                    *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-9:Temperature-Mon': (self._gwidget('ledsol9'),
+                                                    *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-10:Temperature-Mon': (self._gwidget('ledsol10'),
+                                                     *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-11:Temperature-Mon': (self._gwidget('ledsol11'),
+                                                     *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-12:Temperature-Mon': (self._gwidget('ledsol12'),
+                                                     *self.ranges['Solenoid']),
+                'LI-01:PS-Slnd-13:Temperature-Mon': (self._gwidget('ledsol13'),
+                                                     *self.ranges['Solenoid']),
             },
         }
 
@@ -266,7 +356,6 @@ class AllSubsys:
     def __init__(self, janela_opr):
         """."""
         janela_opr.alarmlinac.clicked.connect(self.aba_linac)
-        janela_opr.infobeam.clicked.connect(self.aba_infobeam)
         self.janela_opr = janela_opr
         self.subjanelas = []
 
@@ -309,12 +398,5 @@ class AllSubsys:
         """."""
         try:
             self.janela_opr.janela_opr.setCurrentIndex(1)
-        except Exception as e:
-            logging.error(f"Erro ao mudar para aba LINAC: {e}")
-
-    def aba_infobeam(self):
-        """."""
-        try:
-            self.janela_opr.janela_opr.setCurrentIndex(0)
         except Exception as e:
             logging.error(f"Erro ao mudar para aba LINAC: {e}")

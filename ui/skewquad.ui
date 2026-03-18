@@ -6,48 +6,51 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>771</width>
-    <height>777</height>
+    <width>650</width>
+    <height>774</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(86, 174, 255)</string>
   </property>
   <widget class="QTabWidget" name="Tabwidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>770</width>
-     <height>772</height>
+     <width>650</width>
+     <height>774</height>
     </rect>
    </property>
    <property name="minimumSize">
     <size>
-     <width>770</width>
-     <height>772</height>
+     <width>650</width>
+     <height>774</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>700</width>
-     <height>772</height>
+     <width>650</width>
+     <height>774</height>
     </size>
    </property>
    <property name="currentIndex">
-    <number>6</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
-     <string>QS 01_a_03</string>
+     <string>QS 01-03</string>
     </attribute>
     <widget class="QScrollArea" name="scrollArea">
      <property name="geometry">
       <rect>
        <x>8</x>
        <y>9</y>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -58,14 +61,14 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="baseSize">
@@ -85,8 +88,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>518</width>
-        <height>718</height>
+        <width>408</width>
+        <height>721</height>
        </rect>
       </property>
       <widget class="QScrollArea" name="scrollArea_2">
@@ -94,8 +97,8 @@
         <rect>
          <x>10</x>
          <y>9</y>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -106,14 +109,14 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="mouseTracking">
@@ -127,17 +130,17 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>498</width>
-          <height>698</height>
+          <width>388</width>
+          <height>702</height>
          </rect>
         </property>
-        <widget class="QWidget" name="layoutWidget">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>9</x>
-           <y>9</y>
-           <width>481</width>
-           <height>682</height>
+           <x>8</x>
+           <y>8</y>
+           <width>371</width>
+           <height>680</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout">
@@ -147,7 +150,7 @@
              <string/>
             </property>
             <property name="text">
-             <string>Cuurent</string>
+             <string>Current</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -156,24 +159,17 @@
           </item>
           <item row="0" column="2">
            <widget class="PyDMLabel" name="PyDMLabel_34">
+            <property name="minimumSize">
+             <size>
+              <width>63</width>
+              <height>24</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>PwrState</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="PyDMLabel" name="PyDMLabel_47">
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="text">
-             <string>Chart</string>
+             <string>State</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -209,7 +205,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3">
+          <item row="1" column="1" colspan="2">
            <widget class="Line" name="line_3">
             <property name="sizeIncrement">
              <size>
@@ -351,25 +347,6 @@
             </property>
             <property name="shape">
              <enum>QLed::Circle</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="PyDMPushButton" name="PyDMPushButton_5">
-            <property name="minimumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string/>
             </property>
            </widget>
           </item>
@@ -1939,6 +1916,28 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="0">
+           <widget class="PyDMPushButton" name="PyDMPushButton_18">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Gráfico</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </widget>
@@ -1948,15 +1947,15 @@
    </widget>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
-     <string>QS 04_a_06</string>
+     <string>QS 04-06</string>
     </attribute>
     <widget class="QScrollArea" name="scrollArea_6">
      <property name="geometry">
       <rect>
        <x>8</x>
        <y>9</y>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -1967,14 +1966,14 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="baseSize">
@@ -1994,8 +1993,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>518</width>
-        <height>718</height>
+        <width>408</width>
+        <height>721</height>
        </rect>
       </property>
       <widget class="QScrollArea" name="scrollArea_7">
@@ -2003,8 +2002,8 @@
         <rect>
          <x>10</x>
          <y>9</y>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -2015,14 +2014,14 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="mouseTracking">
@@ -2036,27 +2035,49 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>498</width>
-          <height>698</height>
+          <width>388</width>
+          <height>702</height>
          </rect>
         </property>
-        <widget class="QWidget" name="layoutWidget">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>9</x>
-           <y>9</y>
-           <width>481</width>
-           <height>682</height>
+           <x>8</x>
+           <y>8</y>
+           <width>371</width>
+           <height>680</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="PyDMPushButton" name="PyDMPushButton_17">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Gráfico</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="PyDMLabel" name="PyDMLabel_39">
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>Cuurent</string>
+             <string>Current</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -2065,24 +2086,17 @@
           </item>
           <item row="0" column="2">
            <widget class="PyDMLabel" name="PyDMLabel_35">
+            <property name="minimumSize">
+             <size>
+              <width>63</width>
+              <height>24</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>PwrState</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="PyDMLabel" name="PyDMLabel_81">
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="text">
-             <string>Chart</string>
+             <string>State</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -2118,7 +2132,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3">
+          <item row="1" column="1" colspan="2">
            <widget class="Line" name="line_4">
             <property name="sizeIncrement">
              <size>
@@ -2260,25 +2274,6 @@
             </property>
             <property name="shape">
              <enum>QLed::Circle</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="PyDMPushButton" name="PyDMPushButton_17">
-            <property name="minimumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string/>
             </property>
            </widget>
           </item>
@@ -3857,15 +3852,15 @@
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
-     <string>QS 07_a_09</string>
+     <string>QS 07-09</string>
     </attribute>
     <widget class="QScrollArea" name="scrollArea_12">
      <property name="geometry">
       <rect>
        <x>8</x>
        <y>9</y>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -3876,13 +3871,13 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>520</width>
+       <width>410</width>
        <height>720</height>
       </size>
      </property>
@@ -3903,8 +3898,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>518</width>
-        <height>718</height>
+        <width>408</width>
+        <height>721</height>
        </rect>
       </property>
       <widget class="QScrollArea" name="scrollArea_13">
@@ -3912,8 +3907,8 @@
         <rect>
          <x>10</x>
          <y>9</y>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -3924,14 +3919,14 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="mouseTracking">
@@ -3945,27 +3940,49 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>498</width>
-          <height>698</height>
+          <width>388</width>
+          <height>702</height>
          </rect>
         </property>
-        <widget class="QWidget" name="layoutWidget_2">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>9</x>
-           <y>9</y>
-           <width>481</width>
+           <x>8</x>
+           <y>8</y>
+           <width>371</width>
            <height>682</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="PyDMPushButton" name="PyDMPushButton_19">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Gráfico</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="PyDMLabel" name="PyDMLabel_41">
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>Cuurent</string>
+             <string>Current</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -3974,24 +3991,17 @@
           </item>
           <item row="0" column="2">
            <widget class="PyDMLabel" name="PyDMLabel_38">
+            <property name="minimumSize">
+             <size>
+              <width>63</width>
+              <height>24</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>PwrState</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="PyDMLabel" name="PyDMLabel_96">
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="text">
-             <string>Chart</string>
+             <string>State</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -4027,7 +4037,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3">
+          <item row="1" column="1" colspan="2">
            <widget class="Line" name="line_5">
             <property name="sizeIncrement">
              <size>
@@ -4169,25 +4179,6 @@
             </property>
             <property name="shape">
              <enum>QLed::Circle</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="PyDMPushButton" name="PyDMPushButton_29">
-            <property name="minimumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string/>
             </property>
            </widget>
           </item>
@@ -5766,15 +5757,15 @@
    </widget>
    <widget class="QWidget" name="tab_4">
     <attribute name="title">
-     <string>QS 10_a_12</string>
+     <string>QS 10-12</string>
     </attribute>
     <widget class="QScrollArea" name="scrollArea_17">
      <property name="geometry">
       <rect>
        <x>8</x>
        <y>9</y>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -5785,14 +5776,14 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="baseSize">
@@ -5821,8 +5812,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>518</width>
-        <height>718</height>
+        <width>408</width>
+        <height>721</height>
        </rect>
       </property>
       <widget class="QScrollArea" name="scrollArea_18">
@@ -5830,8 +5821,8 @@
         <rect>
          <x>10</x>
          <y>9</y>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -5842,14 +5833,14 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="mouseTracking">
@@ -5869,27 +5860,49 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>498</width>
-          <height>698</height>
+          <width>388</width>
+          <height>702</height>
          </rect>
         </property>
-        <widget class="QWidget" name="layoutWidget_3">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>9</x>
-           <y>9</y>
-           <width>481</width>
+           <x>8</x>
+           <y>8</y>
+           <width>371</width>
            <height>682</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="PyDMPushButton" name="PyDMPushButton_20">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Gráfico</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="PyDMLabel" name="PyDMLabel_50">
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>Cuurent</string>
+             <string>Current</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -5898,24 +5911,17 @@
           </item>
           <item row="0" column="2">
            <widget class="PyDMLabel" name="PyDMLabel_53">
+            <property name="minimumSize">
+             <size>
+              <width>63</width>
+              <height>24</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>PwrState</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="PyDMLabel" name="PyDMLabel_105">
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="text">
-             <string>Chart</string>
+             <string>State</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -5951,7 +5957,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3">
+          <item row="1" column="1" colspan="2">
            <widget class="Line" name="line_6">
             <property name="sizeIncrement">
              <size>
@@ -6093,25 +6099,6 @@
             </property>
             <property name="shape">
              <enum>QLed::Circle</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="PyDMPushButton" name="PyDMPushButton_49">
-            <property name="minimumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string/>
             </property>
            </widget>
           </item>
@@ -7690,15 +7677,15 @@
    </widget>
    <widget class="QWidget" name="tab_5">
     <attribute name="title">
-     <string>QS 13_a_15</string>
+     <string>QS 13-15</string>
     </attribute>
     <widget class="QScrollArea" name="scrollArea_19">
      <property name="geometry">
       <rect>
        <x>8</x>
        <y>9</y>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -7709,14 +7696,14 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="baseSize">
@@ -7745,8 +7732,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>518</width>
-        <height>718</height>
+        <width>408</width>
+        <height>721</height>
        </rect>
       </property>
       <widget class="QScrollArea" name="scrollArea_20">
@@ -7754,8 +7741,8 @@
         <rect>
          <x>10</x>
          <y>9</y>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -7766,14 +7753,14 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="mouseTracking">
@@ -7793,27 +7780,49 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>498</width>
-          <height>698</height>
+          <width>388</width>
+          <height>702</height>
          </rect>
         </property>
-        <widget class="QWidget" name="layoutWidget_4">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>9</x>
-           <y>9</y>
-           <width>481</width>
+           <x>8</x>
+           <y>8</y>
+           <width>371</width>
            <height>682</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="PyDMPushButton" name="PyDMPushButton_21">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Gráfico</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="PyDMLabel" name="PyDMLabel_66">
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>Cuurent</string>
+             <string>Current</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -7822,24 +7831,17 @@
           </item>
           <item row="0" column="2">
            <widget class="PyDMLabel" name="PyDMLabel_67">
+            <property name="minimumSize">
+             <size>
+              <width>63</width>
+              <height>24</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>PwrState</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="PyDMLabel" name="PyDMLabel_114">
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="text">
-             <string>Chart</string>
+             <string>State</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -7875,7 +7877,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3">
+          <item row="1" column="1" colspan="2">
            <widget class="Line" name="line_7">
             <property name="sizeIncrement">
              <size>
@@ -8017,25 +8019,6 @@
             </property>
             <property name="shape">
              <enum>QLed::Circle</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="PyDMPushButton" name="PyDMPushButton_57">
-            <property name="minimumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string/>
             </property>
            </widget>
           </item>
@@ -9614,15 +9597,15 @@
    </widget>
    <widget class="QWidget" name="tab_6">
     <attribute name="title">
-     <string>QS 16_a_18</string>
+     <string>QS 16-18</string>
     </attribute>
     <widget class="QScrollArea" name="scrollArea_21">
      <property name="geometry">
       <rect>
        <x>8</x>
        <y>9</y>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -9633,14 +9616,14 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>520</width>
-       <height>720</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="baseSize">
@@ -9669,8 +9652,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>518</width>
-        <height>718</height>
+        <width>408</width>
+        <height>721</height>
        </rect>
       </property>
       <widget class="QScrollArea" name="scrollArea_22">
@@ -9678,8 +9661,8 @@
         <rect>
          <x>10</x>
          <y>9</y>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -9690,14 +9673,14 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>500</width>
-         <height>700</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="mouseTracking">
@@ -9717,27 +9700,49 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>498</width>
-          <height>698</height>
+          <width>388</width>
+          <height>702</height>
          </rect>
         </property>
-        <widget class="QWidget" name="layoutWidget_5">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>9</x>
-           <y>9</y>
-           <width>481</width>
+           <x>8</x>
+           <y>8</y>
+           <width>371</width>
            <height>682</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="PyDMPushButton" name="PyDMPushButton_22">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Gráfico</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="PyDMLabel" name="PyDMLabel_74">
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>Cuurent</string>
+             <string>Current</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -9746,24 +9751,17 @@
           </item>
           <item row="0" column="2">
            <widget class="PyDMLabel" name="PyDMLabel_75">
+            <property name="minimumSize">
+             <size>
+              <width>63</width>
+              <height>24</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string/>
             </property>
             <property name="text">
-             <string>PwrState</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="PyDMLabel" name="PyDMLabel_121">
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="text">
-             <string>Chart</string>
+             <string>State</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -9799,7 +9797,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3">
+          <item row="1" column="1" colspan="2">
            <widget class="Line" name="line_8">
             <property name="sizeIncrement">
              <size>
@@ -9941,25 +9939,6 @@
             </property>
             <property name="shape">
              <enum>QLed::Circle</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="PyDMPushButton" name="PyDMPushButton_63">
-            <property name="minimumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string/>
             </property>
            </widget>
           </item>
@@ -11538,15 +11517,15 @@
    </widget>
    <widget class="QWidget" name="tab_7">
     <attribute name="title">
-     <string>QS 19_a_20</string>
+     <string>QS 19-20</string>
     </attribute>
     <widget class="QScrollArea" name="scrollArea_23">
      <property name="geometry">
       <rect>
        <x>8</x>
        <y>9</y>
-       <width>520</width>
-       <height>520</height>
+       <width>410</width>
+       <height>723</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -11557,14 +11536,14 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>520</width>
-       <height>520</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>520</width>
-       <height>520</height>
+       <width>410</width>
+       <height>723</height>
       </size>
      </property>
      <property name="baseSize">
@@ -11593,8 +11572,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>518</width>
-        <height>518</height>
+        <width>408</width>
+        <height>721</height>
        </rect>
       </property>
       <widget class="QScrollArea" name="scrollArea_24">
@@ -11602,8 +11581,8 @@
         <rect>
          <x>10</x>
          <y>9</y>
-         <width>500</width>
-         <height>500</height>
+         <width>390</width>
+         <height>704</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -11614,14 +11593,14 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>500</width>
-         <height>500</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>500</width>
-         <height>500</height>
+         <width>390</width>
+         <height>704</height>
         </size>
        </property>
        <property name="mouseTracking">
@@ -11641,20 +11620,42 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>498</width>
-          <height>498</height>
+          <width>388</width>
+          <height>702</height>
          </rect>
         </property>
-        <widget class="QWidget" name="layoutWidget">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>9</x>
-           <y>9</y>
-           <width>481</width>
-           <height>480</height>
+           <x>8</x>
+           <y>8</y>
+           <width>371</width>
+           <height>477</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="PyDMPushButton" name="PyDMPushButton_23">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Gráfico</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="PyDMLabel" name="PyDMLabel_200">
             <property name="minimumSize">
@@ -11667,7 +11668,7 @@
              <string/>
             </property>
             <property name="text">
-             <string>Cuurent</string>
+             <string>Current</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -11686,32 +11687,7 @@
              <string/>
             </property>
             <property name="text">
-             <string>PwrState</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="PyDMLabel" name="PyDMLabel_202">
-            <property name="minimumSize">
-             <size>
-              <width>60</width>
-              <height>24</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>24</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="text">
-             <string>Chart</string>
+             <string>State</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -11747,7 +11723,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3">
+          <item row="1" column="1" colspan="2">
            <widget class="Line" name="line_9">
             <property name="sizeIncrement">
              <size>
@@ -11889,25 +11865,6 @@
             </property>
             <property name="shape">
              <enum>QLed::Circle</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="PyDMPushButton" name="PyDMPushButton_95">
-            <property name="minimumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>28</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string/>
             </property>
            </widget>
           </item>

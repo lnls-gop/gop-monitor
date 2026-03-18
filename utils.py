@@ -5,7 +5,7 @@ import epics
 from epics import get_pv
 from PyQt5 import QtWidgets, uic
 
-from siriuspy.clientarch import PVData, Time
+from siriuspy.clientarch import ClientArchiver, Time
 
 
 logging.basicConfig(level=logging.ERROR,
@@ -116,6 +116,7 @@ class ConnWidgetPVs:
         self.uiobj = uic.loadUi(ui_fname) if janela_opr else None
         self.sinais = None
         self._registrar_grupos()
+        self._map_pvname_2_checkparams()
         self._connect_pvs()
 
     def disconnected_pvnames(self):
@@ -129,6 +130,18 @@ class ConnWidgetPVs:
     def _registrar_grupos(self):
         """Registra os grupos de PVs/LEDs e suas faixas."""
         raise NotImplemented
+
+    def _map_pvname_2_checkparams(self):
+        self.pvname2check = dict()
+        for key, value_ in self.sinais.items():
+            if isinstance(value_, dict):
+                for pvname, value in value_.items():
+                    self.pvname2check[pvname] = value
+                    # led, temp_min, temp_max = value
+            else:
+                pvname = key
+                value = value_
+                self.pvname2check[pvname] = value
 
     def _connect_pvs(self):
         self.pvs = dict()
@@ -162,6 +175,9 @@ class ConnWidgetPVs:
         """Exibe/oculta a interface gráfica."""
         self.uiobj.setVisible(not self.uiobj.isVisible())
 
+    def callback_pvname(pvname, **kwargs):
+        """."""
+
     def atualizar_status(self):
         """Atualiza LEDs da subjanela e define estado_ok."""
         if self.check_type == 'temp':
@@ -181,7 +197,7 @@ class ConnWidgetPVs:
                     self.pvs_status[pvname] = status
 
             if self.botao_menu:
-                cor = "rgb(0, 140, 0)" if self.estado_ok else "rgb(207, 0, 0)"
+                cor = "rgb(0, 168, 0)" if self.estado_ok else "rgb(207, 0, 0)"
                 self.botao_menu.setStyleSheet(f"background-color: {cor};")
 
         elif self.check_type == 'vacuo':
@@ -204,10 +220,6 @@ class ConnWidgetPVs:
                 cor = "rgb(0, 168, 0)" if self.estado_ok else "rgb(207, 0, 0)"
                 self.botao_menu.setStyleSheet(f"background-color: {cor};")
 
-            # Atualiza label de alarme da subjanela
-            # alarme_widget = self.janela_opr.findChild
-            #      (QtWidgets.QLabel,"alarmvacuo")
-
         elif self.check_type == 'estado':
 
             for key, value_ in self.sinais.items():
@@ -228,10 +240,6 @@ class ConnWidgetPVs:
                 cor = "rgb(0, 168, 0)" if self.estado_ok else "rgb(207, 0, 0)"
                 self.botao_menu.setStyleSheet(f"background-color: {cor};")
 
-            # # Atualiza a label de alarme do bloco LOWLEVEL
-            # alarme_widget = self.janela_opr.findChild(
-            #     QtWidgets.QLabel, "alarmpsbo")
-
         else:
             errmsg = (
                 'Atualizar status não está implementado para '
@@ -249,7 +257,21 @@ class ConnWidgetPVs:
         if ref is True:
             ref = start
 
-        pv_list = [(pvname, 0, None, False) for pvname in pvs_dict]
+        pvnames = [pvname for pvname in pvs_dict]
+        time_start = start
+        time_stop = end
+        time_ref = None
+        pvoptnrpts = None
+        pvcolors = None
+        pvusediff = False
 
-        url = PVData.gen_archviewer_link(start, end, pv_list, ref)
+        url = ClientArchiver.gen_archviewer_url_link(
+            pvnames,
+            time_start,
+            time_stop,
+            time_ref,
+            pvoptnrpts,
+            pvcolors,
+            pvusediff,
+        )
         return url

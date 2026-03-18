@@ -6,19 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1028</width>
-    <height>645</height>
+    <width>739</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Power Supplay</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(252, 170, 199);</string>
   </property>
   <widget class="QScrollArea" name="scrollArea_13">
    <property name="geometry">
     <rect>
      <x>7</x>
      <y>9</y>
-     <width>500</width>
+     <width>358</width>
      <height>128</height>
     </rect>
    </property>
@@ -30,13 +33,13 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>500</width>
+     <width>358</width>
      <height>128</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>500</width>
+     <width>358</width>
      <height>128</height>
     </size>
    </property>
@@ -51,7 +54,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>498</width>
+      <width>356</width>
       <height>126</height>
      </rect>
     </property>
@@ -59,12 +62,37 @@
      <property name="geometry">
       <rect>
        <x>8</x>
-       <y>9</y>
-       <width>481</width>
-       <height>108</height>
+       <y>8</y>
+       <width>341</width>
+       <height>112</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="PyDMPushButton" name="PyDMPushButton_41">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>120</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(238, 238, 236);</string>
+        </property>
+        <property name="text">
+         <string>Gráfico</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1">
        <widget class="PyDMLabel" name="PyDMLabel_41">
         <property name="minimumSize">
@@ -92,24 +120,17 @@
       </item>
       <item row="0" column="2">
        <widget class="PyDMLabel" name="PyDMLabel_38">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>67</horstretch>
+          <verstretch>28</verstretch>
+         </sizepolicy>
+        </property>
         <property name="toolTip">
          <string/>
         </property>
         <property name="text">
          <string>Status</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="PyDMLabel" name="PyDMLabel_96">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>Chart</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -145,7 +166,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1" colspan="3">
+      <item row="1" column="1" colspan="2">
        <widget class="Line" name="line_6">
         <property name="sizeIncrement">
          <size>
@@ -261,25 +282,6 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_41">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="2">
        <widget class="SiriusLedState" name="led_statusb">
         <property name="minimumSize">
@@ -294,11 +296,20 @@
           <height>35</height>
          </size>
         </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::DefaultContextMenu</enum>
+        </property>
         <property name="toolTip">
          <string/>
         </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
         <property name="state">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="offColor">
          <color>
@@ -306,6 +317,12 @@
           <green>0</green>
           <blue>0</blue>
          </color>
+        </property>
+        <property name="shape">
+         <enum>QLed::Circle</enum>
+        </property>
+        <property name="alarmSensitiveContent" stdset="0">
+         <bool>false</bool>
         </property>
         <property name="alarmSensitiveBorder" stdset="0">
          <bool>false</bool>
@@ -324,8 +341,8 @@
     <rect>
      <x>7</x>
      <y>146</y>
-     <width>500</width>
-     <height>495</height>
+     <width>358</width>
+     <height>498</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -336,13 +353,13 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>500</width>
-     <height>495</height>
+     <width>358</width>
+     <height>498</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>500</width>
+     <width>358</width>
      <height>495</height>
     </size>
    </property>
@@ -357,20 +374,45 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>498</width>
-      <height>493</height>
+      <width>356</width>
+      <height>496</height>
      </rect>
     </property>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>9</x>
-       <y>9</y>
-       <width>481</width>
-       <height>477</height>
+       <x>8</x>
+       <y>7</y>
+       <width>341</width>
+       <height>481</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="PyDMPushButton" name="PyDMPushButton_42">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(238, 238, 236);</string>
+        </property>
+        <property name="text">
+         <string>Gráfico</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1">
        <widget class="PyDMLabel" name="PyDMLabel_36">
         <property name="toolTip">
@@ -391,19 +433,6 @@
         </property>
         <property name="text">
          <string>Status</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="PyDMLabel" name="PyDMLabel_52">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>Chart</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -439,7 +468,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1" colspan="3">
+      <item row="1" column="1" colspan="2">
        <widget class="Line" name="line_3">
         <property name="sizeIncrement">
          <size>
@@ -590,25 +619,6 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_5">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="0">
        <widget class="PyDMLabel" name="PyDMLabel_32">
         <property name="minimumSize">
@@ -726,25 +736,6 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_6">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="0">
        <widget class="PyDMLabel" name="pv02raps01">
         <property name="minimumSize">
@@ -859,25 +850,6 @@
         </property>
         <property name="shape">
          <enum>QLed::Circle</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_7">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
         </property>
        </widget>
       </item>
@@ -1004,25 +976,6 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_10">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="6" column="0">
        <widget class="PyDMLabel" name="pv03raps01">
         <property name="minimumSize">
@@ -1140,25 +1093,6 @@
         </property>
        </widget>
       </item>
-      <item row="6" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_8">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="7" column="0">
        <widget class="PyDMLabel" name="pv03raps01_2">
         <property name="minimumSize">
@@ -1273,25 +1207,6 @@
         </property>
         <property name="shape">
          <enum>QLed::Circle</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_9">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
         </property>
        </widget>
       </item>
@@ -1415,25 +1330,6 @@
         </property>
        </widget>
       </item>
-      <item row="8" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_15">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="9" column="0">
        <widget class="PyDMLabel" name="pv04raps02">
         <property name="minimumSize">
@@ -1551,25 +1447,6 @@
         </property>
        </widget>
       </item>
-      <item row="9" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_16">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="10" column="0">
        <widget class="PyDMLabel" name="PyDMLabel_71">
         <property name="minimumSize">
@@ -1684,25 +1561,6 @@
         </property>
         <property name="shape">
          <enum>QLed::Circle</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_11">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
         </property>
        </widget>
       </item>
@@ -1826,25 +1684,6 @@
         </property>
        </widget>
       </item>
-      <item row="11" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_12">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </widget>
@@ -1852,10 +1691,10 @@
   <widget class="QScrollArea" name="scrollArea_3">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>9</y>
-     <width>500</width>
-     <height>631</height>
+     <x>373</x>
+     <y>10</y>
+     <width>358</width>
+     <height>634</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -1866,14 +1705,14 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>500</width>
-     <height>631</height>
+     <width>358</width>
+     <height>634</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>500</width>
-     <height>631</height>
+     <width>358</width>
+     <height>634</height>
     </size>
    </property>
    <property name="mouseTracking">
@@ -1887,20 +1726,45 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>498</width>
-      <height>629</height>
+      <width>356</width>
+      <height>632</height>
      </rect>
     </property>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>9</x>
-       <y>9</y>
-       <width>481</width>
-       <height>559</height>
+       <x>7</x>
+       <y>8</y>
+       <width>341</width>
+       <height>563</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="PyDMPushButton" name="PyDMPushButton_13">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(238, 238, 236);</string>
+        </property>
+        <property name="text">
+         <string>Gráfico</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1">
        <widget class="PyDMLabel" name="PyDMLabel_39">
         <property name="toolTip">
@@ -1916,24 +1780,17 @@
       </item>
       <item row="0" column="2">
        <widget class="PyDMLabel" name="PyDMLabel_35">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>67</horstretch>
+          <verstretch>28</verstretch>
+         </sizepolicy>
+        </property>
         <property name="toolTip">
          <string/>
         </property>
         <property name="text">
          <string>Status</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="PyDMLabel" name="PyDMLabel_53">
-        <property name="toolTip">
-         <string/>
-        </property>
-        <property name="text">
-         <string>Chart</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -1969,7 +1826,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1" colspan="3">
+      <item row="1" column="1" colspan="2">
        <widget class="Line" name="line_4">
         <property name="sizeIncrement">
          <size>
@@ -2120,25 +1977,6 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_13">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="0">
        <widget class="PyDMLabel" name="PyDMLabel_33">
         <property name="minimumSize">
@@ -2256,25 +2094,6 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_14">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="0">
        <widget class="PyDMLabel" name="pv02raps01_2">
         <property name="minimumSize">
@@ -2389,25 +2208,6 @@
         </property>
         <property name="shape">
          <enum>QLed::Circle</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_17">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
         </property>
        </widget>
       </item>
@@ -2534,25 +2334,6 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_18">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="6" column="0">
        <widget class="PyDMLabel" name="pv03raps01_3">
         <property name="minimumSize">
@@ -2670,25 +2451,6 @@
         </property>
        </widget>
       </item>
-      <item row="6" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_19">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="7" column="0">
        <widget class="PyDMLabel" name="pv03raps01_4">
         <property name="minimumSize">
@@ -2803,25 +2565,6 @@
         </property>
         <property name="shape">
          <enum>QLed::Circle</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_20">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
         </property>
        </widget>
       </item>
@@ -2945,25 +2688,6 @@
         </property>
        </widget>
       </item>
-      <item row="8" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_21">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="9" column="0">
        <widget class="PyDMLabel" name="pv04raps02_2">
         <property name="minimumSize">
@@ -3081,25 +2805,6 @@
         </property>
        </widget>
       </item>
-      <item row="9" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_22">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="10" column="0">
        <widget class="PyDMLabel" name="PyDMLabel_82">
         <property name="minimumSize">
@@ -3214,25 +2919,6 @@
         </property>
         <property name="shape">
          <enum>QLed::Circle</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_23">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
         </property>
        </widget>
       </item>
@@ -3356,25 +3042,6 @@
         </property>
        </widget>
       </item>
-      <item row="11" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_24">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="12" column="0">
        <widget class="PyDMLabel" name="PyDMLabel_86">
         <property name="minimumSize">
@@ -3492,25 +3159,6 @@
         </property>
        </widget>
       </item>
-      <item row="12" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_25">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="13" column="0">
        <widget class="PyDMLabel" name="PyDMLabel_88">
         <property name="minimumSize">
@@ -3625,25 +3273,6 @@
         </property>
         <property name="shape">
          <enum>QLed::Circle</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="13" column="3">
-       <widget class="PyDMPushButton" name="PyDMPushButton_26">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>28</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string/>
         </property>
        </widget>
       </item>

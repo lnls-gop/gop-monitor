@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(86, 174, 255)</string>
+  </property>
   <widget class="PyDMLabel" name="PyDMLabel">
    <property name="geometry">
     <rect>

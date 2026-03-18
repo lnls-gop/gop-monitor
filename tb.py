@@ -1,9 +1,12 @@
 """Lógica das subjanelas da Linha de Transporte LTB."""
 import logging
-
-from PyQt5 import QtWidgets
+import subprocess
+from PyQt5 import uic, QtWidgets
+from ranges_manager import RangesManager
 
 import utils
+
+ranges_manager = RangesManager()
 
 
 class Vacuum(utils.ConnWidgetPVs):
@@ -75,17 +78,122 @@ class PowerSupply(utils.ConnWidgetPVs):
 class Temperature(utils.ConnWidgetPVs):
     """Classe responsável pelo controle do sistema de temperatura LINAC."""
 
-    def __init__(self, janela_opr=None, botao_menu=None):
+    def plot_graph(self, url):
         """."""
+        try:
+            subprocess.Popen(["firefox", url])
+        except Exception as e:
+            logging.error(f"Erro ao abrir gráfico de temperaturas: {e}")
+
+    def __init__(self, janela_opr, botao_menu):
+        """."""
+        self.ranges = ranges_manager.get_ranges("ltb")
         super().__init__(janela_opr, botao_menu, "ui/templtb.ui", "temp")
+
+        # Conectar botão de configuração de ranges
+        self.uiobj.btnltbRanges.clicked.connect(self.abrir_config_ranges)
+
+        # Atualiza labels da subjanela com ranges persistentes
+        self._atualizar_labels_ranges()
+
+        # Conectar botões de gráfico (como já existia)
+        url = self.create_archviewer_link(self.sinais['Septum'])
+        self.uiobj.btntempsept.clicked.connect(lambda _, url=url: self.
+                                               plot_graph(url))
+
+        url = self.create_archviewer_link(self.sinais['Dipolo'])
+        self.uiobj.btntempdip.clicked.connect(lambda _, url=url: self.
+                                              plot_graph(url))
+
+        url = self.create_archviewer_link(self.sinais['Board'])
+        self.uiobj.btntempboard.clicked.connect(lambda _, url=url: self.
+                                                plot_graph(url))
+
+    def _atualizar_labels_ranges(self):
+        """Atualiza todas as labels range_<grupo> com valores persistentes."""
+        for grupo, (min_val, max_val) in self.ranges.items():
+            label_name = f"range_{grupo}"
+            lbl = self.uiobj.findChild(QtWidgets.QLabel, label_name)
+            if lbl:
+                lbl.setText(f"{min_val} – {max_val} °C")
+            else:
+                logging.warning(
+                    f"Label {label_name} não encontrada em templtb.ui"
+                    )
+
+    def abrir_config_ranges(self):
+        """Abre subjanela de configuração de ranges."""
+        self.config_ui = uic.loadUi("ui/configranges.ui")
+
+        # Preenche combo com todos os grupos
+        self.config_ui.comboGrupos.addItems(self.ranges.keys())
+
+        # Conecta eventos
+        self.config_ui.comboGrupos.currentTextChanged.connect(
+            self.atualizar_spinboxes
+        )
+        self.config_ui.btnSalvar.clicked.connect(self.salvar_range)
+        self.config_ui.btnFechar.clicked.connect(self.config_ui.close)
+
+        # Força seleção do primeiro grupo
+        self.config_ui.comboGrupos.setCurrentIndex(0)
+        grupo_inicial = self.config_ui.comboGrupos.itemText(0)
+        self.atualizar_spinboxes(grupo_inicial)
+
+        self.config_ui.show()
+
+    def atualizar_spinboxes(self, grupo):
+        """Atualiza spinboxes com valores atuais do grupo selecionado."""
+        min_val, max_val = self.ranges[grupo]
+        self.config_ui.spinMin.setValue(min_val)
+        self.config_ui.spinMax.setValue(max_val)
+        self.config_ui.lblRangeAtual.setText(
+            f"Range atual: {min_val:.2f} -{max_val:.2f} °C")
+
+    def salvar_range(self):
+        """."""
+        grupo = self.config_ui.comboGrupos.currentText()
+        min_val = round(float(self.config_ui.spinMin.value()), 2)
+        max_val = round(float(self.config_ui.spinMax.value()), 2)
+
+        # atualiza local
+        self.ranges[grupo] = (min_val, max_val)
+
+        # atualiza global
+        ranges_manager.update_range("ltb", grupo, min_val, max_val)
+
+        self.config_ui.lblRangeAtual.setText(
+            f"Current Range: {min_val:.2f} – {max_val:.2f} °C"
+            )
+
+        # Atualiza label da subjanela templinac.ui
+        label_name = f"range_{grupo}"
+        lbl_principal = self.uiobj.findChild(QtWidgets.QLabel, label_name)
+        if lbl_principal:
+            lbl_principal.setText(f"{min_val:.2f} – {max_val:.2f} °C")
+
+        self._registrar_grupos()
+        self.atualizar_status()
 
     def _registrar_grupos(self):
         """Registra os grupos de PVs/LEDs e suas faixas."""
         self.sinais = {
-            'TB-04:VA-PT100-ED1:Temp-Mon':
-            (self._gwidget('ledtemp_ltb1'), 22, 25),
-            'TB-04:VA-PT100-ED2:Temp-Mon':
-            (self._gwidget('ledtemp_ltb2'), 22, 25),
+            'Septum': {
+                'TB-04:VA-PT100-ED1:Temp-Mon':
+                (self._gwidget('ledtemp_ltb1'), *self.ranges['Septum']),
+                'TB-04:VA-PT100-ED2:Temp-Mon':
+                (self._gwidget('ledtemp_ltb2'), *self.ranges['Septum']),
+            },
+            'Dipolo': {
+                'TB-Fam:PS-B:HeatSinkTemperatureIIB-Mon':
+                (self._gwidget('led_heatsink'), *self.ranges['Dipolo']),
+                'TB-Fam:PS-B:InductorTemperatureIIB-Mon':
+                (self._gwidget('led_inductor'), *self.ranges['Dipolo']),
+            },
+            'Board': {
+                'TB-Fam:PS-B:BoardTemperatureIIB-Mon':
+                (self._gwidget('led_board'), *self.ranges['Board']),
+            },
         }
 
 

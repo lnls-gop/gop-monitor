@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 223, 225);</string>
+  </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="enabled">
     <bool>true</bool>
@@ -36,6 +39,9 @@
      <width>16777215</width>
      <height>670</height>
     </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="currentIndex">
     <number>2</number>
@@ -748,7 +754,7 @@
         <item row="4" column="2">
          <widget class="PyDMLabel" name="PyDMLabel_103">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="minimumSize">
            <size>
@@ -800,7 +806,7 @@
         <item row="4" column="3">
          <widget class="PyDMLabel" name="PyDMLabel_118">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="minimumSize">
            <size>
@@ -2119,7 +2125,7 @@
         <item row="11" column="1">
          <widget class="PyDMLabel" name="PyDMLabel_76">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="minimumSize">
            <size>
@@ -2171,7 +2177,7 @@
         <item row="11" column="2">
          <widget class="PyDMLabel" name="PyDMLabel_98">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="minimumSize">
            <size>
@@ -3599,7 +3605,7 @@
         <item row="4" column="2">
          <widget class="PyDMLabel" name="PyDMLabel_188">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="minimumSize">
            <size>
@@ -3651,7 +3657,7 @@
         <item row="4" column="3">
          <widget class="PyDMLabel" name="PyDMLabel_189">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="minimumSize">
            <size>
@@ -4970,7 +4976,7 @@
         <item row="11" column="1">
          <widget class="PyDMLabel" name="PyDMLabel_210">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="minimumSize">
            <size>
@@ -5022,7 +5028,7 @@
         <item row="11" column="2">
          <widget class="PyDMLabel" name="PyDMLabel_211">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="minimumSize">
            <size>
