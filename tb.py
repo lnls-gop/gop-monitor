@@ -87,7 +87,7 @@ class Temperature(utils.ConnWidgetPVs):
 
     def __init__(self, janela_opr, botao_menu):
         """."""
-        self.ranges = ranges_manager.get_ranges("ltb")
+        self.ranges = ranges_manager.get_ranges("users","tb")
         super().__init__(janela_opr, botao_menu, "ui/templtb.ui", "temp")
 
         # Conectar botão de configuração de ranges
@@ -160,7 +160,7 @@ class Temperature(utils.ConnWidgetPVs):
         self.ranges[grupo] = (min_val, max_val)
 
         # atualiza global
-        ranges_manager.update_range("ltb", grupo, min_val, max_val)
+        ranges_manager.update_range("tb", grupo, min_val, max_val)
 
         self.config_ui.lblRangeAtual.setText(
             f"Current Range: {min_val:.2f} – {max_val:.2f} °C"

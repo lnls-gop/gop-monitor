@@ -89,7 +89,7 @@ class Temperature(utils.ConnWidgetPVs):
 
     def __init__(self, janela_opr, botao_menu):
         """."""
-        self.ranges = ranges_manager.get_ranges("bo")
+        self.ranges = ranges_manager.get_ranges("users", "bo")
         super().__init__(janela_opr, botao_menu, "ui/tempbo.ui", "temp")
 
         # Conectar botão de configuração de ranges
