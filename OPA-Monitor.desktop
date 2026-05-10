@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=OPA-Monitor
+Comment=Sistema de Monitoramento OPA
+Exec=/home/sirius/shared/gop-services/gop-monitor/OPA-Monitor.bash
+Icon=/home/sirius/shared/gop-services/gop-monitor/icon.png
+Type=Application
+Terminal=false
+Categories=Science;Utility;
+StartupNotify=true
+

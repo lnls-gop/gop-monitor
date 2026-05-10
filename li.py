@@ -3,6 +3,8 @@ import logging
 import subprocess
 from PyQt5 import uic, QtWidgets
 from ranges_manager import RangesManager
+from utils import AlarmDelayController
+
 
 import utils
 
@@ -243,7 +245,6 @@ class Lowlevel(utils.ConnWidgetPVs):
                 'LA-RF:LLRF:KLY2:GET_INTERLOCK': (self._gwidget
                                                   ('ledreflet_k2'), 0),
             },
-
         }
 
 
@@ -377,22 +378,22 @@ class AllSubsys:
         for sub in self.subjanelas:
             sub.configurar_sistema()
 
+        # Usa controlador centralizado para btntemplinac → alarmlinac
+        self.alarm_ctrl = AlarmDelayController(
+            janela_opr,
+            alarm_btn_name="alarmlinac",
+            delay_ms=3500
+        )
+
     def atualizar_grupo(self):
-        """Atualiza todas as subjanelas e a label alarmlinac."""
+        """Atualiza as subjanelas e delega lógica ao controlador."""
         falha_detectada = False
         for sub in self.subjanelas:
             sub.atualizar_status()
             falha_detectada |= not sub.estado_ok
 
-        # Atualiza a label principal do bloco LINAC
-        alarme_widget = self.janela_opr.findChild(QtWidgets.QPushButton,
-                                                  "alarmlinac")
-        if alarme_widget:
-            cor = "rgb(0, 168, 0)" if not falha_detectada else "rgb(207, 0, 0)"
-            alarme_widget.setStyleSheet(f"background-color: {cor};")
-            alarme_widget.repaint()
-            QtWidgets.QApplication.processEvents()
-            alarme_widget.update()
+        # Usa controlador centralizado
+        self.alarm_ctrl.atualizar(falha_detectada)
 
     def aba_linac(self):
         """."""

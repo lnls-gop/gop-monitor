@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1312</width>
-    <height>903</height>
+    <width>1155</width>
+    <height>914</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -21,8 +21,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>0</width>
-    <height>800</height>
+    <width>1155</width>
+    <height>855</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1155</width>
+    <height>16777215</height>
    </size>
   </property>
   <property name="font">
@@ -52,323 +58,7 @@
    <string/>
   </property>
   <layout class="QGridLayout" name="gridLayout_9">
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_12">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>15</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>7</pointsize>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="text">
-      <string>Version 0.0.1</string>
-     </property>
-     <property name="textFormat">
-      <enum>Qt::AutoText</enum>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QScrollArea" name="statusfail">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>800</width>
-       <height>415</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="widgetResizable">
-      <bool>true</bool>
-     </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>1292</width>
-        <height>420</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_6">
-       <item row="1" column="3">
-        <widget class="PyDMPushButton" name="alarm10_2">
-         <property name="minimumSize">
-          <size>
-           <width>195</width>
-           <height>195</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>23</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="rules" stdset="0">
-          <string>[]</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="PyDMPushButton" name="alarmsi">
-         <property name="minimumSize">
-          <size>
-           <width>195</width>
-           <height>195</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>20</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>SI</string>
-         </property>
-         <property name="rules" stdset="0">
-          <string>[]</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="PyDMPushButton" name="alarmlinac">
-         <property name="minimumSize">
-          <size>
-           <width>195</width>
-           <height>195</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>20</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>LI</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="PyDMPushButton" name="alarmltb">
-         <property name="minimumSize">
-          <size>
-           <width>195</width>
-           <height>195</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>20</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>TB</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="PyDMPushButton" name="alarmbo">
-         <property name="minimumSize">
-          <size>
-           <width>195</width>
-           <height>195</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>20</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>BO</string>
-         </property>
-         <property name="rules" stdset="0">
-          <string>[]</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="PyDMPushButton" name="alarm10">
-         <property name="minimumSize">
-          <size>
-           <width>195</width>
-           <height>195</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>23</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="rules" stdset="0">
-          <string>[]</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="PyDMPushButton" name="alarmlts">
-         <property name="minimumSize">
-          <size>
-           <width>195</width>
-           <height>195</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>20</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>TS</string>
-         </property>
-         <property name="rules" stdset="0">
-          <string>[]</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="PyDMPushButton" name="infobeam">
-         <property name="minimumSize">
-          <size>
-           <width>195</width>
-           <height>195</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>23</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>INFOBEAM</string>
-         </property>
-         <property name="rules" stdset="0">
-          <string>[]</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="PyDMPushButton" name="alarm10_3">
-         <property name="minimumSize">
-          <size>
-           <width>195</width>
-           <height>195</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>23</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="rules" stdset="0">
-          <string>[]</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="PyDMPushButton" name="alarminfra">
-         <property name="minimumSize">
-          <size>
-           <width>195</width>
-           <height>195</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>20</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>INFRASTRUCTURE</string>
-         </property>
-         <property name="rules" stdset="0">
-          <string>[]</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
-   <item row="0" column="0" rowspan="2">
+   <item row="0" column="0">
     <widget class="QTabWidget" name="janela_opr">
      <property name="sizePolicy">
       <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
@@ -379,7 +69,7 @@
      <property name="minimumSize">
       <size>
        <width>820</width>
-       <height>300</height>
+       <height>390</height>
       </size>
      </property>
      <property name="maximumSize">
@@ -410,530 +100,111 @@
 }</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabinfobeam">
       <attribute name="title">
        <string>INFOBEAM</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_7">
-       <item row="1" column="0" colspan="2">
-        <widget class="PyDMLabel" name="Shift">
-         <property name="minimumSize">
-          <size>
-           <width>400</width>
-           <height>60</height>
-          </size>
+       <item row="4" column="2">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>400</width>
-           <height>45</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>25</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Sunken</enum>
-         </property>
-         <property name="lineWidth">
-          <number>1</number>
-         </property>
-         <property name="midLineWidth">
-          <number>0</number>
-         </property>
-         <property name="text">
-          <string>Maintenance</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignHCenter|Qt::AlignTop</set>
-         </property>
-         <property name="wordWrap">
-          <bool>false</bool>
-         </property>
-         <property name="precision" stdset="0">
-          <number>0</number>
-         </property>
-         <property name="showUnits" stdset="0">
-          <bool>false</bool>
-         </property>
-         <property name="channel" stdset="0">
-          <string>AS-Glob:AP-MachShift:Mode-Sts</string>
-         </property>
-         <property name="displayFormat" stdset="0">
-          <enum>PyDMLabel::Default</enum>
-         </property>
-        </widget>
+         <item>
+          <widget class="SiriusLedAlert" name="ledfofb">
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>70</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="state">
+            <bool>true</bool>
+           </property>
+           <property name="onColor">
+            <color>
+             <red>0</red>
+             <green>140</green>
+             <blue>0</blue>
+            </color>
+           </property>
+           <property name="offColor">
+            <color>
+             <red>207</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </property>
+           <property name="channel" stdset="0">
+            <string>SI-Glob:AP-FOFB:LoopState-Sts</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="label_24">
+       <item row="6" column="2">
+        <widget class="QLabel" name="label_3">
          <property name="minimumSize">
           <size>
-           <width>40</width>
+           <width>170</width>
            <height>40</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Current [mA]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
            <height>40</height>
           </size>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
          <property name="text">
-          <string>Septa Feedforward</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Gamma Status&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignBottom|Qt::AlignHCenter</set>
          </property>
         </widget>
        </item>
-       <item row="2" column="4">
-        <widget class="QLabel" name="label_8">
-         <property name="minimumSize">
-          <size>
-           <width>96</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Orbit Interlock&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-         </property>
-        </widget>
-       </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_10">
-         <property name="minimumSize">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>              A                     B</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="4">
-        <layout class="QHBoxLayout" name="grid_orbitinter">
-         <property name="spacing">
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="SiriusLedAlert" name="ledorbitint">
-           <property name="minimumSize">
-            <size>
-             <width>50</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>50</width>
-             <height>70</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string/>
-           </property>
-           <property name="state">
-            <bool>false</bool>
-           </property>
-           <property name="onColor">
-            <color>
-             <red>0</red>
-             <green>140</green>
-             <blue>0</blue>
-            </color>
-           </property>
-           <property name="offColor">
-            <color>
-             <red>207</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </property>
-           <property name="channel" stdset="0">
-            <string>SI-Glob:AP-OrbIntlk:Enable-Sts</string>
-           </property>
-           <property name="pvbit" stdset="0">
-            <number>-1</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="4">
-        <widget class="PyDMLabel" name="PyDMLabel_2">
-         <property name="minimumSize">
-          <size>
-           <width>400</width>
-           <height>60</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>400</width>
-           <height>45</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>25</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Sunken</enum>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignHCenter|Qt::AlignTop</set>
-         </property>
-         <property name="channel" stdset="0">
-          <string>AS-Glob:AP-InjCtrl:Mode-Sts</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
-        <layout class="QHBoxLayout" name="grid_orbitinter_2">
-         <item>
-          <widget class="SiriusLedAlert" name="ledseptffw">
-           <property name="minimumSize">
-            <size>
-             <width>50</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>50</width>
-             <height>70</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string/>
-           </property>
-           <property name="state">
-            <bool>false</bool>
-           </property>
-           <property name="onColor">
-            <color>
-             <red>0</red>
-             <green>140</green>
-             <blue>0</blue>
-            </color>
-           </property>
-           <property name="offColor">
-            <color>
-             <red>207</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </property>
-           <property name="channel" stdset="0">
-            <string>SI-01:TI-Mags-FFCorrs:State-Sts</string>
-           </property>
-           <property name="pvbit" stdset="0">
-            <number>-1</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="0" column="4">
-        <widget class="QLabel" name="label_2">
-         <property name="minimumSize">
-          <size>
-           <width>400</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Injection Mode:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_5">
-         <property name="minimumSize">
-          <size>
-           <width>150</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>0</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="text">
-          <string> SOFB             FOFB</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="3">
-        <layout class="QHBoxLayout" name="grid_bbb">
-         <property name="spacing">
-          <number>10</number>
-         </property>
-         <property name="sizeConstraint">
-          <enum>QLayout::SetDefaultConstraint</enum>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="SiriusLedAlert" name="ledbbbh">
-           <property name="minimumSize">
-            <size>
-             <width>50</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>50</width>
-             <height>70</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string/>
-           </property>
-           <property name="state">
-            <bool>false</bool>
-           </property>
-           <property name="onColor">
-            <color>
-             <red>0</red>
-             <green>140</green>
-             <blue>0</blue>
-            </color>
-           </property>
-           <property name="offColor">
-            <color>
-             <red>207</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </property>
-           <property name="channel" stdset="0">
-            <string>SI-Glob:DI-BbBProc-H:FBCTRL</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="SiriusLedAlert" name="ledbbbv">
-           <property name="minimumSize">
-            <size>
-             <width>50</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>50</width>
-             <height>70</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string/>
-           </property>
-           <property name="state">
-            <bool>false</bool>
-           </property>
-           <property name="onColor">
-            <color>
-             <red>0</red>
-             <green>140</green>
-             <blue>0</blue>
-            </color>
-           </property>
-           <property name="offColor">
-            <color>
-             <red>207</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </property>
-           <property name="channel" stdset="0">
-            <string>SI-Glob:DI-BbBProc-V:FBCTRL</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="SiriusLedAlert" name="ledbbbl">
-           <property name="minimumSize">
-            <size>
-             <width>50</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>50</width>
-             <height>70</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string/>
-           </property>
-           <property name="state">
-            <bool>false</bool>
-           </property>
-           <property name="onColor">
-            <color>
-             <red>0</red>
-             <green>140</green>
-             <blue>0</blue>
-            </color>
-           </property>
-           <property name="offColor">
-            <color>
-             <red>207</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </property>
-           <property name="channel" stdset="0">
-            <string>SI-Glob:DI-BbBProc-L:FBCTRL</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="4" column="3">
-        <widget class="QLabel" name="label_11">
-         <property name="minimumSize">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>      H            V             L</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="label">
-         <property name="minimumSize">
-          <size>
-           <width>400</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>400</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Shift:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QLabel" name="label_7">
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;BbB&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <layout class="QGridLayout" name="grid_orbitinterevent" rowstretch="0">
+        <layout class="QGridLayout" name="gridLayout_22" rowstretch="0">
          <property name="sizeConstraint">
           <enum>QLayout::SetDefaultConstraint</enum>
          </property>
@@ -1026,33 +297,126 @@
          </item>
         </layout>
        </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_4">
+       <item row="7" column="4">
+        <widget class="PyDMLabel" name="accesstime">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="minimumSize">
           <size>
-           <width>20</width>
-           <height>40</height>
+           <width>170</width>
+           <height>60</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>40</height>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <property name="text">
+          <string notr="true">21600</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="precisionFromPV" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="alarmSensitiveBorder" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="channel" stdset="0">
+          <string>AS-Glob:PP-Summary:TunAccessWaitTimeLeft-Mon</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="label_5">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
           </size>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Orbit Interlock Event&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;SOFB:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <layout class="QHBoxLayout" name="grid_sofb">
-         <property name="spacing">
-          <number>20</number>
+       <item row="2" column="3" colspan="2">
+        <widget class="PyDMLabel" name="PyDMLabel_2">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>60</height>
+          </size>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>25</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignHCenter|Qt::AlignTop</set>
+         </property>
+         <property name="channel" stdset="0">
+          <string>AS-Glob:AP-InjCtrl:Mode-Sts</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="SiriusLedAlert" name="ledsofb">
            <property name="enabled">
@@ -1074,7 +438,7 @@
             <string/>
            </property>
            <property name="state">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="onColor">
             <color>
@@ -1095,8 +459,12 @@
            </property>
           </widget>
          </item>
+        </layout>
+       </item>
+       <item row="4" column="4">
+        <layout class="QHBoxLayout" name="layoutorbitint">
          <item>
-          <widget class="SiriusLedAlert" name="ledfofb">
+          <widget class="SiriusLedAlert" name="ledorbitint">
            <property name="minimumSize">
             <size>
              <width>50</width>
@@ -1113,7 +481,7 @@
             <string/>
            </property>
            <property name="state">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="onColor">
             <color>
@@ -1130,430 +498,563 @@
             </color>
            </property>
            <property name="channel" stdset="0">
-            <string>SI-Glob:AP-FOFB:LoopState-Sts</string>
+            <string>SI-Glob:AP-OrbIntlk:Enable-Sts</string>
+           </property>
+           <property name="pvbit" stdset="0">
+            <number>-1</number>
            </property>
           </widget>
          </item>
         </layout>
        </item>
-       <item row="5" column="0" colspan="5">
-        <widget class="QScrollArea" name="scrollArea">
+       <item row="3" column="3">
+        <widget class="QLabel" name="label_7">
          <property name="minimumSize">
           <size>
-           <width>0</width>
-           <height>140</height>
+           <width>80</width>
+           <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>2000</width>
-           <height>140</height>
+           <width>16777215</width>
+           <height>20</height>
           </size>
          </property>
-         <property name="palette">
-          <palette>
-           <active>
-            <colorrole role="Button">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>252</red>
-               <green>252</green>
-               <blue>252</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>252</red>
-               <green>252</green>
-               <blue>252</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Window">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>252</red>
-               <green>252</green>
-               <blue>252</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </active>
-           <inactive>
-            <colorrole role="Button">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>252</red>
-               <green>252</green>
-               <blue>252</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>252</red>
-               <green>252</green>
-               <blue>252</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Window">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>252</red>
-               <green>252</green>
-               <blue>252</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </inactive>
-           <disabled>
-            <colorrole role="Button">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>252</red>
-               <green>252</green>
-               <blue>252</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>252</red>
-               <green>252</green>
-               <blue>252</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Window">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>252</red>
-               <green>252</green>
-               <blue>252</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </disabled>
-          </palette>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;BbB:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
-         <property name="focusPolicy">
-          <enum>Qt::StrongFocus</enum>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
          </property>
-         <property name="autoFillBackground">
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="PyDMLabel" name="gammastatus">
+         <property name="enabled">
           <bool>true</bool>
          </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: #fcfcfc
-</string>
+         <property name="minimumSize">
+          <size>
+           <width>170</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="accessibleName">
+          <string/>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
          </property>
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Sunken</enum>
          </property>
-         <property name="verticalScrollBarPolicy">
-          <enum>Qt::ScrollBarAlwaysOff</enum>
+         <property name="lineWidth">
+          <number>1</number>
          </property>
-         <property name="horizontalScrollBarPolicy">
-          <enum>Qt::ScrollBarAlwaysOff</enum>
+         <property name="midLineWidth">
+          <number>0</number>
          </property>
-         <property name="widgetResizable">
-          <bool>true</bool>
+         <property name="text">
+          <string>True</string>
          </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents_3">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>1272</width>
-            <height>140</height>
-           </rect>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_10">
-           <item row="0" column="1">
-            <widget class="QLabel" name="label_6">
-             <property name="minimumSize">
-              <size>
-               <width>300</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Current [mA]:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="PyDMLabel" name="accesstime">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>300</width>
-               <height>60</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>45</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>22</pointsize>
-              </font>
-             </property>
-             <property name="toolTip">
-              <string/>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Sunken</enum>
-             </property>
-             <property name="text">
-              <string notr="true">0</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="precisionFromPV" stdset="0">
-              <bool>false</bool>
-             </property>
-             <property name="alarmSensitiveBorder" stdset="0">
-              <bool>false</bool>
-             </property>
-             <property name="channel" stdset="0">
-              <string>AS-Glob:PP-Summary:TunAccessWaitTimeLeft-Mon</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="PyDMLabel" name="currentvalue">
-             <property name="minimumSize">
-              <size>
-               <width>300</width>
-               <height>60</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>45</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>25</pointsize>
-              </font>
-             </property>
-             <property name="toolTip">
-              <string/>
-             </property>
-             <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Sunken</enum>
-             </property>
-             <property name="lineWidth">
-              <number>1</number>
-             </property>
-             <property name="midLineWidth">
-              <number>0</number>
-             </property>
-             <property name="text">
-              <string notr="true">-0.012</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="precision" stdset="0">
-              <number>3</number>
-             </property>
-             <property name="showUnits" stdset="0">
-              <bool>false</bool>
-             </property>
-             <property name="channel" stdset="0">
-              <string>SI-Glob:AP-CurrInfo:Current-Mon</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_13">
-             <property name="minimumSize">
-              <size>
-               <width>300</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Gamma Status:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QLabel" name="label39_2">
-             <property name="minimumSize">
-              <size>
-               <width>300</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Access Wait Time Left:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="PyDMLabel" name="gammastatus">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>300</width>
-               <height>60</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>45</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>22</pointsize>
-              </font>
-             </property>
-             <property name="toolTip">
-              <string/>
-             </property>
-             <property name="accessibleName">
-              <string/>
-             </property>
-             <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Sunken</enum>
-             </property>
-             <property name="lineWidth">
-              <number>1</number>
-             </property>
-             <property name="midLineWidth">
-              <number>0</number>
-             </property>
-             <property name="text">
-              <string>False</string>
-             </property>
-             <property name="textFormat">
-              <enum>Qt::PlainText</enum>
-             </property>
-             <property name="scaledContents">
-              <bool>false</bool>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::NoTextInteraction</set>
-             </property>
-             <property name="rules" stdset="0">
-              <string>[]</string>
-             </property>
-             <property name="precision" stdset="0">
-              <number>0</number>
-             </property>
-             <property name="showUnits" stdset="0">
-              <bool>false</bool>
-             </property>
-             <property name="precisionFromPV" stdset="0">
-              <bool>false</bool>
-             </property>
-             <property name="alarmSensitiveContent" stdset="0">
-              <bool>false</bool>
-             </property>
-             <property name="alarmSensitiveBorder" stdset="0">
-              <bool>false</bool>
-             </property>
-             <property name="channel" stdset="0">
-              <string>AS-Glob:MP-Summary:AlarmGammaShutter-Mon</string>
-             </property>
-             <property name="displayFormat" stdset="0">
-              <enum>PyDMLabel::String</enum>
-             </property>
-             <property name="buddy">
-              <cstring></cstring>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="scaledContents">
+          <bool>false</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::NoTextInteraction</set>
+         </property>
+         <property name="rules" stdset="0">
+          <string>[]</string>
+         </property>
+         <property name="precision" stdset="0">
+          <number>0</number>
+         </property>
+         <property name="showUnits" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="precisionFromPV" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="alarmSensitiveContent" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="alarmSensitiveBorder" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="channel" stdset="0">
+          <string>AS-Glob:MP-Summary:AlarmGammaShutter-Mon</string>
+         </property>
+         <property name="displayFormat" stdset="0">
+          <enum>PyDMLabel::String</enum>
+         </property>
+         <property name="buddy">
+          <cstring></cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="SiriusLedAlert" name="ledbbbh">
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>70</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="state">
+            <bool>true</bool>
+           </property>
+           <property name="onColor">
+            <color>
+             <red>0</red>
+             <green>140</green>
+             <blue>0</blue>
+            </color>
+           </property>
+           <property name="offColor">
+            <color>
+             <red>207</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </property>
+           <property name="channel" stdset="0">
+            <string>SI-Glob:DI-BbBProc-H:FBCTRL</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="SiriusLedAlert" name="ledbbbv">
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>70</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="state">
+            <bool>true</bool>
+           </property>
+           <property name="onColor">
+            <color>
+             <red>0</red>
+             <green>140</green>
+             <blue>0</blue>
+            </color>
+           </property>
+           <property name="offColor">
+            <color>
+             <red>207</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </property>
+           <property name="channel" stdset="0">
+            <string>SI-Glob:DI-BbBProc-V:FBCTRL</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="SiriusLedAlert" name="ledbbbl">
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>70</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="state">
+            <bool>true</bool>
+           </property>
+           <property name="onColor">
+            <color>
+             <red>0</red>
+             <green>140</green>
+             <blue>0</blue>
+            </color>
+           </property>
+           <property name="offColor">
+            <color>
+             <red>207</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </property>
+           <property name="channel" stdset="0">
+            <string>SI-Glob:DI-BbBProc-L:FBCTRL</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="7" column="2">
+        <widget class="PyDMLabel" name="PyDMLabel_3">
+         <property name="minimumSize">
+          <size>
+           <width>170</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>25</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <property name="midLineWidth">
+          <number>0</number>
+         </property>
+         <property name="text">
+          <string notr="true">200.178</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="precision" stdset="0">
+          <number>3</number>
+         </property>
+         <property name="showUnits" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="channel" stdset="0">
+          <string>SI-Glob:AP-CurrInfo:Current-Mon</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="4">
+        <widget class="QLabel" name="label39">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Access Wait Time Left&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="minimumSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Orbit Interlock Event&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3" colspan="2">
+        <widget class="QLabel" name="label_2">
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Injection Mode:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="label">
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Shift:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="PyDMLabel" name="Shift">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>25</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <property name="midLineWidth">
+          <number>0</number>
+         </property>
+         <property name="text">
+          <string>Users</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignHCenter|Qt::AlignTop</set>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="precision" stdset="0">
+          <number>0</number>
+         </property>
+         <property name="showUnits" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="channel" stdset="0">
+          <string>AS-Glob:AP-MachShift:Mode-Sts</string>
+         </property>
+         <property name="displayFormat" stdset="0">
+          <enum>PyDMLabel::Default</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="label_6">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;FOFB:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QLabel" name="label_11">
+         <property name="minimumSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>     H           V           L</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_10">
+         <property name="minimumSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>                A                       B</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="4">
+        <widget class="QLabel" name="label_8">
+         <property name="minimumSize">
+          <size>
+           <width>96</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Orbit Interlock:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+         </property>
         </widget>
        </item>
       </layout>
@@ -1591,7 +1092,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1268</width>
+            <width>1111</width>
             <height>380</height>
            </rect>
           </property>
@@ -1841,7 +1342,7 @@ LINAC</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1268</width>
+            <width>1111</width>
             <height>380</height>
            </rect>
           </property>
@@ -2006,7 +1507,7 @@ SUPPLY</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1268</width>
+            <width>1111</width>
             <height>380</height>
            </rect>
           </property>
@@ -2226,7 +1727,7 @@ SUPPLY</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1268</width>
+            <width>1111</width>
             <height>380</height>
            </rect>
           </property>
@@ -2391,7 +1892,7 @@ SUPPLY</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1268</width>
+            <width>1111</width>
             <height>380</height>
            </rect>
           </property>
@@ -3036,7 +2537,7 @@ CORRECTORS
      </widget>
      <widget class="QWidget" name="tabinfra">
       <attribute name="title">
-       <string>INFRASTRUCTURE</string>
+       <string>INFRA-STRUCTURE</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_5">
        <item row="0" column="0">
@@ -3064,7 +2565,7 @@ CORRECTORS
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1268</width>
+            <width>1111</width>
             <height>380</height>
            </rect>
           </property>
@@ -3155,6 +2656,322 @@ TEMPERATURE</string>
        </item>
       </layout>
      </widget>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QScrollArea" name="statusfail">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>800</width>
+       <height>415</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1135</width>
+        <height>433</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="1" column="0">
+        <widget class="PyDMPushButton" name="infobeam">
+         <property name="minimumSize">
+          <size>
+           <width>195</width>
+           <height>195</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>23</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>INFOBEAM</string>
+         </property>
+         <property name="rules" stdset="0">
+          <string>[]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="PyDMPushButton" name="alarmlinac">
+         <property name="minimumSize">
+          <size>
+           <width>195</width>
+           <height>195</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>LI</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="PyDMPushButton" name="alarmltb">
+         <property name="minimumSize">
+          <size>
+           <width>195</width>
+           <height>195</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>TB</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="PyDMPushButton" name="alarmbo">
+         <property name="minimumSize">
+          <size>
+           <width>195</width>
+           <height>195</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>BO</string>
+         </property>
+         <property name="rules" stdset="0">
+          <string>[]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="PyDMPushButton" name="alarm10_2">
+         <property name="minimumSize">
+          <size>
+           <width>195</width>
+           <height>195</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>23</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="rules" stdset="0">
+          <string>[]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="PyDMPushButton" name="alarmsi">
+         <property name="minimumSize">
+          <size>
+           <width>195</width>
+           <height>195</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>SI</string>
+         </property>
+         <property name="rules" stdset="0">
+          <string>[]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="PyDMPushButton" name="alarminfra">
+         <property name="minimumSize">
+          <size>
+           <width>195</width>
+           <height>195</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>INFRASTRUCTURE</string>
+         </property>
+         <property name="rules" stdset="0">
+          <string>[]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="PyDMPushButton" name="alarmlts">
+         <property name="minimumSize">
+          <size>
+           <width>195</width>
+           <height>195</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>TS</string>
+         </property>
+         <property name="rules" stdset="0">
+          <string>[]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="PyDMPushButton" name="alarm10_3">
+         <property name="minimumSize">
+          <size>
+           <width>195</width>
+           <height>195</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>23</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="rules" stdset="0">
+          <string>[]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="PyDMPushButton" name="alarm10">
+         <property name="minimumSize">
+          <size>
+           <width>195</width>
+           <height>195</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>23</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="rules" stdset="0">
+          <string>[]</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_12">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>13</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>13</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>7</pointsize>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; vertical-align:super;&quot;&gt;GOP Monitor Version 0.0.1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::AutoText</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
     </widget>
    </item>
   </layout>

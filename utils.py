@@ -1,9 +1,11 @@
 """Funções utilitárias de leitura de PVs e atualização de LEDs."""
 import logging
+from datetime import datetime, timedelta
 
 import epics
 from epics import get_pv
 from PyQt5 import QtWidgets, uic
+from PyQt5.QtCore import QTimer
 
 from siriuspy.clientarch import ClientArchiver, Time
 
@@ -253,25 +255,62 @@ class ConnWidgetPVs:
         if end is None:
             end = Time.now()
         if start is None:
-            start = end - 60*60
+            if isinstance(end, datetime):
+                start = end - timedelta(hours=1)
+            else:
+                start = end - 60*60
         if ref is True:
             ref = start
 
-        pvnames = [pvname for pvname in pvs_dict]
-        time_start = start
-        time_stop = end
-        time_ref = None
-        pvoptnrpts = None
-        pvcolors = None
-        pvusediff = False
-
+        pvnames = list(pvs_dict.keys())
         url = ClientArchiver.gen_archviewer_url_link(
             pvnames,
-            time_start,
-            time_stop,
-            time_ref,
-            pvoptnrpts,
-            pvcolors,
-            pvusediff,
+            start,
+            end,
+            ref,
+            None,
+            None,
+            False,
         )
         return url
+
+
+class AlarmDelayController:
+    """Controla atraso entre botão de condição e botão de alarme."""
+
+    def __init__(self, janela_opr, alarm_btn_name: str, delay_ms: int = 5000):
+        """."""
+        self.janela_opr = janela_opr
+        self.alarm_btn_name = alarm_btn_name
+        self.delay_ms = delay_ms
+
+        self.timer = QTimer()
+        self.timer.setSingleShot(True)
+        self.timer.timeout.connect(self._confirmar_falha)
+        self.falha_detectada = False
+
+    def atualizar(self, falha_detectada: bool):
+        """Atualiza apenas o botão de alarme geral com atraso."""
+        if falha_detectada and not self.falha_detectada:
+            self.falha_detectada = True
+            self.timer.start(self.delay_ms)
+        elif not falha_detectada and self.falha_detectada:
+            self.falha_detectada = False
+            self.timer.stop()
+            self._atualizar_alarm(False)
+
+        # Estado inicial
+        if not self.falha_detectada and not falha_detectada:
+            self._atualizar_alarm(False)
+
+    def _confirmar_falha(self):
+        if self.falha_detectada:
+            self._atualizar_alarm(True)
+
+    def _atualizar_alarm(self, falha: bool):
+        alarm_btn = self.janela_opr.findChild(
+            QtWidgets.QPushButton, self.alarm_btn_name
+            )
+        if alarm_btn:
+            cor = "rgb(0, 168, 0)" if not falha else "rgb(207, 0, 0)"
+            alarm_btn.setStyleSheet(f"background-color: {cor};")

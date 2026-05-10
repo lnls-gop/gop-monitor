@@ -31,25 +31,25 @@ class Temptunel(utils.ConnWidgetPVs):
         self.sinais = {
             'tunel': {
                 'TU-5156:AC-PT101:MeanTemperature-Mon':
-                (self._gwidget('led_fc05'), 23.5, 24.5),
+                (self._gwidget('led_fc05'), 22, 25),
                 'TU-0160:AC-PT100:MeanTemperature-Mon':
-                (self._gwidget('led_fc10'), 23.5, 24.5),
+                (self._gwidget('led_fc10'), 22, 25),
                 'TU-0308:AC-PT100:MeanTemperature-Mon':
-                (self._gwidget('led_fc15'), 23.5, 24.5),
+                (self._gwidget('led_fc15'), 22, 25),
                 'TU-0914:AC-PT100:MeanTemperature-Mon':
-                (self._gwidget('led_fc20'), 23.5, 24.5),
+                (self._gwidget('led_fc20'), 22, 25),
                 'TU-1520:AC-PT100:MeanTemperature-Mon':
-                (self._gwidget('led_fc25'), 23.5, 24.5),
+                (self._gwidget('led_fc25'), 22, 25),
                 'TU-2126:AC-PT100:MeanTemperature-Mon':
-                (self._gwidget('led_fc30'), 23.5, 24.5),
+                (self._gwidget('led_fc30'), 22, 25),
                 'TU-2732:AC-PT100:MeanTemperature-Mon':
-                (self._gwidget('led_fc31'), 23.5, 24.5),
+                (self._gwidget('led_fc31'), 22, 25),
                 'TU-3338:AC-PT100:MeanTemperature-Mon':
-                (self._gwidget('led_fc36'), 23.5, 24.5),
+                (self._gwidget('led_fc36'), 22, 25),
                 'TU-3944:AC-PT101:MeanTemperature-Mon':
-                (self._gwidget('led_fc41'), 23.5, 24.5),
+                (self._gwidget('led_fc41'), 22, 25),
                 'TU-4550:AC-PT100:MeanTemperature-Mon':
-                (self._gwidget('led_fc46'), 23.5, 24.5),
+                (self._gwidget('led_fc46'), 22, 25),
             }
         }
 
@@ -78,25 +78,25 @@ class Temphall(utils.ConnWidgetPVs):
         self.sinais = {
             'hall': {
                 'UA-52Hall58:AC-PT100-FC61401:MeanTemperature-Mon':
-                (self._gwidget('led_hall0104'), 22, 25),
+                (self._gwidget('led_hall0104'), 21, 25),
                 'UA-55Hall02:AC-PT100-FC61406:MeanTemperature-Mon':
-                (self._gwidget('led_hall0609'), 22, 25),
+                (self._gwidget('led_hall0609'), 21, 25),
                 'UA-04Hall10:AC-PT100-FC61411:MeanTemperature-Mon':
-                (self._gwidget('led_hall1114'), 22, 25),
+                (self._gwidget('led_hall1114'), 21, 25),
                 'UA-10Hall16:AC-PT100-FC61416:MeanTemperature-Mon':
-                (self._gwidget('led_hall1619'), 22, 25),
+                (self._gwidget('led_hall1619'), 21, 25),
                 'UA-16Hall22:AC-PT100-FC61421:MeanTemperature-Mon':
-                (self._gwidget('led_hall2124'), 22, 25),
+                (self._gwidget('led_hall2124'), 21, 25),
                 'UA-22Hall28:AC-PT100-FC61426:MeanTemperature-Mon':
-                (self._gwidget('led_hall2629'), 22, 25),
+                (self._gwidget('led_hall2629'), 21, 25),
                 'UA-28Hall34:AC-PT100-FC61432:MeanTemperature-Mon':
-                (self._gwidget('led_hall3235'), 22, 25),
+                (self._gwidget('led_hall3235'), 21, 25),
                 'UA-34Hall40:AC-PT100-FC61437:MeanTemperature-Mon':
-                (self._gwidget('led_hall3740'), 22, 25),
+                (self._gwidget('led_hall3740'), 21, 25),
                 'UA-40Hall46:AC-PT101-FC61442:MeanTemperature-Mon':
-                (self._gwidget('led_hall4245'), 22, 25),
+                (self._gwidget('led_hall4245'), 21, 25),
                 'UA-46Hall52:AC-PT100-FC61447:MeanTemperature-Mon':
-                (self._gwidget('led_hall4750'), 22, 25),
+                (self._gwidget('led_hall4750'), 21, 25),
             }
         }
 

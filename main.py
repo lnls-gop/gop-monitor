@@ -6,6 +6,7 @@ import sys
 import epics
 from PyQt5 import QtCore, QtWidgets, uic
 from PyQt5.QtCore import QTimer
+from PyQt5 import QtGui
 
 from li import AllSubsys as AllSubsysLI
 from tb import AllSubsys as AllSubsysTB
@@ -127,33 +128,89 @@ def atualizar_gamma_status(janela_opr):
 def main():
     """."""
     app = QtWidgets.QApplication(sys.argv)
+
+    # Splash com logo
+    splash_pix = QtGui.QPixmap(
+        "/home/sirius/shared/gop-services/gop-monitor/icon.png"
+    )
+
+    # Redimensiona a imagem para metade do tamanho original
+    splash_pix = splash_pix.scaled(
+        splash_pix.width() // 2,
+        splash_pix.height() // 2,
+        QtCore.Qt.KeepAspectRatio,
+        QtCore.Qt.SmoothTransformation
+    )
+
+    splash = QtWidgets.QSplashScreen(
+        splash_pix, QtCore.Qt.WindowStaysOnTopHint
+    )
+    splash.show()
+    app.processEvents()
+
+    # Barra de progresso sobre o splash
+    progress = QtWidgets.QProgressBar(splash)
+    progress.setGeometry(
+        10, splash_pix.height() - 30, splash_pix.width() - 20, 20
+    )
+    progress.setRange(0, 7)  # 7 blocos
+    progress.setValue(0)
+    progress.show()
+
+    # Label para mensagens acima da barra
+    label_msg = QtWidgets.QLabel(splash)
+    label_msg.setGeometry(
+        10, splash_pix.height() - 60, splash_pix.width() - 20, 20
+        )
+    label_msg.setAlignment(QtCore.Qt.AlignCenter)
+    label_msg.setStyleSheet("color: white; font: bold 12px;")
+    label_msg.show()
+
+    # Carrega a janela principal
     janela_opr = uic.loadUi("ui/janela_opr.ui")
+    app.setWindowIcon(
+        QtGui.QIcon("/home/sirius/shared/gop-services/gop-monitor/icon.png")
+    )
 
     # Carrega a subjanela de aviso de falha
     aviso_falha = uic.loadUi("ui/aviso.ui")
-    aviso_falha.setWindowFlags(aviso_falha.windowFlags() | QtCore.Qt.
-                               WindowStaysOnTopHint)
-
+    aviso_falha.setWindowFlags(
+        aviso_falha.windowFlags() | QtCore.Qt.WindowStaysOnTopHint
+    )
     aviso_falha.btnfechar.clicked.connect(lambda: fechar_aviso(aviso_falha))
 
     janela_opr.accesstime.setText("06h00m00s")
 
-    bloco_linac = AllSubsysLI(janela_opr)
-    bloco_ltb = AllSubsysTB(janela_opr)
-    bloco_lts = AllSubsysTS(janela_opr)
-    bloco_bo = AllSubsysBO(janela_opr)
-    bloco_sips = AllSubsysSIPS(janela_opr)
-    bloco_infobeam = AllSubsysINFOBEAM(janela_opr, tocar_bipes, parar_bipes)
-    bloco_infra = AllSubsysINFRA(janela_opr)
-
-    blocos = [
-       bloco_linac, bloco_ltb, bloco_lts, bloco_bo,
-       bloco_sips, bloco_infobeam, bloco_infra
+    # Inicialização dos blocos com mensagens dinâmicas
+    subsistemas = [
+        ("Carregando LINAC", AllSubsysLI),
+        ("Carregando LTB", AllSubsysTB),
+        ("Carregando LTS", AllSubsysTS),
+        ("Carregando Booster", AllSubsysBO),
+        ("Carregando SIPS", AllSubsysSIPS),
+        ("Carregando INFOBEAM", AllSubsysINFOBEAM),
+        ("Carregando INFRA", AllSubsysINFRA),
     ]
 
+    blocos = []
+    for i, (mensagem, Subsys) in enumerate(subsistemas, start=1):
+        label_msg.setText(mensagem)
+        app.processEvents()
+
+        if Subsys is AllSubsysINFOBEAM:
+            bloco = Subsys(janela_opr, tocar_bipes, parar_bipes)
+        else:
+            bloco = Subsys(janela_opr)
+
+        blocos.append(bloco)
+        progress.setValue(i)
+        app.processEvents()
+
+    # Timers
     timer_formatador = QTimer()
     timer_formatador.timeout.connect(
-        lambda: atualizar_accesstime_formatado(janela_opr))
+        lambda: atualizar_accesstime_formatado(janela_opr)
+    )
     timer_formatador.start(500)
 
     timer_gamma = QTimer()
@@ -163,13 +220,15 @@ def main():
     janela_opr._timer = QTimer(janela_opr)
     janela_opr._timer.timeout.connect(
         lambda: [bloco.atualizar_grupo() for bloco in blocos]
-        )
+    )
     janela_opr._timer.start(3000)
 
-    # Atualização iicial
+    # Atualização inicial
     for bloco in blocos:
         bloco.atualizar_grupo()
 
+    # Fecha o splash e mostra a janela principal
+    splash.finish(janela_opr)
     janela_opr.show()
     sys.exit(app.exec())
 
